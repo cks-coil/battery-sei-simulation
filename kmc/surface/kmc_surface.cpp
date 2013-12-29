@@ -105,7 +105,7 @@ void KMCSurface::boundaryXY(int *x, int *y){
     *y %= yNum;
 }
 
-int KMCSurface::getSideSurface(int n, orthDir dir){
+int KMCSurface::getSideN(int n, orthDir dir){
     int x,y;
     int nSide;
     if( !isValid(n) ) return 0; // \cks err msg
@@ -120,16 +120,16 @@ int KMCSurface::getSideSurface(int n, orthDir dir){
     }
     changeXYtoN(x, y, &nSide);
 
-    return surface[nSide];
+    return nSide;
 }
 
-int KMCSurface::getUpDownSideSurface(int n, diaDir dir){
+int KMCSurface::getUpDownSideN(int n, int z, diaDir dir){
     int x,y;
     int nSide;
     if( !isValid(n) ) return 0; // \cks err msg
 
     changeNtoXY(n, &x, &y);
-    // surface[n]が奇数としてまずは処理
+    // zが奇数としてまずは処理
     // 奇数の場合、RIGHT_FRONTが同じx,yとなる
     switch(dir){
     case RIGHT_FRONT: break;
@@ -138,13 +138,13 @@ int KMCSurface::getUpDownSideSurface(int n, diaDir dir){
     case LEFT_BACK: y--; x--; break;
     default: break;
     }
-    // surface[n]が偶数の場合の補正
+    // zが偶数の場合の補正
     // 偶数の場合、LEFT_BACKが同じx,yとなる
-    if( surface[n]%2 == 0 ){
+    if( z%2 == 0 ){
         x++;
         y++;
     }
     changeXYtoN(x, y, &nSide);
 
-    return surface[nSide];
+    return nSide;
 }

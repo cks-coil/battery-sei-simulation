@@ -59,8 +59,8 @@ private:
     void changeXYtoN(int x, int y, int *n);
     void changeNtoXY(int n, int *x, int *y);
     void boundaryXY(int *x, int *y);
-    int getSideSurface(int n, orthDir dir);
-    int getUpDownSideSurface(int n, diaDir dir);
+    int getSideN(int n, orthDir dir);
+    int getUpDownSideN(int n, int z, diaDir dir);
 };
 
 std::ostream &operator<<(std::ostream &out, State &tgt);
