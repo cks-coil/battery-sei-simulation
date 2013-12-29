@@ -49,43 +49,43 @@ int KMCSurface::getNumSite(void){
     return xNum * yNum;
 }
 
-int KMCSurface::getNumSide(void){
-    return 0; // \cks
+int KMCSurface::getNumSide(int n){
+    if( !isValid(n) ) return 0; // \cks err msg
 }
 
 double KMCSurface::getDeltaPoint(int n){
-    if( isValid(n) ) return (double)n * p->getUnitDelta();
-    else return 0; // \cks err msg
+    if( !isValid(n) ) return 0; // \cks err msg
+    return (double)n * p->getUnitDelta();
 }
 double KMCSurface::getDeltaAve(void){
     return deltaAve;
 }
 
-void adsorb(int n){
-    if( isValid(n) && isFlat(n) ) surface[i]++;
-    else return; // \cks err msg
+void KMCSurface::adsorb(int n){
+    if( !isValid(n) || !isFlat(n) ) return; // \cks err msg
+    surface[i]++;
 }
-void adsorb(int n){
-    if( isValid(n) && isFlat(n) ) surface[i]++;
-    else return; // \cks err msg
+void KMCSurface::adsorb(int n){
+    if( !isValid(n) || !isTop(n) ) return; // \cks err msg
+    surface[i]++;
 }
-void output(std::ostream &out){
+void KMCSurface::output(std::ostream &out){
     // \cks
     return;
 }
 
 
-double calcDeltaAve(void){
+double KMCSurface::calcDeltaAve(void){
     int sum=0;
     for(int i=0; i<getNumSite(); i++); sum += surface[i];
     return double(sum) * p->getUnitDelta() / double(getNumSite());
 }
 
-void XYtoN(int x, int y, int *n){
+void KMCSurface::XYtoN(int x, int y, int *n){
     *n = y*xNum + x;
 }
 
-void NtoXY(int n, int *x, int *y){
+void KMCSurface::NtoXY(int n, int *x, int *y){
     if( !isValid(n) ){
         // \cks err msg
         *x = *y = 0;
@@ -95,7 +95,7 @@ void NtoXY(int n, int *x, int *y){
     *y = n/xNum;
 }
 
-void boundaryXY(int *x, int *y){
+void KMCSurface::boundaryXY(int *x, int *y){
     // Periodic boundary condition
     while(*x<0) *x += xNum;
     while(*y<0) *y += yNum;
