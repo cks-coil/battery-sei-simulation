@@ -24,21 +24,22 @@
 class KMCSurface{
 public:
     KMCSurface(int x, int y);
+    void setParam(KMCParam *param);
     void update(void);
-    int getNumSite(void);
-    int getNumSide(void);
+    bool isValid(int n); // nに対応するsiteは存在するか?(0 <= n < x*y)
     bool isTop(int n);  // nに対応するsiteの上に何も乘っていないか?(desorptionできるか?)
     bool isFlat(int n); // nに対応するsiteの下にに位置する4つが全て専有されているか?(adsorptionできるか?)
-    void setParam(KMCParam *param);
+    int getNumSite(void);
+    int getNumSide(int n);
     double getDeltaPoint(int n);
     double getDeltaAve(void);
-    int getSideNum(int n);
     void adsorb(int n);
     void desorb(int n);
     void output(std::ostream &out);
 private:
     int xNum, yNum;
     double deltaAve;
+    KMCParam *p;
     std::vector<int> surface;
     double calcDeltaAve(void);
     void XYtoN(int x, int y, int *n);
