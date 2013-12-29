@@ -10,4 +10,9 @@
 #include "kmc_param.hpp"
 
 KMCParam::KMCParam(void){
+    unitDelta = 0;
 }
+
+void setUnitDelta(double unitDelta){ this->unitDelta = unitDelta; }
+
+double getUnitDelta(void){ return this->unitDelta; }

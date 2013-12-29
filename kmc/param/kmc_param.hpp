@@ -12,7 +12,10 @@
 class KMCParam{
 public:
     KMCParam(void);
+    void setUnitDelta(void unitDelta);
+    double getUnitDelta(void);
 private:
+    double unitDelta;
 };
 
 #endif
