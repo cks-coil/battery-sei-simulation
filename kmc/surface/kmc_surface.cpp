@@ -6,7 +6,7 @@
 
   横から見たイメージとしては下のような感じになる(数字がsite:nに対応する,実際には周期境界あり)
   1 2 3 4 5 ... N
-   1 2 3 4 5 ... N
+  1 2 3 4 5 ... N
   1 2 3 4 5 ... N
   上のようになっている場合、site:1~Nは全て、三層になっていると言える
   例えば二層目の"2"の下には一層目の"2"と"3"が、上には三層目の"2"と"3"が存在している
@@ -50,6 +50,8 @@ int KMCSurface::getNumSite(void){
 }
 
 int KMCSurface::getNumSide(int n){
+    int num=0;
+    int x,y;
     if( !isValid(n) ) return 0; // \cks err msg
 }
 
@@ -81,11 +83,11 @@ double KMCSurface::calcDeltaAve(void){
     return double(sum) * p->getUnitDelta() / double(getNumSite());
 }
 
-void KMCSurface::XYtoN(int x, int y, int *n){
+void KMCSurface::changeXYtoN(int x, int y, int *n){
     *n = y*xNum + x;
 }
 
-void KMCSurface::NtoXY(int n, int *x, int *y){
+void KMCSurface::changeNtoXY(int n, int *x, int *y){
     if( !isValid(n) ){
         // \cks err msg
         *x = *y = 0;
@@ -101,4 +103,48 @@ void KMCSurface::boundaryXY(int *x, int *y){
     while(*y<0) *y += yNum;
     *x %= xNum;
     *y %= yNum;
+}
+
+int KMCSurface::getSideSurface(int n, orthDir dir){
+    int x,y;
+    int nSide;
+    if( !isValid(n) ) return 0; // \cks err msg
+
+    changeNtoXY(n, &x, &y);
+    switch(dir){
+    case RIGHT: x++; break;
+    case LEFT: x--; break;
+    case FRONT: y++; break;
+    case BACK: y--; break;
+    default: break;
+    }
+    changeXYtoN(x, y, &nSide);
+
+    return surface[nSide];
+}
+
+int KMCSurface::getUpDownSideSurface(int n, diaDir dir){
+    int x,y;
+    int nSide;
+    if( !isValid(n) ) return 0; // \cks err msg
+
+    changeNtoXY(n, &x, &y);
+    // surface[n]が奇数としてまずは処理
+    // 奇数の場合、RIGHT_FRONTが同じx,yとなる
+    switch(dir){
+    case RIGHT_FRONT: break;
+    case RIGHT_BACK: y--; break;
+    case LEFT_FRONT: x--; break;
+    case LEFT_BACK: y--; x--; break;
+    default: break;
+    }
+    // surface[n]が偶数の場合の補正
+    // 偶数の場合、LEFT_BACKが同じx,yとなる
+    if( surface[n]%2 == 0 ){
+        x++;
+        y++;
+    }
+    changeXYtoN(x, y, &nSide);
+
+    return surface[nSide];
 }

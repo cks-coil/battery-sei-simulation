@@ -21,6 +21,20 @@
 #include <iostream>
 #include "kmc_param.h"
 
+typedef enum{
+    RIGHT,
+    LEFT,
+    FRONT,
+    BACK
+} orthDir; //orthogonal direction
+
+typedef enum{
+    RIGHT_FRONT,
+    RIGHT_BACK,
+    LEFT_FRONT,
+    LEFT_BACK
+} diaDir; //diaglonal direction
+
 class KMCSurface{
 public:
     KMCSurface(int x, int y);
@@ -42,9 +56,11 @@ private:
     KMCParam *p;
     std::vector<int> surface;
     double calcDeltaAve(void);
-    void XYtoN(int x, int y, int *n);
-    void NtoXY(int n, int *x, int *y);
+    void changeXYtoN(int x, int y, int *n);
+    void changeNtoXY(int n, int *x, int *y);
     void boundaryXY(int *x, int *y);
+    int getSideSurface(int n, orthDir dir);
+    int getUpDownSideSurface(int n, diaDir dir);
 };
 
 std::ostream &operator<<(std::ostream &out, State &tgt);
