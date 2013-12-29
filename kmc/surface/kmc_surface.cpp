@@ -39,10 +39,24 @@ bool KMCSurface::isValid(int n){
 }
 
 bool KMCSurface::isTop(int n){
-    return false; // \cks
+    diaDir listDiaDir[4] = {RIGHT_FRONT, RIGHT_BACK, LEFT_FRONT, LEFT_BACK};
+    int nSide;
+    if( !isValid(n) ) return false; // \cks err msg
+    for(int i=0; i<( sizeof(listDiaDir)/sizeof(listDiaDir[0]) ); i++){
+        nSide = getUpDownSideN(n, surface[n], listDiaDir[i]);
+        if( surface[nSide] > surface[n] ) return false;
+    }
+    return true;
 }
 bool KMCSurface::isFlat(int n){
-    return false; // \cks
+    diaDir listDiaDir[4] = {RIGHT_FRONT, RIGHT_BACK, LEFT_FRONT, LEFT_BACK};
+    int nSide;
+    if( !isValid(n) ) return false; // \cks err msg
+    for(int i=0; i<( sizeof(listDiaDir)/sizeof(listDiaDir[0]) ); i++){
+        nSide = getUpDownSideN(n, surface[n]+1, listDiaDir[i]);
+        if( surface[nSide] < surface[n] ) return false;
+    }
+    return true;
 }
 
 int KMCSurface::getNumSite(void){
@@ -50,9 +64,15 @@ int KMCSurface::getNumSite(void){
 }
 
 int KMCSurface::getNumSide(int n){
+    orthDir listOrthDir[4] = {RIGHT, LEFT, FRONT, BACK};
+    int nSide;
     int num=0;
-    int x,y;
     if( !isValid(n) ) return 0; // \cks err msg
+    for(int i=0; i<( sizeof(listOrthDir)/sizeof(listOrthDir[0]) ); i++){
+        nSide  = getSideN(n, listOrthDir[i]);
+        if( surface[nSide] >= surface[n]) num++;
+    }
+    return num;
 }
 
 double KMCSurface::getDeltaPoint(int n){
