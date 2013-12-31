@@ -12,14 +12,14 @@ using namespace std;
 KMCCore::KMCCore(void){
     stepNum = 0;
     time = 0;
-    st = NULL;
+    s = NULL;
     p = NULL;
     trs.clear();
     rateSum = 0;
 }
 
-void KMCCore::setState(KMCState *st){
-    this->st = st;
+void KMCCore::setSurface(KMCSurface *s){
+    this->s = s;
     initAllTransition();
 }
 void KMCCore::setParam(KMCParam *p){
@@ -43,15 +43,15 @@ void KMCCore::step(void){
     }
     transit();
     updateTime();
-    st->update();
+    s->update();
 }
 
 int KMCCore::getStepNum(void){ return stepNum; }
 double KMCCore::getTime(void){ return time; }
 
 void KMCCore::initTransition(int n){
-    if(st == NULL || p == NULL) return;
-    trs[n]->setState(st);
+    if(s == NULL || p == NULL) return;
+    trs[n]->setSurface(s);
     trs[n]->setParam(p);
 }
 void KMCCore::initAllTransition(void){
