@@ -34,7 +34,7 @@ void KMCSurface::update(void){
 }
 
 bool KMCSurface::isValid(int n){
-    if( n>=0 && n<getNumSide() ) return true;
+    if( n>=0 && n<getNumSite() ) return true;
     else return false;
 }
 
@@ -42,7 +42,7 @@ bool KMCSurface::isTop(int n){
     diaDir listDiaDir[4] = {RIGHT_FRONT, RIGHT_BACK, LEFT_FRONT, LEFT_BACK};
     int nSide;
     if( !isValid(n) ) return false; // \cks err msg
-    for(int i=0; i<( sizeof(listDiaDir)/sizeof(listDiaDir[0]) ); i++){
+    for(int i=0; i<( (int)sizeof(listDiaDir)/(int)sizeof(listDiaDir[0]) ); i++){
         nSide = getUpDownSideN(n, surface[n], listDiaDir[i]);
         if( surface[nSide] > surface[n] ) return false;
     }
@@ -52,7 +52,7 @@ bool KMCSurface::isFlat(int n){
     diaDir listDiaDir[4] = {RIGHT_FRONT, RIGHT_BACK, LEFT_FRONT, LEFT_BACK};
     int nSide;
     if( !isValid(n) ) return false; // \cks err msg
-    for(int i=0; i<( sizeof(listDiaDir)/sizeof(listDiaDir[0]) ); i++){
+    for(int i=0; i<( (int)sizeof(listDiaDir)/(int)sizeof(listDiaDir[0]) ); i++){
         nSide = getUpDownSideN(n, surface[n]+1, listDiaDir[i]);
         if( surface[nSide] < surface[n] ) return false;
     }
@@ -68,7 +68,7 @@ int KMCSurface::getNumSide(int n){
     int nSide;
     int num=0;
     if( !isValid(n) ) return 0; // \cks err msg
-    for(int i=0; i<( sizeof(listOrthDir)/sizeof(listOrthDir[0]) ); i++){
+    for(int i=0; i<( (int)sizeof(listOrthDir)/(int)sizeof(listOrthDir[0]) ); i++){
         nSide  = getSideN(n, listOrthDir[i]);
         if( surface[nSide] >= surface[n]) num++;
     }
@@ -85,11 +85,11 @@ double KMCSurface::getDeltaAve(void){
 
 void KMCSurface::adsorb(int n){
     if( !isValid(n) || !isFlat(n) ) return; // \cks err msg
-    surface[i]++;
+    surface[n]++;
 }
-void KMCSurface::adsorb(int n){
+void KMCSurface::desorb(int n){
     if( !isValid(n) || !isTop(n) ) return; // \cks err msg
-    surface[i]++;
+    surface[n]--;
 }
 void KMCSurface::output(std::ostream &out){
     // \cks
@@ -99,7 +99,7 @@ void KMCSurface::output(std::ostream &out){
 
 double KMCSurface::calcDeltaAve(void){
     int sum=0;
-    for(int i=0; i<getNumSite(); i++); sum += surface[i];
+    for(int i=0; i<getNumSite(); i++) sum += surface[i];
     return double(sum) * p->getUnitDelta() / double(getNumSite());
 }
 

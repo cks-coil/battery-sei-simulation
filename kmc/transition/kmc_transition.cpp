@@ -3,11 +3,11 @@
   \author Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.ac.jp>
 */
 
-#include "transition.hpp"
+#include "kmc_transition.hpp"
 
 using namespace std;
 
-KMCTransition::Transition(void){
+KMCTransition::KMCTransition(void){
     s = NULL;
     p = NULL;
     transitionRateSum = 0;
@@ -53,7 +53,7 @@ void KMCTransition::calcTransitionRateSum(void){
 
 void KMCTransition::initTransitionRateVector(void){
     if(s == NULL) return;
-    int num = surface->getNumSite();
+    int num = s->getNumSite();
     transitionRate.clear();
     transitionRate.reserve(num);
     for(int i=0;i<num;i++) transitionRate.push_back(0);

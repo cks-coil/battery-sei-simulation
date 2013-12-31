@@ -10,9 +10,9 @@
 #include "kmc_surface.hpp"
 #include "kmc_param.hpp"
 
-class Transition{
+class KMCTransition{
 public:
-    Transition(void);
+    KMCTransition(void);
     void setSurface(KMCSurface *st);
     void setParam(KMCParam *p);
     KMCSurface *getSurface(void);

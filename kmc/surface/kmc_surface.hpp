@@ -19,7 +19,7 @@
 
 #include <vector>
 #include <iostream>
-#include "kmc_param.h"
+#include "kmc_param.hpp"
 
 typedef enum{
     RIGHT,
@@ -63,6 +63,6 @@ private:
     int getUpDownSideN(int n, int z, diaDir dir);
 };
 
-std::ostream &operator<<(std::ostream &out, State &tgt);
+std::ostream &operator<<(std::ostream &out, KMCSurface &tgt);
 
 #endif

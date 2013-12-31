@@ -13,6 +13,6 @@ KMCParam::KMCParam(void){
     unitDelta = 0;
 }
 
-void setUnitDelta(double unitDelta){ this->unitDelta = unitDelta; }
+void KMCParam::setUnitDelta(double unitDelta){ this->unitDelta = unitDelta; }
 
-double getUnitDelta(void){ return this->unitDelta; }
+double KMCParam::getUnitDelta(void){ return this->unitDelta; }
