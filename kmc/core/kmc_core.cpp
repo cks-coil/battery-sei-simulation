@@ -22,7 +22,7 @@ void KMCCore::setSurface(KMCSurface *s){
     this->s = s;
     initAllTransition();
 }
-void KMCCore::setParam(KMCParam *p){
+void KMCCore::setParam(Param *p){
     this->p = p;
     initAllTransition();
 }

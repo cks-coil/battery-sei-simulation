@@ -1,18 +1,16 @@
 /*
-  \file    kmc_param.cpp
+  \file    param.cpp
   \author  Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.ac.jp>
-
-  kmc param
 */
 
 #include <math.h>
 #include "constant.hpp"
-#include "kmc_param.hpp"
+#include "param.hpp"
 
-KMCParam::KMCParam(void){
+Param::Param(void){
     unitDelta = 0;
 }
 
-void KMCParam::setUnitDelta(double unitDelta){ this->unitDelta = unitDelta; }
+void Param::setUnitDelta(double unitDelta){ this->unitDelta = unitDelta; }
 
-double KMCParam::getUnitDelta(void){ return this->unitDelta; }
+double Param::getUnitDelta(void){ return this->unitDelta; }

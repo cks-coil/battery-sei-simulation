@@ -8,15 +8,15 @@
 
 #include <vector>
 #include "kmc_surface.hpp"
-#include "kmc_param.hpp"
+#include "param.hpp"
 
 class KMCTransition{
 public:
     KMCTransition(void);
     void setSurface(KMCSurface *st);
-    void setParam(KMCParam *p);
+    void setParam(Param *p);
     KMCSurface *getSurface(void);
-    KMCParam *getParam(void);
+    Param *getParam(void);
     void setTransitionRate(int n, double rate);
     double getTransitionRate(int n);
     double getSumTransitionRate(void);
@@ -27,7 +27,7 @@ public:
 private:
     void initTransitionRateVector(void);
     KMCSurface *s;
-    KMCParam *p;
+    Param *p;
     double transitionRateSum;
     std::vector<double> transitionRate;
 };

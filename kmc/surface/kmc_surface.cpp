@@ -25,7 +25,7 @@ KMCSurface::KMCSurface(int x, int y){
     update();
 }
 
-void KMCSurface::setParam(KMCParam *param){
+void KMCSurface::setParam(Param *param){
     p = param;
 }
 

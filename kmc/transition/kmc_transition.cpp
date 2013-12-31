@@ -17,13 +17,13 @@ void KMCTransition::setSurface(KMCSurface *s){
     this->s = s;
     initTransitionRateVector();
 }
-void KMCTransition::setParam(KMCParam *p){
+void KMCTransition::setParam(Param *p){
     this->p = p;
 }
 KMCSurface *KMCTransition::getSurface(void){
     return s;
 }
-KMCParam *KMCTransition::getParam(void){
+Param *KMCTransition::getParam(void){
     return p;
 }
 

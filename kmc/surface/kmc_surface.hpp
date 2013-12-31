@@ -19,7 +19,7 @@
 
 #include <vector>
 #include <iostream>
-#include "kmc_param.hpp"
+#include "param.hpp"
 
 typedef enum{
     RIGHT,
@@ -38,7 +38,7 @@ typedef enum{
 class KMCSurface{
 public:
     KMCSurface(int x, int y);
-    void setParam(KMCParam *param);
+    void setParam(Param *param);
     void update(void);
     bool isValid(int n); // nに対応するsiteは存在するか?(0 <= n < x*y)
     bool isTop(int n);  // nに対応するsiteの上に何も乘っていないか?(desorptionできるか?)
@@ -53,7 +53,7 @@ public:
 private:
     int xNum, yNum;
     double deltaAve;
-    KMCParam *p;
+    Param *p;
     std::vector<int> surface;
     double calcDeltaAve(void);
     void changeXYtoN(int x, int y, int *n);

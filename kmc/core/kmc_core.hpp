@@ -14,7 +14,7 @@ class KMCCore{
 public:
     KMCCore(void);
     void setSurface(KMCSurface *s);
-    void setParam(KMCParam *p);
+    void setParam(Param *p);
     void setTransition(KMCTransition *tr);
     void step(void);
     int getStepNum(void);
@@ -23,7 +23,7 @@ private:
     int stepNum;
     double time;
     KMCSurface *s;
-    KMCParam *p;
+    Param *p;
     std::vector<KMCTransition *> trs;
     double rateSum;
     void initTransition(int n);
