@@ -8,9 +8,9 @@
 #include "param.hpp"
 
 Param::Param(void){
-    unitDelta = 0;
+    unitSEIThickness = 0;
 }
 
-void Param::setUnitDelta(double unitDelta){ this->unitDelta = unitDelta; }
+void Param::setUnitSEIThickness(double unitSEIThickness){ this->unitSEIThickness = unitSEIThickness; }
 
-double Param::getUnitDelta(void){ return this->unitDelta; }
+double Param::getUnitSEIThickness(void){ return this->unitSEIThickness; }

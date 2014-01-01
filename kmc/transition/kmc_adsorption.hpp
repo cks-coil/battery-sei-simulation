@@ -14,6 +14,6 @@ public:
     void calcTransitionRate(void);
     void transit(int n);
 private:
-}
+};
 
-class
+#endif

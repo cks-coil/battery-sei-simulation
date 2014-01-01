@@ -10,10 +10,10 @@
 class Param{
 public:
     Param(void);
-    void setUnitDelta(double unitDelta);
-    double getUnitDelta(void);
+    void setUnitSEIThickness(double unitSEIThickness);
+    double getUnitSEIThickness(void);
 private:
-    double unitDelta;
+    double unitSEIThickness; //  of one particle [m]
 };
 
 #endif

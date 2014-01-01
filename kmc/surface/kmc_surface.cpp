@@ -19,7 +19,7 @@
 KMCSurface::KMCSurface(int x, int y){
     xNum = x;
     yNum = y;
-    deltaAve = 0;
+    SEIThicknessAve = 0;
     surface.reserve(xNum*yNum);
     for(int i=0; i<xNum*yNum; i++) surface[i] = 1;
     update();
@@ -30,7 +30,7 @@ void KMCSurface::setParam(Param *param){
 }
 
 void KMCSurface::update(void){
-    calcDeltaAve();
+    calcSEIThicknessAve();
 }
 
 bool KMCSurface::isValid(int n){
@@ -75,12 +75,12 @@ int KMCSurface::getNumSide(int n){
     return num;
 }
 
-double KMCSurface::getDeltaPoint(int n){
+double KMCSurface::getSEIThicknessPoint(int n){
     if( !isValid(n) ) return 0; // \cks err msg
-    return (double)n * p->getUnitDelta();
+    return (double)n * p->getUnitSEIThickness();
 }
-double KMCSurface::getDeltaAve(void){
-    return deltaAve;
+double KMCSurface::getSEIThicknessAve(void){
+    return SEIThicknessAve;
 }
 
 void KMCSurface::adsorb(int n){
@@ -97,10 +97,10 @@ void KMCSurface::output(std::ostream &out){
 }
 
 
-double KMCSurface::calcDeltaAve(void){
+double KMCSurface::calcSEIThicknessAve(void){
     int sum=0;
     for(int i=0; i<getNumSite(); i++) sum += surface[i];
-    return double(sum) * p->getUnitDelta() / double(getNumSite());
+    return double(sum) * p->getUnitSEIThickness() / double(getNumSite());
 }
 
 void KMCSurface::changeXYtoN(int x, int y, int *n){

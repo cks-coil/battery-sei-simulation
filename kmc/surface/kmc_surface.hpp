@@ -45,17 +45,17 @@ public:
     bool isFlat(int n); // nに対応するsiteの下にに位置する4つが全て専有されているか?(adsorptionできるか?)
     int getNumSite(void);
     int getNumSide(int n);
-    double getDeltaPoint(int n);
-    double getDeltaAve(void);
+    double getSEIThicknessPoint(int n);
+    double getSEIThicknessAve(void);
     void adsorb(int n);
     void desorb(int n);
     void output(std::ostream &out);
 private:
     int xNum, yNum;
-    double deltaAve;
+    double SEIThicknessAve;
     Param *p;
     std::vector<int> surface;
-    double calcDeltaAve(void);
+    double calcSEIThicknessAve(void);
     void changeXYtoN(int x, int y, int *n);
     void changeNtoXY(int n, int *x, int *y);
     void boundaryXY(int *x, int *y);

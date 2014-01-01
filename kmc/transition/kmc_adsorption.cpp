@@ -5,7 +5,7 @@
 
 #include "kmc_adsorption.hpp"
 
-KMCAdsorption(void){} // \cks
+KMCAdsorption::KMCAdsorption(void){}
 
 void KMCAdsorption::calcTransitionRate(void){
 }
