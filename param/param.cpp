@@ -12,5 +12,12 @@ Param::Param(void){
 }
 
 void Param::setUnitSEIThickness(double unitSEIThickness){ this->unitSEIThickness = unitSEIThickness; }
+void Param::setUnitSEIArea(double unitSEIArea){ this->unitSEIArea = unitSEIArea; }
+void Param::setElectrolyteConductivity(double electrolyteConductivity){ this->electrolyteConductivity = electrolyteConductivity; }
+void Param::setTransferCoefficients(double transferCoefficients){ this->transferCoefficients = transferCoefficients; }
+
 
 double Param::getUnitSEIThickness(void){ return this->unitSEIThickness; }
+double Param::getUnitSEIArea(void){ return this->unitSEIArea; }
+double Param::getElectrolyteConductivity(void){ return this->electrolyteConductivity; }
+double Param::getTransferCoefficients(void){ return this->transferCoefficients; }

@@ -11,9 +11,18 @@ class Param{
 public:
     Param(void);
     void setUnitSEIThickness(double unitSEIThickness);
+    void setUnitSEIArea(double unitSEIArea);
+    void setElectrolyteConductivity(double electrolyteConductivity);
+    void setTransferCoefficients(double transferCoefficients);
     double getUnitSEIThickness(void);
+    double getUnitSEIArea(void);
+    double getElectrolyteConductivity(void);
+    double getTransferCoefficients(void);
 private:
-    double unitSEIThickness; //  of one particle [m]
+    double unitSEIThickness; // [m / (particle)]
+    double unitSEIArea;      // [m^2 / (particle)]
+    double electrolyteConductivity; // κ [S m^-1]
+    double transferCoefficients; // α [-]
 };
 
 #endif
