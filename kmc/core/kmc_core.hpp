@@ -29,7 +29,6 @@ private:
     void initTransition(int n);
     void initAllTransition(void);
     void initLastTransition(void);
-    void calcRateSum(void);
     void transit(void);
     void updateTime(void);
 };
