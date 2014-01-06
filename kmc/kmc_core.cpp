@@ -12,18 +12,23 @@ using namespace std;
 KMCCore::KMCCore(void){
     stepNum = 0;
     time = 0;
-    s = NULL;
-    p = NULL;
+    surface = NULL;
+    state = NULL;
+    param = NULL;
     trs.clear();
     rateSum = 0;
 }
 
-void KMCCore::setSurface(KMCSurface *s){
-    this->s = s;
+void KMCCore::setSurface(KMCSurface *surface){
+    this->surface = surface;
     initAllTransition();
 }
-void KMCCore::setParam(Param *p){
-    this->p = p;
+void KMCCore::setState(State *state){
+    this->state = state;
+    initAllTransition();
+}
+void KMCCore::setParam(Param *param){
+    this->param = param;
     initAllTransition();
 }
 
@@ -43,16 +48,17 @@ void KMCCore::step(void){
     }
     transit();
     updateTime();
-    s->update();
+    surface->update();
 }
 
 int KMCCore::getStepNum(void){ return stepNum; }
 double KMCCore::getTime(void){ return time; }
 
 void KMCCore::initTransition(int n){
-    if(s == NULL || p == NULL) return;
-    trs[n]->setSurface(s);
-    trs[n]->setParam(p);
+    if(surface == NULL || param == NULL || state == NULL) return;
+    trs[n]->setSurface(surface);
+    trs[n]->setState(state);
+    trs[n]->setParam(param);
 }
 void KMCCore::initAllTransition(void){
     for(int i=0; i<(int)trs.size(); i++) initTransition(i);

@@ -8,23 +8,30 @@
 using namespace std;
 
 KMCTransition::KMCTransition(void){
-    s = NULL;
-    p = NULL;
+    surface = NULL;
+    state = NULL;
+    param = NULL;
     transitionRateSum = 0;
 }
 
-void KMCTransition::setSurface(KMCSurface *s){
-    this->s = s;
+void KMCTransition::setSurface(KMCSurface *surface){
+    this->surface = surface;
     initTransitionRateVector();
 }
-void KMCTransition::setParam(Param *p){
-    this->p = p;
+void KMCTransition::setState(State *state){
+    this->state = state;
+}
+void KMCTransition::setParam(Param *param){
+    this->param = param;
 }
 KMCSurface *KMCTransition::getSurface(void){
-    return s;
+    return surface;
+}
+State *KMCTransition::getState(void){
+    return state;
 }
 Param *KMCTransition::getParam(void){
-    return p;
+    return param;
 }
 
 void KMCTransition::setTransitionRate(int n, double rate){
@@ -52,8 +59,8 @@ void KMCTransition::calcTransitionRateSum(void){
 }
 
 void KMCTransition::initTransitionRateVector(void){
-    if(s == NULL) return;
-    int num = s->getNumSite();
+    if(surface == NULL) return;
+    int num = surface->getNumSite();
     transitionRate.clear();
     transitionRate.reserve(num);
     for(int i=0;i<num;i++) transitionRate.push_back(0);

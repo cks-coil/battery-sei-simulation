@@ -7,14 +7,17 @@
 #define __INCLUDED_KMC_CORE_HPP__
 
 #include <vector>
+#include "param.hpp"
+#include "state.hpp"
 #include "kmc_surface.hpp"
 #include "kmc_transition.hpp"
 
 class KMCCore{
 public:
     KMCCore(void);
-    void setSurface(KMCSurface *s);
-    void setParam(Param *p);
+    void setSurface(KMCSurface *surface);
+    void setState(State *state);
+    void setParam(Param *param);
     void setTransition(KMCTransition *tr);
     void step(void);
     int getStepNum(void);
@@ -22,8 +25,9 @@ public:
 private:
     int stepNum;
     double time;
-    KMCSurface *s;
-    Param *p;
+    KMCSurface *surface;
+    State *state;
+    Param *param;
     std::vector<KMCTransition *> trs;
     double rateSum;
     void initTransition(int n);
