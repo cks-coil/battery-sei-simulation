@@ -15,9 +15,10 @@ void Param::setUnitSEIThickness(double unitSEIThickness){ this->unitSEIThickness
 void Param::setUnitSEIArea(double unitSEIArea){ this->unitSEIArea = unitSEIArea; }
 void Param::setElectrolyteConductivity(double electrolyteConductivity){ this->electrolyteConductivity = electrolyteConductivity; }
 void Param::setTransferCoefficients(double transferCoefficients){ this->transferCoefficients = transferCoefficients; }
-
+void Param::setAnodeLocalEquilibriumPotential(double anodeLocalEquilibriumPotential){ this anodeLocalEquilibriumPotential = anodeLocalEquilibriumPotential; }
 
 double Param::getUnitSEIThickness(void){ return this->unitSEIThickness; }
 double Param::getUnitSEIArea(void){ return this->unitSEIArea; }
 double Param::getElectrolyteConductivity(void){ return this->electrolyteConductivity; }
 double Param::getTransferCoefficients(void){ return this->transferCoefficients; }
+double Param::getAnodeLocalEquilibriumPotential(void){return this->anodeLocalEquilibriumPotential; }
