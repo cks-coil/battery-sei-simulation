@@ -3,12 +3,14 @@
   \author  Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.ac.jp>
 */
 
-void Param::setSolidPhaseLocalPotential(double solidPhaseLocalPotential){ this->solidPhaseLocalPotential = solidPhaseLocalPotential; }
-void Param::setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential){ this->liquidPhaseLocalPotential = liquidPhaseLocalPotential; }
-void Param::setAnodeIntercalationCurrentDensity(double anodeIntercalationCurrentDensity){ this->anodeIntercalationCurrentDensity = anodeIntercalationCurrentDensity}
-void Param::setAnodeSideReactionCurrentDensity(double anodeSideReactionCurrentDensity){ this->anodeSideReactionCurrentDensity = anodeIntercalationCurrentDensity; }
+#include "state.hpp"
 
-double Param::getSolidPhaseLocalPotential(void){ return this->solidPhaseLocalPotential; }
-double Param::getLiquidPhaseLocalPotential(void){ return this->liquidPhaseLocalPotential; }
-double Param::getAnodeIntercalationCurrentDensity(void){ return this->anodeIntercalationCurrentDensity; }
-double Param::getAnodeSideReactionCurrentDensity(void){ return this->anodeSideReactionCurrentDensity; }
+void State::setSolidPhaseLocalPotential(double solidPhaseLocalPotential){ this->solidPhaseLocalPotential = solidPhaseLocalPotential; }
+void State::setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential){ this->liquidPhaseLocalPotential = liquidPhaseLocalPotential; }
+void State::setAnodeIntercalationCurrentDensity(double anodeIntercalationCurrentDensity){ this->anodeIntercalationCurrentDensity = anodeIntercalationCurrentDensity; }
+void State::setAnodeSideReactionCurrentDensity(double anodeSideReactionCurrentDensity){ this->anodeSideReactionCurrentDensity = anodeIntercalationCurrentDensity; }
+
+double State::getSolidPhaseLocalPotential(void){ return this->solidPhaseLocalPotential; }
+double State::getLiquidPhaseLocalPotential(void){ return this->liquidPhaseLocalPotential; }
+double State::getAnodeIntercalationCurrentDensity(void){ return this->anodeIntercalationCurrentDensity; }
+double State::getAnodeSideReactionCurrentDensity(void){ return this->anodeSideReactionCurrentDensity; }

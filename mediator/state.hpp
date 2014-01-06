@@ -27,7 +27,7 @@ private:
     double liquidPhaseLocalPotential;
     double anodeIntercalationCurrentDensity;
     double anodeSideReactionCurrentDensity;
-}
+};
 
 #endif
   

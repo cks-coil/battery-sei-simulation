@@ -1,4 +1,4 @@
-SUBDIRS = kmc/surface kmc/transition kmc/core param
+SUBDIRS = kmc param mediator
 
 SRCS = $(shell find . $(SUBDIRS) -maxdepth 1 -name "*.cpp")
 OBJS = $(SRCS:.cpp=.o)
