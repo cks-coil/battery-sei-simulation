@@ -5,6 +5,13 @@
 
 #include "state.hpp"
 
+State::State(void){
+    solidPhaseLocalPotential = 0.0;
+    liquidPhaseLocalPotential = 0.0;
+    anodeIntercalationCurrentDensity = 0.0;
+    anodeSideReactionCurrentDensity = 0.0;
+}
+
 void State::setSolidPhaseLocalPotential(double solidPhaseLocalPotential){ this->solidPhaseLocalPotential = solidPhaseLocalPotential; }
 void State::setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential){ this->liquidPhaseLocalPotential = liquidPhaseLocalPotential; }
 void State::setAnodeIntercalationCurrentDensity(double anodeIntercalationCurrentDensity){ this->anodeIntercalationCurrentDensity = anodeIntercalationCurrentDensity; }

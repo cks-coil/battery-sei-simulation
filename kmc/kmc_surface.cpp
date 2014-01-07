@@ -15,14 +15,15 @@
 */
 
 #include "kmc_surface.hpp"
+using namespace std;
 
 KMCSurface::KMCSurface(int x, int y){
+    p = NULL;
     xNum = x;
     yNum = y;
     SEIThicknessAve = 0;
     surface.reserve(xNum*yNum);
     for(int i=0; i<xNum*yNum; i++) surface[i] = 1;
-    update();
 }
 
 void KMCSurface::setParam(Param *param){
@@ -96,14 +97,14 @@ void KMCSurface::output(std::ostream &out){
     return;
 }
 
-
-double KMCSurface::calcSEIThicknessAve(void){
+void KMCSurface::calcSEIThicknessAve(void){
     int sum=0;
     for(int i=0; i<getNumSite(); i++) sum += surface[i];
-    return double(sum) * p->getUnitSEIThickness() / double(getNumSite());
+    SEIThicknessAve = double(sum) * p->getUnitSEIThickness() / double(getNumSite());
 }
 
 void KMCSurface::changeXYtoN(int x, int y, int *n){
+    boundaryXY(&x, &y);
     *n = y*xNum + x;
 }
 

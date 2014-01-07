@@ -55,7 +55,7 @@ private:
     double SEIThicknessAve;
     Param *p;
     std::vector<int> surface;
-    double calcSEIThicknessAve(void);
+    void calcSEIThicknessAve(void);
     void changeXYtoN(int x, int y, int *n);
     void changeNtoXY(int n, int *x, int *y);
     void boundaryXY(int *x, int *y);

@@ -7,7 +7,15 @@
 #include "param.hpp"
 
 Param::Param(void){
-    unitSEIThickness = 0;
+    unitSEIThickness = 0.0;
+    temperature = 0.0;
+    unitSEIThickness = 0.0;
+    unitSEIArea = 0.0;
+    electrolyteConductivity = 0.0;
+    transferCoefficients = 0.0;
+    anodeSpecificArea = 0.0;
+    anodeLocalEquilibriumPotential = 0.0;
+    anodeSideReactionExchangeCurrentDensity = 0.0;
 }
 
 void Param::setTemperature(double temperature){ this->temperature = temperature; }

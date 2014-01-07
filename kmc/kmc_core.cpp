@@ -22,19 +22,23 @@ KMCCore::KMCCore(void){
 void KMCCore::setSurface(KMCSurface *surface){
     this->surface = surface;
     initAllTransition();
+    initSurface();
 }
 void KMCCore::setState(State *state){
     this->state = state;
     initAllTransition();
+    initSurface();
 }
 void KMCCore::setParam(Param *param){
     this->param = param;
     initAllTransition();
+    initSurface();
 }
 
 void KMCCore::setTransition(KMCTransition *tr){
     trs.push_back(tr);
     initLastTransition();
+    initSurface();
 }
 
 void KMCCore::step(void){
@@ -65,6 +69,12 @@ void KMCCore::initAllTransition(void){
 }
 void KMCCore::initLastTransition(void){
     initTransition((int)trs.size()-1);
+}
+
+void KMCCore::initSurface(void){
+    if(surface == NULL || param == NULL) return;
+    surface->setParam(param);
+    surface->update();
 }
 
 // Equ.13
