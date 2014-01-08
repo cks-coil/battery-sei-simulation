@@ -16,17 +16,20 @@ public:
     void setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential);
     void setAnodeIntercalationCurrentDensity(double anodeIntercalationCurrentDensity);
     void setAnodeSideReactionCurrentDensity(double anodeSideReactionCurrentDensity);
+    void setAnodeLocalEquilibriumPotential(double anodeLocalEquilibriumPotential);
     void setSEIThickness(double SEIThickness);
     double getSolidPhaseLocalPotential(void);
     double getLiquidPhaseLocalPotential(void);
     double getAnodeIntercalationCurrentDensity(void);
     double getAnodeSideReactionCurrentDensity(void);
+    double getAnodeLocalEquilibriumPotential(void);
 private:
     Param *p;
     double solidPhaseLocalPotential;
     double liquidPhaseLocalPotential;
     double anodeIntercalationCurrentDensity;
     double anodeSideReactionCurrentDensity;
+    double anodeLocalEquilibriumPotential;
 };
 
 #endif

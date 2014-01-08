@@ -14,7 +14,6 @@ Param::Param(void){
     electrolyteConductivity = 0.0;
     transferCoefficients = 0.0;
     anodeSpecificArea = 0.0;
-    anodeLocalEquilibriumPotential = 0.0;
     anodeSideReactionExchangeCurrentDensity = 0.0;
 }
 
@@ -24,7 +23,6 @@ void Param::setUnitSEIArea(double unitSEIArea){ this->unitSEIArea = unitSEIArea;
 void Param::setElectrolyteConductivity(double electrolyteConductivity){ this->electrolyteConductivity = electrolyteConductivity; }
 void Param::setTransferCoefficients(double transferCoefficients){ this->transferCoefficients = transferCoefficients; }
 void Param::setAnodeSpecificArea(double anodeSpecificArea){ this->anodeSpecificArea = anodeSpecificArea; }
-void Param::setAnodeLocalEquilibriumPotential(double anodeLocalEquilibriumPotential){ this->anodeLocalEquilibriumPotential = anodeLocalEquilibriumPotential; }
 void Param::setAnodeSideReactionExchangeCurrentDensity(double anodeSideReactionExchangeCurrentDensity){ this->anodeSideReactionExchangeCurrentDensity = anodeSideReactionExchangeCurrentDensity; }
 
 double Param::getTemperature(void){ return this->temperature; }
@@ -33,5 +31,4 @@ double Param::getUnitSEIArea(void){ return this->unitSEIArea; }
 double Param::getElectrolyteConductivity(void){ return this->electrolyteConductivity; }
 double Param::getTransferCoefficients(void){ return this->transferCoefficients; }
 double Param::getAnodeSpecificArea(void){ return this->anodeSpecificArea; };
-double Param::getAnodeLocalEquilibriumPotential(void){return this->anodeLocalEquilibriumPotential; }
 double Param::getAnodeSideReactionExchangeCurrentDensity(void){ return this->anodeSideReactionExchangeCurrentDensity; }

@@ -10,14 +10,17 @@ State::State(void){
     liquidPhaseLocalPotential = 0.0;
     anodeIntercalationCurrentDensity = 0.0;
     anodeSideReactionCurrentDensity = 0.0;
+    anodeLocalEquilibriumPotential = 0.0;
 }
 
 void State::setSolidPhaseLocalPotential(double solidPhaseLocalPotential){ this->solidPhaseLocalPotential = solidPhaseLocalPotential; }
 void State::setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential){ this->liquidPhaseLocalPotential = liquidPhaseLocalPotential; }
 void State::setAnodeIntercalationCurrentDensity(double anodeIntercalationCurrentDensity){ this->anodeIntercalationCurrentDensity = anodeIntercalationCurrentDensity; }
 void State::setAnodeSideReactionCurrentDensity(double anodeSideReactionCurrentDensity){ this->anodeSideReactionCurrentDensity = anodeIntercalationCurrentDensity; }
+void State::setAnodeLocalEquilibriumPotential(double anodeLocalEquilibriumPotential){ this->anodeLocalEquilibriumPotential = anodeLocalEquilibriumPotential; }
 
 double State::getSolidPhaseLocalPotential(void){ return this->solidPhaseLocalPotential; }
 double State::getLiquidPhaseLocalPotential(void){ return this->liquidPhaseLocalPotential; }
 double State::getAnodeIntercalationCurrentDensity(void){ return this->anodeIntercalationCurrentDensity; }
 double State::getAnodeSideReactionCurrentDensity(void){ return this->anodeSideReactionCurrentDensity; }
+double State::getAnodeLocalEquilibriumPotential(void){return this->anodeLocalEquilibriumPotential; }
