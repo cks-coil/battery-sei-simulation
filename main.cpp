@@ -19,13 +19,25 @@ int main(void){
     srand((unsigned)time(NULL));
 
     Param param;
-    param.setTemperature(300);
-    param.setUnitSEIThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
-    param.setUnitSEIArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
+    param.setAnodeSurfaceArea( 603.06 * pow(10,-6) );
+    param.setAnodeReactionRateConstant( 4.854 * pow(10,-6) );
+    param.setAnodeMaxLithiumConcentration( 30555 );
+    param.setAnodeParticleRadius( 2 * pow(10,-6) );
+    param.setAnodeDiffusionCoefficient( 3.9 * pow(10,-14) );
+    param.setAnodeSideReactionExchangeCurrentDensity( 1.0 * pow(10,-11) );
+    param.setCathodeSurfaceArea( 531.3 * pow(10,-6) );
+    param.setCathodeReactionRateConstant( 2.252 * pow(10,-6) );
+    param.setCathodeMaxLithiumConcentration( 51555 );
+    param.setCathodeParticleRadius( 531.3 * pow(10,-6) );
+    param.setCathodeDiffusionCoefficient( 1.0 * pow(10,-14) );
+    param.setLiquidPhaseLocalConcentration( 1000 );
+    param.setLiquidPhaseLocalPotential( 0 );
+    param.setTransferCoefficients( 0.5 );
+    param.setTemperature( 298.15 );
+    param.setAppliedCurrent( 16.54 * param.getAnodeSurfaceArea() ); // \cks
     param.setElectrolyteConductivity( pow(10,-2) );
-    param.setTransferCoefficients(0.5);
-    param.setAnodeSpecificArea( 3.0 * (1.0 - 0.485) / (2 *pow(10,-6)) );
-    param.setAnodeSideReactionExchangeCurrentDensity(1.0*pow(10,-11));
+    param.setUnitSEIArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
+    param.setUnitSEIThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
 
     return 0;
 }
