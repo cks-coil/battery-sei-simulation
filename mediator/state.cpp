@@ -13,6 +13,13 @@ State::State(void){
     anodeAverageLithiumConcentration = 0;
     anodeSurfaceLithiumConcentration = 0;
     anodeDimensionlessLithiumConcentration = 0;
+    cathodeSideReactionCurrent = 0;
+    cathodeLocalPotential = 0;
+    cathodeLocalEquilibriumPotential = 0;
+    cathodeOverPotential = 0;
+    cathodeAverageLithiumConcentration = 0;
+    cathodeSurfaceLithiumConcentration = 0;
+    cathodeDimensionlessLithiumConcentration = 0;
     SEIThickness = 0;
 }
 

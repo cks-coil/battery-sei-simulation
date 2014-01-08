@@ -23,6 +23,9 @@ Param::Param(void){
     transferCoefficients = 0;
     temperature = 0;
     appliedCurrent = 0;
+    electrolyteConductivity = 0;
+    unitSEIArea = 0;
+    unitSEIThickness = 0;
 }
 
 void Param::setAnodeSurfaceArea(double anodeSurfaceArea){ this->anodeSurfaceArea = anodeSurfaceArea; }
