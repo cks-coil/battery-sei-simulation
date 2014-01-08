@@ -41,6 +41,7 @@ void Param::setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential){ this
 void Param::setTransferCoefficients(double transferCoefficients){ this->transferCoefficients = transferCoefficients; }
 void Param::setTemperature(double temperature){ this->temperature = temperature; }
 void Param::setAppliedCurrent(double appliedCurrent){ this->appliedCurrent = appliedCurrent; }
+void Param::setElectrolyteConductivity(double electrolyteConductivity){ this->electrolyteConductivity = electrolyteConductivity; }
 void Param::setUnitSEIArea(double unitSEIArea){ this->unitSEIArea = unitSEIArea; }
 void Param::setUnitSEIThickness(double unitSEIThickness){ this->unitSEIThickness = unitSEIThickness; }
 
@@ -60,6 +61,7 @@ double Param::getLiquidPhaseLocalPotential(void){ return this->liquidPhaseLocalP
 double Param::getTransferCoefficients(void){ return this->transferCoefficients; }
 double Param::getTemperature(void){ return this->temperature; }
 double Param::getAppliedCurrent(void){ return this->appliedCurrent; }
+double Param::getElectrolyteConductivity(void){return this->electrolyteConductivity; }
 double Param::getUnitSEIArea(void){ return this->unitSEIArea; }
 double Param::getUnitSEIThickness(void){ return this->unitSEIThickness; }
 

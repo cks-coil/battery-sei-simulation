@@ -6,6 +6,8 @@
 #include <math.h>
 #include "constant.hpp"
 #include "kmc_adsorption.hpp"
+#include "../param/param.hpp"
+#include "../mediator/state.hpp"
 
 KMCAdsorption::KMCAdsorption(void){}
 
@@ -17,8 +19,8 @@ void KMCAdsorption::calcTransitionRate(void){
 
     for(int i=0; i<getNumTransition(); i++){
         if( getSurface()->isFlat(i) ){
-            eta = s->getSolidPhaseLocalPotential() - s->getLiquidPhaseLocalPotential() - s->getAnodeLocalEquilibriumPotential()
-                - (s->getAnodeIntercalationCurrentDensity() + s->getAnodeSideReactionCurrentDensity() ) * getSurface()->getSEIThicknessPoint(i) / ( p->getAnodeSpecificArea() * p->getElectrolyteConductivity() );
+            eta = s->getAnodeLocalPotential() - p->getLiquidPhaseLocalPotential() - s->getAnodeLocalEquilibriumPotential()
+                - ( p->getAppliedCurrent() + s->getAnodeSideReactionCurrent() ) * getSurface()->getSEIThicknessPoint(i) / ( p->getAnodeSurfaceArea() * p->getElectrolyteConductivity() );
             rate = p->getAnodeSideReactionExchangeCurrentDensity() / ( constant::F * p->getUnitSEIArea() )
                 * exp( - p->getTransferCoefficients() * constant::F / ( constant::R * p->getTemperature() ) * eta );
             if( getSurface()->getNumSide(i) ) eta*=2;
