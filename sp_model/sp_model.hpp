@@ -21,9 +21,21 @@ private:
     double dt;
     double time;
     int stepNum;
-    State *state;
-    Param *param;
+    State *s;
+    Param *p;
     void init(void);
+    void calcAnodeAverageLithiumConcentration(void);
+    void calcCathodeAverageLithiumConcentration(void);
+    void calcAnodeSurfaceLithiumConcentration(void);
+    void calcCathodeSurfaceLithiumConcentration(void);
+    void calcAnodeDimensionlessLithiumConcentration(void);
+    void calcCathodeDimensionlessLithiumConcentration(void);
+    void calcCathodeLocalEquilibriumPotential(void);
+    void calcAnodeLocalEquilibriumPotential(void);
+    void calcAnodeOverPotential(void);
+    void calcCathodeOverPotential(void);
+    void calcAnodeLocalPotential(void);
+    void calcCathodeLocalPotential(void);
 };
 
 #endif
