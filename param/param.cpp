@@ -18,7 +18,7 @@ Param::Param(void){
     cathodeMaxLithiumConcentration = 0;
     cathodeParticleRadius = 0;
     cathodeDiffusionCoefficient = 0;
-    liquidPhaseLocalConcentration = 0;
+    liquidPhaseLithiumConcentration = 0;
     liquidPhaseLocalPotential = 0;
     transferCoefficients = 0;
     temperature = 0;
@@ -39,7 +39,7 @@ void Param::setCathodeReactionRateConstant(double cathodeReactionRateConstant){ 
 void Param::setCathodeMaxLithiumConcentration(double cathodeMaxLithiumConcentration){ this->cathodeMaxLithiumConcentration = cathodeMaxLithiumConcentration; }
 void Param::setCathodeParticleRadius(double cathodeParticleRadius){ this->cathodeParticleRadius = cathodeParticleRadius; }
 void Param::setCathodeDiffusionCoefficient(double cathodeDiffusionCoefficient){ this->cathodeDiffusionCoefficient = cathodeDiffusionCoefficient; }
-void Param::setLiquidPhaseLocalConcentration(double liquidPhaseLocalConcentration){ this->liquidPhaseLocalConcentration = liquidPhaseLocalConcentration; }
+void Param::setLiquidPhaseLithiumConcentration(double liquidPhaseLithiumConcentration){ this->liquidPhaseLithiumConcentration = liquidPhaseLithiumConcentration; }
 void Param::setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential){ this->liquidPhaseLocalPotential = liquidPhaseLocalPotential; }
 void Param::setTransferCoefficients(double transferCoefficients){ this->transferCoefficients = transferCoefficients; }
 void Param::setTemperature(double temperature){ this->temperature = temperature; }
@@ -59,7 +59,7 @@ double Param::getCathodeReactionRateConstant(void){ return this->cathodeReaction
 double Param::getCathodeMaxLithiumConcentration(void){ return this->cathodeMaxLithiumConcentration; }
 double Param::getCathodeParticleRadius(void){ return this->cathodeParticleRadius; }
 double Param::getCathodeDiffusionCoefficient(void){ return this->cathodeDiffusionCoefficient; }
-double Param::getLiquidPhaseLocalConcentration(void){ return this->liquidPhaseLocalConcentration; }
+double Param::getLiquidPhaseLithiumConcentration(void){ return this->liquidPhaseLithiumConcentration; }
 double Param::getLiquidPhaseLocalPotential(void){ return this->liquidPhaseLocalPotential; }
 double Param::getTransferCoefficients(void){ return this->transferCoefficients; }
 double Param::getTemperature(void){ return this->temperature; }

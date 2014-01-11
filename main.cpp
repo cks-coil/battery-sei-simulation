@@ -30,7 +30,7 @@ int main(void){
     param.setCathodeMaxLithiumConcentration( 51555 );
     param.setCathodeParticleRadius( 531.3 * pow(10,-6) );
     param.setCathodeDiffusionCoefficient( 1.0 * pow(10,-14) );
-    param.setLiquidPhaseLocalConcentration( 1000 );
+    param.setLiquidPhaseLithiumConcentration( 1000 );
     param.setLiquidPhaseLocalPotential( 0 );
     param.setTransferCoefficients( 0.5 );
     param.setTemperature( 298.15 );

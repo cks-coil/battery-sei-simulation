@@ -21,7 +21,7 @@ public:
     void setCathodeMaxLithiumConcentration(double cathodeMaxLithiumConcentration);
     void setCathodeParticleRadius(double cathodeParticleRadius);
     void setCathodeDiffusionCoefficient(double cathodeDiffusionCoefficient);
-    void setLiquidPhaseLocalConcentration(double liquidPhaseLocalConcentration);
+    void setLiquidPhaseLithiumConcentration(double liquidPhaseLithiumConcentration);
     void setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential);
     void setTransferCoefficients(double transferCoefficients);
     void setTemperature(double temperature);
@@ -40,7 +40,7 @@ public:
     double getCathodeMaxLithiumConcentration(void);
     double getCathodeParticleRadius(void);
     double getCathodeDiffusionCoefficient(void);
-    double getLiquidPhaseLocalConcentration(void);
+    double getLiquidPhaseLithiumConcentration(void);
     double getLiquidPhaseLocalPotential(void);
     double getTransferCoefficients(void);
     double getTemperature(void);
@@ -60,7 +60,7 @@ private:
     double cathodeMaxLithiumConcentration;
     double cathodeParticleRadius;
     double cathodeDiffusionCoefficient;
-    double liquidPhaseLocalConcentration;
+    double liquidPhaseLithiumConcentration;
     double liquidPhaseLocalPotential;
     double transferCoefficients;
     double temperature;
