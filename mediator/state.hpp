@@ -11,6 +11,7 @@
 class State{
 public:
     State(void);
+    void operator=(State &source);
     void setAnodeSideReactionCurrent(double anodeSideReactionCurrent);
     void setAnodeLocalPotential(double anodeLocalPotential);
     void setAnodeLocalEquilibriumPotential(double anodeLocalEquilibriumPotential);
@@ -18,7 +19,6 @@ public:
     void setAnodeAverageLithiumConcentration(double anodeAverageLithiumConcentration);
     void setAnodeSurfaceLithiumConcentration(double anodeSurfaceLithiumConcentration);
     void setAnodeDimensionlessLithiumConcentration(double anodeDimensionlessLithiumConcentration);
-    void setCathodeSideReactionCurrent(double cathodeSideReactionCurrent);
     void setCathodeLocalPotential(double cathodeLocalPotential);
     void setCathodeLocalEquilibriumPotential(double cathodeLocalEquilibriumPotential);
     void setCathodeOverPotential(double cathodeOverPotential);
@@ -33,7 +33,6 @@ public:
     double getAnodeAverageLithiumConcentration(void);
     double getAnodeSurfaceLithiumConcentration(void);
     double getAnodeDimensionlessLithiumConcentration(void);
-    double getCathodeSideReactionCurrent(void);
     double getCathodeLocalPotential(void);
     double getCathodeLocalEquilibriumPotential(void);
     double getCathodeOverPotential(void);
@@ -49,7 +48,6 @@ private:
     double anodeAverageLithiumConcentration;
     double anodeSurfaceLithiumConcentration;
     double anodeDimensionlessLithiumConcentration;
-    double cathodeSideReactionCurrent;
     double cathodeLocalPotential;
     double cathodeLocalEquilibriumPotential;
     double cathodeOverPotential;

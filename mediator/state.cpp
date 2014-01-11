@@ -13,7 +13,6 @@ State::State(void){
     anodeAverageLithiumConcentration = 0;
     anodeSurfaceLithiumConcentration = 0;
     anodeDimensionlessLithiumConcentration = 0;
-    cathodeSideReactionCurrent = 0;
     cathodeLocalPotential = 0;
     cathodeLocalEquilibriumPotential = 0;
     cathodeOverPotential = 0;
@@ -30,7 +29,6 @@ void State::setAnodeOverPotential(double anodeOverPotential){ this->anodeOverPot
 void State::setAnodeAverageLithiumConcentration(double anodeAverageLithiumConcentration){ this->anodeAverageLithiumConcentration = anodeAverageLithiumConcentration; }
 void State::setAnodeSurfaceLithiumConcentration(double anodeSurfaceLithiumConcentration){ this->anodeSurfaceLithiumConcentration = anodeSurfaceLithiumConcentration; }
 void State::setAnodeDimensionlessLithiumConcentration(double anodeDimensionlessLithiumConcentration){ this->anodeDimensionlessLithiumConcentration = anodeDimensionlessLithiumConcentration; }
-void State::setCathodeSideReactionCurrent(double cathodeSideReactionCurrent){ this->cathodeSideReactionCurrent = cathodeSideReactionCurrent; }
 void State::setCathodeLocalPotential(double cathodeLocalPotential){ this->cathodeLocalPotential = cathodeLocalPotential; }
 void State::setCathodeLocalEquilibriumPotential(double cathodeLocalEquilibriumPotential){ this->cathodeLocalEquilibriumPotential = cathodeLocalEquilibriumPotential; }
 void State::setCathodeOverPotential(double cathodeOverPotential){ this->cathodeOverPotential = cathodeOverPotential; }
@@ -46,7 +44,6 @@ double State::getAnodeOverPotential(void){ return this->anodeOverPotential; }
 double State::getAnodeAverageLithiumConcentration(void){ return this->anodeAverageLithiumConcentration; }
 double State::getAnodeSurfaceLithiumConcentration(void){ return this->anodeSurfaceLithiumConcentration; }
 double State::getAnodeDimensionlessLithiumConcentration(void){ return this->anodeDimensionlessLithiumConcentration; }
-double State::getCathodeSideReactionCurrent(void){ return this->cathodeSideReactionCurrent; }
 double State::getCathodeLocalPotential(void){ return this->cathodeLocalPotential; }
 double State::getCathodeLocalEquilibriumPotential(void){ return this->cathodeLocalEquilibriumPotential; }
 double State::getCathodeOverPotential(void){ return this->cathodeOverPotential; }
@@ -55,3 +52,20 @@ double State::getCathodeSurfaceLithiumConcentration(void){ return this->cathodeS
 double State::getCathodeDimensionlessLithiumConcentration(void){ return this->cathodeDimensionlessLithiumConcentration; }
 double State::getSEIThickness(void){ return this->SEIThickness; }
 
+void State::operator=(State &source){
+    if(this == &source) return;
+    this->anodeSideReactionCurrent = source.getAnodeSideReactionCurrent();
+    this->anodeLocalPotential = source.getAnodeLocalPotential();
+    this->anodeLocalEquilibriumPotential = source.getAnodeLocalEquilibriumPotential();
+    this->anodeOverPotential = source.getAnodeOverPotential();
+    this->anodeAverageLithiumConcentration = source.getAnodeAverageLithiumConcentration();
+    this->anodeSurfaceLithiumConcentration = source.getAnodeSurfaceLithiumConcentration();
+    this->anodeDimensionlessLithiumConcentration = source.getAnodeDimensionlessLithiumConcentration();
+    this->cathodeLocalPotential = source.getCathodeLocalPotential();
+    this->cathodeLocalEquilibriumPotential = source.getCathodeLocalEquilibriumPotential();
+    this->cathodeOverPotential = source.getCathodeOverPotential();
+    this->cathodeAverageLithiumConcentration = source.getCathodeAverageLithiumConcentration();
+    this->cathodeSurfaceLithiumConcentration = source.getCathodeSurfaceLithiumConcentration();
+    this->cathodeDimensionlessLithiumConcentration = source.getCathodeDimensionlessLithiumConcentration();
+    this->SEIThickness = source.getSEIThickness();
+}
