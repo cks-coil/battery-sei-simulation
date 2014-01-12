@@ -85,7 +85,7 @@ void SPModel::calcAnodeSurfaceLithiumConcentration(void){
 void SPModel::calcCathodeSurfaceLithiumConcentration(void){
     double val;
     val = s->getCathodeAverageLithiumConcentration()
-        - ( p->getAppliedCurrent() / ( p->getCathodeSurfaceArea() * constant::F )
+        - ( - p->getAppliedCurrent() / ( p->getCathodeSurfaceArea() * constant::F )
            * p->getCathodeParticleRadius() / (5 * p->getCathodeDiffusionCoefficient() ) );
     s->setCathodeSurfaceLithiumConcentration( val );
 }
@@ -131,7 +131,7 @@ void SPModel::calcAnodeOverPotential(void){
 }
 void SPModel::calcCathodeOverPotential(void){
     double val;
-    val = ( asinh(  p->getAppliedCurrent() 
+    val = ( asinh( - p->getAppliedCurrent()
                     / ( 2 * p->getCathodeSurfaceArea() * p->getCathodeReactionRateConstant() * constant::F
                        * sqrt( (p->getCathodeMaxLithiumConcentration() - s->getCathodeSurfaceLithiumConcentration() )
                                * s->getCathodeSurfaceLithiumConcentration() * p->getLiquidPhaseLithiumConcentration() ) ) )
