@@ -6,12 +6,14 @@
 #ifndef __INCLUDED_STATE_HPP__
 #define __INCLUDED_STATE_HPP__
 
+#include <ostream>
 #include "param.hpp"
 
 class State{
 public:
     State(void);
     void operator=(State &source);
+    void output(std::ostream &out);
     void setAnodeSideReactionCurrent(double anodeSideReactionCurrent);
     void setAnodeLocalPotential(double anodeLocalPotential);
     void setAnodeLocalEquilibriumPotential(double anodeLocalEquilibriumPotential);

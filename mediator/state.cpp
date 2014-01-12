@@ -1,6 +1,6 @@
 /*
-  \file    state.cpp
-  \author  Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.ac.jp>
+  \File    State.Cpp
+  \Author  Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.ac.jp>
 */
 
 #include "state.hpp"
@@ -20,6 +20,23 @@ State::State(void){
     cathodeSurfaceLithiumConcentration = 0;
     cathodeDimensionlessLithiumConcentration = 0;
     SEIThickness = 0;
+}
+
+void State::output(std::ostream &out){
+    out << "anodeSideReactionCurrent: " << anodeSideReactionCurrent << std::endl
+        << "anodeLocalPotential: " << anodeLocalPotential << std::endl
+        << "anodeLocalEquilibriumPotential: " << anodeLocalEquilibriumPotential << std::endl
+        << "anodeOverPotential: " << anodeOverPotential << std::endl
+        << "anodeAverageLithiumConcentration: " << anodeAverageLithiumConcentration << std::endl
+        << "anodeSurfaceLithiumConcentration: " << anodeSurfaceLithiumConcentration << std::endl
+        << "anodeDimensionlessLithiumConcentration: " << anodeDimensionlessLithiumConcentration << std::endl
+        << "cathodeLocalPotential: " << cathodeLocalPotential << std::endl
+        << "cathodeLocalEquilibriumPotential: " << cathodeLocalEquilibriumPotential << std::endl
+        << "cathodeOverPotential: " << cathodeOverPotential << std::endl
+        << "cathodeAverageLithiumConcentration: " << cathodeAverageLithiumConcentration << std::endl
+        << "cathodeSurfaceLithiumConcentration: " << cathodeSurfaceLithiumConcentration << std::endl
+        << "cathodeDimensionlessLithiumConcentration: " << cathodeDimensionlessLithiumConcentration << std::endl
+        << "SEIThickness: " << SEIThickness << std::endl;
 }
 
 void State::setAnodeSideReactionCurrent(double anodeSideReactionCurrent){ this->anodeSideReactionCurrent = anodeSideReactionCurrent; }

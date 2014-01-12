@@ -6,10 +6,12 @@
 #ifndef __INCLUDED_PARAM_HPP__
 #define __INCLUDED_PARAM_HPP__
 
+#include <ostream>
 
 class Param{
 public:
     Param(void);
+    void output(std::ostream &out);
     void setAnodeSurfaceArea(double anodeSurfaceArea);
     void setAnodeReactionRateConstant(double anodeReactionRateConstant);
     void setAnodeMaxLithiumConcentration(double anodeMaxLithiumConcentration);
