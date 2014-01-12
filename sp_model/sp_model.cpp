@@ -48,7 +48,18 @@ double SPModel::getTime(void){ return time; }
 
 void SPModel::init(void){
     if( p==NULL || s==NULL ) return;
-    // \cks
+    s->setAnodeAverageLithiumConcentration( p->getAnodeInitialLithiumConcentration() );
+    s->setCathodeAverageLithiumConcentration( p->getCathodeInitialLithiumConcentration() );
+    calcAnodeSurfaceLithiumConcentration();
+    calcCathodeSurfaceLithiumConcentration();
+    calcAnodeDimensionlessLithiumConcentration();
+    calcCathodeDimensionlessLithiumConcentration();
+    calcCathodeLocalEquilibriumPotential();
+    calcAnodeLocalEquilibriumPotential();
+    calcAnodeOverPotential();
+    calcCathodeOverPotential();
+    calcAnodeLocalPotential();
+    calcCathodeLocalPotential();
 }
 
 void SPModel::calcAnodeAverageLithiumConcentration(void){
