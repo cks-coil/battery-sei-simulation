@@ -19,6 +19,7 @@ State::State(void){
     cathodeAverageLithiumConcentration = 0;
     cathodeSurfaceLithiumConcentration = 0;
     cathodeDimensionlessLithiumConcentration = 0;
+    cellVoltage = 0;
     SEIThickness = 0;
 }
 
@@ -36,6 +37,7 @@ void State::output(std::ostream &out){
         << "cathodeAverageLithiumConcentration: " << cathodeAverageLithiumConcentration << std::endl
         << "cathodeSurfaceLithiumConcentration: " << cathodeSurfaceLithiumConcentration << std::endl
         << "cathodeDimensionlessLithiumConcentration: " << cathodeDimensionlessLithiumConcentration << std::endl
+        << "cellVoltage" << cellVoltage << std::endl
         << "SEIThickness: " << SEIThickness << std::endl;
 }
 
@@ -52,6 +54,7 @@ void State::setCathodeOverPotential(double cathodeOverPotential){ this->cathodeO
 void State::setCathodeAverageLithiumConcentration(double cathodeAverageLithiumConcentration){ this->cathodeAverageLithiumConcentration = cathodeAverageLithiumConcentration; }
 void State::setCathodeSurfaceLithiumConcentration(double cathodeSurfaceLithiumConcentration){ this->cathodeSurfaceLithiumConcentration = cathodeSurfaceLithiumConcentration; }
 void State::setCathodeDimensionlessLithiumConcentration(double cathodeDimensionlessLithiumConcentration){ this->cathodeDimensionlessLithiumConcentration = cathodeDimensionlessLithiumConcentration; }
+void State::setCellVoltage(double cellVoltage){ this->cellVoltage = cellVoltage; }
 void State::setSEIThickness(double SEIThickness){ this->SEIThickness = SEIThickness; }
 
 double State::getAnodeSideReactionCurrent(void){ return this->anodeSideReactionCurrent; }
@@ -67,6 +70,7 @@ double State::getCathodeOverPotential(void){ return this->cathodeOverPotential; 
 double State::getCathodeAverageLithiumConcentration(void){ return this->cathodeAverageLithiumConcentration; }
 double State::getCathodeSurfaceLithiumConcentration(void){ return this->cathodeSurfaceLithiumConcentration; }
 double State::getCathodeDimensionlessLithiumConcentration(void){ return this->cathodeDimensionlessLithiumConcentration; }
+double State::getCellVoltage(void){ return this->cellVoltage; }
 double State::getSEIThickness(void){ return this->SEIThickness; }
 
 void State::operator=(State &source){
@@ -84,5 +88,6 @@ void State::operator=(State &source){
     this->cathodeAverageLithiumConcentration = source.getCathodeAverageLithiumConcentration();
     this->cathodeSurfaceLithiumConcentration = source.getCathodeSurfaceLithiumConcentration();
     this->cathodeDimensionlessLithiumConcentration = source.getCathodeDimensionlessLithiumConcentration();
+    this->cellVoltage = source.getCellVoltage();
     this->SEIThickness = source.getSEIThickness();
 }

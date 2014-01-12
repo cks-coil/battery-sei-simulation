@@ -40,6 +40,7 @@ void SPModel::step(void){
     calcCathodeOverPotential();
     calcAnodeLocalPotential();
     calcCathodeLocalPotential();
+    calcCellVoltage();
 }
 
 int SPModel::getStepNum(void){ return stepNum; }
@@ -60,6 +61,7 @@ void SPModel::init(void){
     calcCathodeOverPotential();
     calcAnodeLocalPotential();
     calcCathodeLocalPotential();
+    calcCellVoltage();
 }
 
 void SPModel::calcAnodeAverageLithiumConcentration(void){
@@ -150,4 +152,10 @@ void SPModel::calcCathodeLocalPotential(void){
     double val;
     val = p->getLiquidPhaseLocalPotential() + s->getCathodeOverPotential() + s->getCathodeLocalEquilibriumPotential();
     s->setCathodeLocalPotential( val );
+}
+
+void SPModel::calcCellVoltage(void){
+    double val;
+    val = s->getCathodeLocalPotential() - s->getAnodeLocalPotential();
+    s->setCellVoltage( val );
 }

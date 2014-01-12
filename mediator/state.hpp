@@ -27,6 +27,7 @@ public:
     void setCathodeAverageLithiumConcentration(double cathodeAverageLithiumConcentration);
     void setCathodeSurfaceLithiumConcentration(double cathodeSurfaceLithiumConcentration);
     void setCathodeDimensionlessLithiumConcentration(double cathodeDimensionlessLithiumConcentration);
+    void setCellVoltage(double cellVoltage);
     void setSEIThickness(double SEIThickness);
     double getAnodeSideReactionCurrent(void);
     double getAnodeLocalPotential(void);
@@ -41,6 +42,7 @@ public:
     double getCathodeAverageLithiumConcentration(void);
     double getCathodeSurfaceLithiumConcentration(void);
     double getCathodeDimensionlessLithiumConcentration(void);
+    double getCellVoltage(void);
     double getSEIThickness(void);
 private:
     double anodeSideReactionCurrent;
@@ -56,6 +58,7 @@ private:
     double cathodeAverageLithiumConcentration;
     double cathodeSurfaceLithiumConcentration;
     double cathodeDimensionlessLithiumConcentration;
+    double cellVoltage;
     double SEIThickness;
 };
 

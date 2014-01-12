@@ -36,6 +36,7 @@ private:
     void calcCathodeOverPotential(void);
     void calcAnodeLocalPotential(void);
     void calcCathodeLocalPotential(void);
+    void calcCellVoltage(void);
 };
 
 #endif
