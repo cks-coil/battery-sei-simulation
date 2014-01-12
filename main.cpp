@@ -13,11 +13,13 @@
 #include "kmc_surface.hpp"
 #include "kmc_transition.hpp"
 #include "kmc_adsorption.hpp"
+#include "sp_model.hpp"
 
 
 int main(void){
     srand((unsigned)time(NULL));
 
+    State state;
     Param param;
     param.setAnodeSurfaceArea( 603.06 * pow(10,-6) );
     param.setAnodeReactionRateConstant( 4.854 * pow(10,-6) );
@@ -30,16 +32,23 @@ int main(void){
     param.setCathodeReactionRateConstant( 2.252 * pow(10,-6) );
     param.setCathodeMaxLithiumConcentration( 51555 );
     param.setCathodeInitialLithiumConcentration( 0.95 * 51555 );
-    param.setCathodeParticleRadius( 531.3 * pow(10,-6) );
+    param.setCathodeParticleRadius( 2 * pow(10,-6) );
     param.setCathodeDiffusionCoefficient( 1.0 * pow(10,-14) );
     param.setLiquidPhaseLithiumConcentration( 1000 );
     param.setLiquidPhaseLocalPotential( 0 );
     param.setTransferCoefficients( 0.5 );
     param.setTemperature( 298.15 );
-    param.setAppliedCurrent( 16.54 * param.getAnodeSurfaceArea() ); // \cks
+    param.setAppliedCurrent( -8.7020*pow(10,-4) ); // \cks
     param.setElectrolyteConductivity( pow(10,-2) );
     param.setUnitSEIArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
     param.setUnitSEIThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
+
+    SPModel sp(1);
+    sp.setState(&state);
+    sp.setParam(&param);
+
+    param.output(std::cout);
+    state.output(std::cout);
 
     return 0;
 }
