@@ -22,12 +22,14 @@ int main(void){
     param.setAnodeSurfaceArea( 603.06 * pow(10,-6) );
     param.setAnodeReactionRateConstant( 4.854 * pow(10,-6) );
     param.setAnodeMaxLithiumConcentration( 30555 );
+    param.setAnodeInitialLithiumConcentration( 0.03 * 30555 );
     param.setAnodeParticleRadius( 2 * pow(10,-6) );
     param.setAnodeDiffusionCoefficient( 3.9 * pow(10,-14) );
     param.setAnodeSideReactionExchangeCurrentDensity( 1.0 * pow(10,-11) );
     param.setCathodeSurfaceArea( 531.3 * pow(10,-6) );
     param.setCathodeReactionRateConstant( 2.252 * pow(10,-6) );
     param.setCathodeMaxLithiumConcentration( 51555 );
+    param.setCathodeInitialLithiumConcentration( 0.95 * 51555 );
     param.setCathodeParticleRadius( 531.3 * pow(10,-6) );
     param.setCathodeDiffusionCoefficient( 1.0 * pow(10,-14) );
     param.setLiquidPhaseLithiumConcentration( 1000 );
