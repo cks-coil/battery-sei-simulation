@@ -31,27 +31,27 @@ Param::Param(void){
 }
 
 void Param::output(std::ostream &out){
-    out << "anodeSurfaceArea: " << anodeSurfaceArea << std::endl
-        << "anodeReactionRateConstant: " << anodeReactionRateConstant << std::endl
-        << "anodeMaxLithiumConcentration: " << anodeMaxLithiumConcentration << std::endl
-        << "anodeInitialLithiumConcentration: " << anodeInitialLithiumConcentration << std::endl
-        << "anodeParticleRadius: " << anodeParticleRadius << std::endl
-        << "anodeDiffusionCoefficient: " << anodeDiffusionCoefficient << std::endl
-        << "anodeSideReactionExchangeCurrentDensity: " << anodeSideReactionExchangeCurrentDensity << std::endl
-        << "cathodeSurfaceArea: " << cathodeSurfaceArea << std::endl
-        << "cathodeReactionRateConstant: " << cathodeReactionRateConstant << std::endl
-        << "cathodeMaxLithiumConcentration: " << cathodeMaxLithiumConcentration << std::endl
-        << "cathodeInitialLithiumConcentration: " << cathodeInitialLithiumConcentration << std::endl
-        << "cathodeParticleRadius: " << cathodeParticleRadius << std::endl
-        << "cathodeDiffusionCoefficient: " << cathodeDiffusionCoefficient << std::endl
-        << "liquidPhaseLithiumConcentration: " << liquidPhaseLithiumConcentration << std::endl
-        << "liquidPhaseLocalPotential: " << liquidPhaseLocalPotential << std::endl
-        << "transferCoefficients: " << transferCoefficients << std::endl
-        << "temperature: " << temperature << std::endl
-        << "appliedCurrent: " << appliedCurrent << std::endl
-        << "electrolyteConductivity: " << electrolyteConductivity << std::endl
-        << "unitSEIArea: " << unitSEIArea << std::endl
-        << "unitSEIThickness: " << unitSEIThickness << std::endl;
+    out << "# anodeSurfaceArea: " << anodeSurfaceArea << std::endl
+        << "# anodeReactionRateConstant: " << anodeReactionRateConstant << std::endl
+        << "# anodeMaxLithiumConcentration: " << anodeMaxLithiumConcentration << std::endl
+        << "# anodeInitialLithiumConcentration: " << anodeInitialLithiumConcentration << std::endl
+        << "# anodeParticleRadius: " << anodeParticleRadius << std::endl
+        << "# anodeDiffusionCoefficient: " << anodeDiffusionCoefficient << std::endl
+        << "# anodeSideReactionExchangeCurrentDensity: " << anodeSideReactionExchangeCurrentDensity << std::endl
+        << "# cathodeSurfaceArea: " << cathodeSurfaceArea << std::endl
+        << "# cathodeReactionRateConstant: " << cathodeReactionRateConstant << std::endl
+        << "# cathodeMaxLithiumConcentration: " << cathodeMaxLithiumConcentration << std::endl
+        << "# cathodeInitialLithiumConcentration: " << cathodeInitialLithiumConcentration << std::endl
+        << "# cathodeParticleRadius: " << cathodeParticleRadius << std::endl
+        << "# cathodeDiffusionCoefficient: " << cathodeDiffusionCoefficient << std::endl
+        << "# liquidPhaseLithiumConcentration: " << liquidPhaseLithiumConcentration << std::endl
+        << "# liquidPhaseLocalPotential: " << liquidPhaseLocalPotential << std::endl
+        << "# transferCoefficients: " << transferCoefficients << std::endl
+        << "# temperature: " << temperature << std::endl
+        << "# appliedCurrent: " << appliedCurrent << std::endl
+        << "# electrolyteConductivity: " << electrolyteConductivity << std::endl
+        << "# unitSEIArea: " << unitSEIArea << std::endl
+        << "# unitSEIThickness: " << unitSEIThickness << std::endl;
 }
 
 void Param::setAnodeSurfaceArea(double anodeSurfaceArea){ this->anodeSurfaceArea = anodeSurfaceArea; }
