@@ -42,15 +42,15 @@ void KMCCore::setTransition(KMCTransition *tr){
 }
 
 void KMCCore::step(void){
-    int i=0;
+    int i;
     stepNum++;
     rateSum = 0;
-    for(; i<(int)trs.size(); i++){
+    for(i=0; i<(int)trs.size(); i++){
         trs[i]->calcTransitionRate();
         trs[i]->calcTransitionRateSum();
     }
     transit();
-    for(; i<(int)trs.size(); i++) trs[i]->updateState();
+    for(i=0; i<(int)trs.size(); i++) trs[i]->updateState();
     surface->updateState();
     updateTime();
 }
