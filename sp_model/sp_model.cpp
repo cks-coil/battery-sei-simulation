@@ -41,6 +41,7 @@ void SPModel::step(void){
     calcAnodeLocalPotential();
     calcCathodeLocalPotential();
     calcCellVoltage();
+    updateTime();
 }
 
 int SPModel::getStepNum(void){ return stepNum; }
@@ -158,4 +159,8 @@ void SPModel::calcCellVoltage(void){
     double val;
     val = s->getCathodeLocalPotential() - s->getAnodeLocalPotential();
     s->setCellVoltage( val );
+}
+
+void SPModel::updateTime(void){
+    time += dt;
 }
