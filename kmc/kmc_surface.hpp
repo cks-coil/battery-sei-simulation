@@ -20,6 +20,7 @@
 #include <vector>
 #include <iostream>
 #include "param.hpp"
+#include "state.hpp"
 
 typedef enum{
     RIGHT,
@@ -39,12 +40,14 @@ class KMCSurface{
 public:
     KMCSurface(int x, int y);
     void setParam(Param *param);
-    void update(void);
+    void setState(State *state);
+    void updateState(void);
     bool isValid(int n); // nに対応するsiteは存在するか?(0 <= n < x*y)
     bool isTop(int n);  // nに対応するsiteの上に何も乘っていないか?(desorptionできるか?)
     bool isFlat(int n); // nに対応するsiteの下にに位置する4つが全て専有されているか?(adsorptionできるか?)
     int getNumSite(void);
     int getNumSide(int n);
+    double getSurfaceArea(void);
     double getSEIThicknessPoint(int n);
     double getSEIThicknessAve(void);
     void adsorb(int n);
@@ -54,6 +57,7 @@ private:
     int xNum, yNum;
     double SEIThicknessAve;
     Param *p;
+    State *s;
     std::vector<int> surface;
     void calcSEIThicknessAve(void);
     void changeXYtoN(int x, int y, int *n);

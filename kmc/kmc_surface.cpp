@@ -19,6 +19,7 @@ using namespace std;
 
 KMCSurface::KMCSurface(int x, int y){
     p = NULL;
+    s = NULL;
     xNum = x;
     yNum = y;
     SEIThicknessAve = 0;
@@ -29,8 +30,11 @@ KMCSurface::KMCSurface(int x, int y){
 void KMCSurface::setParam(Param *param){
     p = param;
 }
+void KMCSurface::setState(State *state){
+    s = state;
+}
 
-void KMCSurface::update(void){
+void KMCSurface::updateState(void){
     calcSEIThicknessAve();
 }
 
@@ -76,6 +80,10 @@ int KMCSurface::getNumSide(int n){
     return num;
 }
 
+double KMCSurface::getSurfaceArea(void){
+    return xNum * yNum * p->getUnitSEIArea();
+}
+
 double KMCSurface::getSEIThicknessPoint(int n){
     if( !isValid(n) ) return 0; // \cks err msg
     return (double)n * p->getUnitSEIThickness();
@@ -101,6 +109,7 @@ void KMCSurface::calcSEIThicknessAve(void){
     int sum=0;
     for(int i=0; i<getNumSite(); i++) sum += surface[i];
     SEIThicknessAve = double(sum) * p->getUnitSEIThickness() / double(getNumSite());
+    s->setSEIThickness( SEIThicknessAve );
 }
 
 void KMCSurface::changeXYtoN(int x, int y, int *n){

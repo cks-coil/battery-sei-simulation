@@ -11,6 +11,7 @@
 class KMCAdsorption : public KMCTransition{
 public:
     KMCAdsorption(void);
+    void updateState(void);
     void calcTransitionRate(void);
     void transit(int n);
 private:

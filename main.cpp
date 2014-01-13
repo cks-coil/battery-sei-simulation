@@ -15,6 +15,7 @@
 #include "kmc_adsorption.hpp"
 #include "sp_model.hpp"
 
+using namespace std;
 
 int main(void){
     srand((unsigned)time(NULL));
@@ -38,17 +39,27 @@ int main(void){
     param.setLiquidPhaseLocalPotential( 0 );
     param.setTransferCoefficients( 0.5 );
     param.setTemperature( 298.15 );
-    param.setAppliedCurrent( -8.7020*pow(10,-4) ); // \cks
+    param.setAppliedCurrent( -8.7020*pow(10,-4) *2 ); // \cks
     param.setElectrolyteConductivity( pow(10,-2) );
     param.setUnitSEIArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
     param.setUnitSEIThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
+    param.output(cout);
 
     SPModel sp(1);
     sp.setState(&state);
     sp.setParam(&param);
+    state.output(cout);
 
-    param.output(std::cout);
-    state.output(std::cout);
+    for(int i=0;i<500;i++){
+        sp.step();
+        cout << state.getCellVoltage() << endl;
+    }
+    for(int i=0;i<500;i++){
+    param.setAppliedCurrent( 8.7020*pow(10,-4) *2 ); // \cks
+        sp.step();
+        cout << state.getCellVoltage() << endl;
+    }
+
 
     return 0;
 }

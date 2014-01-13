@@ -48,11 +48,11 @@ void KMCCore::step(void){
     for(; i<(int)trs.size(); i++){
         trs[i]->calcTransitionRate();
         trs[i]->calcTransitionRateSum();
-        rateSum += trs[i]->getSumTransitionRate();
     }
     transit();
+    for(; i<(int)trs.size(); i++) trs[i]->updateState();
+    surface->updateState();
     updateTime();
-    surface->update();
 }
 
 int KMCCore::getStepNum(void){ return stepNum; }
@@ -72,9 +72,10 @@ void KMCCore::initLastTransition(void){
 }
 
 void KMCCore::initSurface(void){
-    if(surface == NULL || param == NULL) return;
+    if(surface == NULL || param == NULL || state == NULL) return;
     surface->setParam(param);
-    surface->update();
+    surface->setState(state);
+    surface->updateState();
 }
 
 // Equ.13
