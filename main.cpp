@@ -28,7 +28,7 @@ int main(void){
     param.setAnodeInitialLithiumConcentration( 0.03 * 30555 );
     param.setAnodeParticleRadius( 2 * pow(10,-6) );
     param.setAnodeDiffusionCoefficient( 3.9 * pow(10,-14) );
-    param.setAnodeSideReactionExchangeCurrentDensity( 1.0 * pow(10,-11) );
+    param.setAnodeSideReactionExchangeCurrentDensity( 1.0 * pow(10,-7) );
     param.setCathodeSurfaceArea( 531.3 * pow(10,-6) );
     param.setCathodeReactionRateConstant( 2.252 * pow(10,-6) );
     param.setCathodeMaxLithiumConcentration( 51555 );
@@ -39,7 +39,7 @@ int main(void){
     param.setLiquidPhaseLocalPotential( 0 );
     param.setTransferCoefficients( 0.5 );
     param.setTemperature( 298.15 );
-    param.setAppliedCurrent( -8.7020*pow(10,-4) *2 ); // \cks
+    param.setAppliedCurrent( -2.9007*pow(10,-4) ); // \cks 1C
     param.setElectrolyteConductivity( pow(10,-2) );
     param.setUnitSEIArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
     param.setUnitSEIThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
