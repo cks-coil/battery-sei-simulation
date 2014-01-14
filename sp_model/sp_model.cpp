@@ -126,7 +126,7 @@ void SPModel::calcCathodeLocalEquilibriumPotential(void){
 void SPModel::calcAnodeOverPotential(void){
     double val;
     val = ( asinh( (- p->getAppliedCurrent() + s->getAnodeSideReactionCurrent() )
-                   / ( 2 * p->getAnodeSurfaceArea() * p->getAnodeReactionRateConstant() * constant::F
+                   / ( 2 * p->getAnodeSurfaceArea() * p->getAnodeReactionRateConstant()
                        * sqrt( (p->getAnodeMaxLithiumConcentration() - s->getAnodeSurfaceLithiumConcentration() )
                                * s->getAnodeSurfaceLithiumConcentration() * p->getLiquidPhaseLithiumConcentration() ) ) )
             * constant::R * p->getTemperature() / ( p->getTransferCoefficients() * constant::F ) ) ;
@@ -135,7 +135,7 @@ void SPModel::calcAnodeOverPotential(void){
 void SPModel::calcCathodeOverPotential(void){
     double val;
     val = ( asinh( - p->getAppliedCurrent()
-                    / ( 2 * p->getCathodeSurfaceArea() * p->getCathodeReactionRateConstant() * constant::F
+                    / ( 2 * p->getCathodeSurfaceArea() * p->getCathodeReactionRateConstant()
                        * sqrt( (p->getCathodeMaxLithiumConcentration() - s->getCathodeSurfaceLithiumConcentration() )
                                * s->getCathodeSurfaceLithiumConcentration() * p->getLiquidPhaseLithiumConcentration() ) ) )
             * constant::R * p->getTemperature() / ( p->getTransferCoefficients() * constant::F ) ) ;
