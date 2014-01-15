@@ -30,7 +30,8 @@ public:
     void setTransferCoefficients(double transferCoefficients);
     void setTemperature(double temperature);
     void setAppliedCurrent(double appliedCurrent);
-    void setElectrolyteConductivity(double electrolyteConductivity);
+    void setSEILocalEquilibriumPotential(double SEILocalEquilibriumPotential);
+    void setSEIElectronicConductivity(double SEIElectronicConductivity);
     void setUnitSEIArea(double unitSEIArea);
     void setUnitSEIThickness(double unitSEIThickness);
     double getAnodeSurfaceArea(void);
@@ -51,7 +52,8 @@ public:
     double getTransferCoefficients(void);
     double getTemperature(void);
     double getAppliedCurrent(void);
-    double getElectrolyteConductivity(void);
+    double getSEILocalEquilibriumPotential(void);
+    double getSEIElectronicConductivity(void);
     double getUnitSEIArea(void);
     double getUnitSEIThickness(void);
 private:
@@ -73,7 +75,8 @@ private:
     double transferCoefficients;
     double temperature;
     double appliedCurrent;
-    double electrolyteConductivity;
+    double SEILocalEquilibriumPotential;
+    double SEIElectronicConductivity;
     double unitSEIArea;
     double unitSEIThickness;
 };

@@ -146,7 +146,7 @@ void SPModel::calcAnodeLocalPotential(void){
     double val;
     val = p->getLiquidPhaseLocalPotential() + s->getAnodeOverPotential() + s->getAnodeLocalEquilibriumPotential()
         + ( p->getAppliedCurrent() * s->getAnodeSideReactionCurrent() * s->getSEIThickness()
-            / ( p->getAnodeSurfaceArea() * p->getElectrolyteConductivity() ) );
+            / ( p->getAnodeSurfaceArea() * p->getSEIElectronicConductivity() ) );
     s->setAnodeLocalPotential( val );
 }
 void SPModel::calcCathodeLocalPotential(void){

@@ -25,7 +25,8 @@ Param::Param(void){
     transferCoefficients = 0;
     temperature = 0;
     appliedCurrent = 0;
-    electrolyteConductivity = 0;
+    SEILocalEquilibriumPotential = 0;
+    SEIElectronicConductivity = 0;
     unitSEIArea = 0;
     unitSEIThickness = 0;
 }
@@ -49,7 +50,8 @@ void Param::output(std::ostream &out){
         << "# transferCoefficients: " << transferCoefficients << std::endl
         << "# temperature: " << temperature << std::endl
         << "# appliedCurrent: " << appliedCurrent << std::endl
-        << "# electrolyteConductivity: " << electrolyteConductivity << std::endl
+        << "# SEILocalEquilibriumPotential: " << SEILocalEquilibriumPotential << std::endl
+        << "# SEIElectronicConductivity: " << SEIElectronicConductivity << std::endl
         << "# unitSEIArea: " << unitSEIArea << std::endl
         << "# unitSEIThickness: " << unitSEIThickness << std::endl;
 }
@@ -72,7 +74,8 @@ void Param::setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential){ this
 void Param::setTransferCoefficients(double transferCoefficients){ this->transferCoefficients = transferCoefficients; }
 void Param::setTemperature(double temperature){ this->temperature = temperature; }
 void Param::setAppliedCurrent(double appliedCurrent){ this->appliedCurrent = appliedCurrent; }
-void Param::setElectrolyteConductivity(double electrolyteConductivity){ this->electrolyteConductivity = electrolyteConductivity; }
+void Param::setSEILocalEquilibriumPotential(double SEILocalEquilibriumPotential){ this->SEILocalEquilibriumPotential = SEILocalEquilibriumPotential; }
+void Param::setSEIElectronicConductivity(double SEIElectronicConductivity){ this->SEIElectronicConductivity = SEIElectronicConductivity; }
 void Param::setUnitSEIArea(double unitSEIArea){ this->unitSEIArea = unitSEIArea; }
 void Param::setUnitSEIThickness(double unitSEIThickness){ this->unitSEIThickness = unitSEIThickness; }
 
@@ -94,7 +97,8 @@ double Param::getLiquidPhaseLocalPotential(void){ return this->liquidPhaseLocalP
 double Param::getTransferCoefficients(void){ return this->transferCoefficients; }
 double Param::getTemperature(void){ return this->temperature; }
 double Param::getAppliedCurrent(void){ return this->appliedCurrent; }
-double Param::getElectrolyteConductivity(void){return this->electrolyteConductivity; }
+double Param::getSEILocalEquilibriumPotential(void){return this->SEILocalEquilibriumPotential; }
+double Param::getSEIElectronicConductivity(void){return this->SEIElectronicConductivity; }
 double Param::getUnitSEIArea(void){ return this->unitSEIArea; }
 double Param::getUnitSEIThickness(void){ return this->unitSEIThickness; }
 

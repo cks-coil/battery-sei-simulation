@@ -40,7 +40,8 @@ int main(void){
     param.setTransferCoefficients( 0.5 );
     param.setTemperature( 298.15 );
     param.setAppliedCurrent( -2.9007*pow(10,-4) ); // \cks 1C
-    param.setElectrolyteConductivity( 1.2*pow(10,-6) );
+    param.setSEILocalEquilibriumPotential( 0.4 )
+    param.setSEIElectronicConductivity( 1.2*pow(10,-6) );
     param.setUnitSEIArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
     param.setUnitSEIThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
     param.output(cout);
