@@ -39,28 +39,46 @@ int main(void){
     param.setLiquidPhaseLocalPotential( 0 );
     param.setTransferCoefficients( 0.5 );
     param.setTemperature( 298.15 );
-    param.setAppliedCurrent( -2.9007*pow(10,-4) ); // \cks 1C
+    param.setAppliedCurrent( -2.9007*pow(10,-4)*0.2 ); // \cks 1C
     param.setSEILocalEquilibriumPotential( 0.4 );
     param.setSEIElectronicConductivity( 1.2*pow(10,-6) );
     param.setSEIUnitArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
     param.setSEIUnitThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
     param.output(cout);
 
-    SPModel sp(1);
+    SPModel sp(10);
     sp.setState(&state);
     sp.setParam(&param);
     state.output(cout);
 
-    for(int i=0;i<500;i++){
-        sp.step();
-        cout << state.getCellVoltage() << endl;
-    }
-    for(int i=0;i<500;i++){
-    param.setAppliedCurrent( 8.7020*pow(10,-4) *2 ); // \cks
-        sp.step();
-        cout << state.getCellVoltage() << endl;
-    }
+    KMCCore kmc;
+    KMCSurface surface(100,100);
+    KMCAdsorption adsorption;
+    kmc.setParam(&param);
+    kmc.setState(&state);
+    kmc.setSurface(&surface);
+    kmc.setTransition(&adsorption);
 
+    for(int i=0; i<10; i++){
+        int j=0;
+        kmc.setTime(sp.getTime());
+        while( state.getCellVoltage() <= 4.2 ){
+            if( kmc.getTime() <= sp.getTime() ) kmc.step();
+            else sp.step();
+            if(i==1 || i==799) cout << j << " " << kmc.getStepNum() << " " << sp.getTime() << " " << kmc.getTime() << " " << state.getCellVoltage() << " " << state.getSEIThickness() << endl;
+            j++;
+        }
+        param.setAppliedCurrent( -param.getAppliedCurrent() );
+        kmc.setTime(sp.getTime());
+        while( state.getCellVoltage() >= 3.0 ){
+            if( kmc.getTime() <= sp.getTime() ) kmc.step();
+            else sp.step();
+            if(i==1 || i==799) cout << j << " " << kmc.getStepNum() << " " << sp.getTime() << " " << kmc.getTime() << " " << state.getCellVoltage() << " " << state.getSEIThickness() << endl;
+            j--;
+        }
+        param.setAppliedCurrent( -param.getAppliedCurrent() );
+        cout << i << " " << state.getSEIThickness() << " " << kmc.getStepNum() <<" #SEI" << endl;
+    }
 
     return 0;
 }
