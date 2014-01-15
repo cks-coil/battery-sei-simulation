@@ -37,6 +37,8 @@ private:
     void calcAnodeLocalPotential(void);
     void calcCathodeLocalPotential(void);
     void calcCellVoltage(void);
+    void calcAnodeSideReactionCurrent(void);
+    void calcSEIThickness(void);
     void updateTime(void);
 };
 
