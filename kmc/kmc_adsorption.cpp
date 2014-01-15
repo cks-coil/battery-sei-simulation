@@ -25,7 +25,7 @@ void KMCAdsorption::calcTransitionRate(void){
         if( getSurface()->isFlat(i) ){
             eta = s->getAnodeLocalPotential() - p->getLiquidPhaseLocalPotential() - s->getAnodeLocalEquilibriumPotential()
                 - ( p->getAppliedCurrent() + s->getAnodeSideReactionCurrent() ) * getSurface()->getSEIThicknessPoint(i) / ( p->getAnodeSurfaceArea() * p->getSEIElectronicConductivity() );
-            rate = p->getAnodeSideReactionExchangeCurrentDensity() * p->getUnitSEIArea() * constant::NA / constant::F
+            rate = p->getAnodeSideReactionExchangeCurrentDensity() * p->getSEIUnitArea() * constant::NA / constant::F
                 * exp( - p->getTransferCoefficients() * constant::F / ( constant::R * p->getTemperature() ) * eta );
             if( getSurface()->getNumSide(i) ) rate*=2;
             setTransitionRate(i,rate);

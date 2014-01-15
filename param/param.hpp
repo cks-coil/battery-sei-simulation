@@ -32,8 +32,8 @@ public:
     void setAppliedCurrent(double appliedCurrent);
     void setSEILocalEquilibriumPotential(double SEILocalEquilibriumPotential);
     void setSEIElectronicConductivity(double SEIElectronicConductivity);
-    void setUnitSEIArea(double unitSEIArea);
-    void setUnitSEIThickness(double unitSEIThickness);
+    void setSEIUnitArea(double SEIUnitArea);
+    void setSEIUnitThickness(double SEIUnitThickness);
     double getAnodeSurfaceArea(void);
     double getAnodeReactionRateConstant(void);
     double getAnodeMaxLithiumConcentration(void);
@@ -54,8 +54,8 @@ public:
     double getAppliedCurrent(void);
     double getSEILocalEquilibriumPotential(void);
     double getSEIElectronicConductivity(void);
-    double getUnitSEIArea(void);
-    double getUnitSEIThickness(void);
+    double getSEIUnitArea(void);
+    double getSEIUnitThickness(void);
 private:
     double anodeSurfaceArea;
     double anodeReactionRateConstant;
@@ -77,8 +77,8 @@ private:
     double appliedCurrent;
     double SEILocalEquilibriumPotential;
     double SEIElectronicConductivity;
-    double unitSEIArea;
-    double unitSEIThickness;
+    double SEIUnitArea;
+    double SEIUnitThickness;
 };
 
 #endif

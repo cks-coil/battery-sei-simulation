@@ -42,8 +42,8 @@ int main(void){
     param.setAppliedCurrent( -2.9007*pow(10,-4) ); // \cks 1C
     param.setSEILocalEquilibriumPotential( 0.4 )
     param.setSEIElectronicConductivity( 1.2*pow(10,-6) );
-    param.setUnitSEIArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
-    param.setUnitSEIThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
+    param.setSEIUnitArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
+    param.setSEIUnitThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
     param.output(cout);
 
     SPModel sp(1);

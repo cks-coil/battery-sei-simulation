@@ -81,12 +81,12 @@ int KMCSurface::getNumSide(int n){
 }
 
 double KMCSurface::getSurfaceArea(void){
-    return xNum * yNum * p->getUnitSEIArea();
+    return xNum * yNum * p->getSEIUnitArea();
 }
 
 double KMCSurface::getSEIThicknessPoint(int n){
     if( !isValid(n) ) return 0; // \cks err msg
-    return (double)n * p->getUnitSEIThickness();
+    return (double)n * p->getSEIUnitThickness();
 }
 double KMCSurface::getSEIThicknessAve(void){
     return SEIThicknessAve;
@@ -108,7 +108,7 @@ void KMCSurface::output(std::ostream &out){
 void KMCSurface::calcSEIThicknessAve(void){
     int sum=0;
     for(int i=0; i<getNumSite(); i++) sum += surface[i];
-    SEIThicknessAve = double(sum) * p->getUnitSEIThickness() / double(getNumSite());
+    SEIThicknessAve = double(sum) * p->getSEIUnitThickness() / double(getNumSite());
     s->setSEIThickness( SEIThicknessAve );
 }
 

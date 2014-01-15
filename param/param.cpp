@@ -27,8 +27,8 @@ Param::Param(void){
     appliedCurrent = 0;
     SEILocalEquilibriumPotential = 0;
     SEIElectronicConductivity = 0;
-    unitSEIArea = 0;
-    unitSEIThickness = 0;
+    SEIUnitArea = 0;
+    SEIUnitThickness = 0;
 }
 
 void Param::output(std::ostream &out){
@@ -52,8 +52,8 @@ void Param::output(std::ostream &out){
         << "# appliedCurrent: " << appliedCurrent << std::endl
         << "# SEILocalEquilibriumPotential: " << SEILocalEquilibriumPotential << std::endl
         << "# SEIElectronicConductivity: " << SEIElectronicConductivity << std::endl
-        << "# unitSEIArea: " << unitSEIArea << std::endl
-        << "# unitSEIThickness: " << unitSEIThickness << std::endl;
+        << "# SEIUnitArea: " << SEIUnitArea << std::endl
+        << "# SEIUnitThickness: " << SEIUnitThickness << std::endl;
 }
 
 void Param::setAnodeSurfaceArea(double anodeSurfaceArea){ this->anodeSurfaceArea = anodeSurfaceArea; }
@@ -76,8 +76,8 @@ void Param::setTemperature(double temperature){ this->temperature = temperature;
 void Param::setAppliedCurrent(double appliedCurrent){ this->appliedCurrent = appliedCurrent; }
 void Param::setSEILocalEquilibriumPotential(double SEILocalEquilibriumPotential){ this->SEILocalEquilibriumPotential = SEILocalEquilibriumPotential; }
 void Param::setSEIElectronicConductivity(double SEIElectronicConductivity){ this->SEIElectronicConductivity = SEIElectronicConductivity; }
-void Param::setUnitSEIArea(double unitSEIArea){ this->unitSEIArea = unitSEIArea; }
-void Param::setUnitSEIThickness(double unitSEIThickness){ this->unitSEIThickness = unitSEIThickness; }
+void Param::setSEIUnitArea(double SEIUnitArea){ this->SEIUnitArea = SEIUnitArea; }
+void Param::setSEIUnitThickness(double SEIUnitThickness){ this->SEIUnitThickness = SEIUnitThickness; }
 
 double Param::getAnodeSurfaceArea(void){ return this->anodeSurfaceArea; }
 double Param::getAnodeReactionRateConstant(void){ return this->anodeReactionRateConstant; }
@@ -99,6 +99,6 @@ double Param::getTemperature(void){ return this->temperature; }
 double Param::getAppliedCurrent(void){ return this->appliedCurrent; }
 double Param::getSEILocalEquilibriumPotential(void){return this->SEILocalEquilibriumPotential; }
 double Param::getSEIElectronicConductivity(void){return this->SEIElectronicConductivity; }
-double Param::getUnitSEIArea(void){ return this->unitSEIArea; }
-double Param::getUnitSEIThickness(void){ return this->unitSEIThickness; }
+double Param::getSEIUnitArea(void){ return this->SEIUnitArea; }
+double Param::getSEIUnitThickness(void){ return this->SEIUnitThickness; }
 
