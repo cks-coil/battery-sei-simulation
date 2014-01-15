@@ -86,7 +86,7 @@ double KMCSurface::getSurfaceArea(void){
 
 double KMCSurface::getSEIThicknessPoint(int n){
     if( !isValid(n) ) return 0; // \cks err msg
-    return (double)n * p->getSEIUnitThickness();
+    return (double)surface[n] * p->getSEIUnitThickness();
 }
 double KMCSurface::getSEIThicknessAve(void){
     return SEIThicknessAve;
