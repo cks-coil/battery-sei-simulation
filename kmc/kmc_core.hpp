@@ -22,6 +22,7 @@ public:
     void step(void);
     int getStepNum(void);
     double getTime(void);
+    void setTime(double time);
 private:
     int stepNum;
     double time;
