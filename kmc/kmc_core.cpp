@@ -48,6 +48,7 @@ void KMCCore::step(void){
     for(i=0; i<(int)trs.size(); i++){
         trs[i]->calcTransitionRate();
         trs[i]->calcTransitionRateSum();
+        rateSum += trs[i]->getSumTransitionRate();
     }
     transit();
     for(i=0; i<(int)trs.size(); i++) trs[i]->updateState();
