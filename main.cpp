@@ -46,26 +46,26 @@ int main(void){
     param.setSEIUnitThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
     param.output(cout);
 
-    SPModel sp(10);
+    SPModel sp(1);
     sp.setState(&state);
     sp.setParam(&param);
     state.output(cout);
 
     KMCCore kmc;
-    KMCSurface surface(100,100);
+    KMCSurface surface(20,20);
     KMCAdsorption adsorption;
     kmc.setParam(&param);
     kmc.setState(&state);
     kmc.setSurface(&surface);
     kmc.setTransition(&adsorption);
 
-    for(int i=0; i<10; i++){
+    for(int i=0; i<800; i++){
         int j=0;
         kmc.setTime(sp.getTime());
         while( state.getCellVoltage() <= 4.2 ){
             if( kmc.getTime() <= sp.getTime() ) kmc.step();
             else sp.step();
-            if(i==1 || i==799) cout << j << " " << kmc.getStepNum() << " " << sp.getTime() << " " << kmc.getTime() << " " << state.getCellVoltage() << " " << state.getSEIThickness() << endl;
+            if(i==1 || i==799) cout << j << " " << kmc.getStepNum() << " " << sp.getTime() << " " << kmc.getTime() << " " << state.getCellVoltage() << " " << state.getSEIThickness() << " "<< state.getAnodeSideReactionCurrent() << " #STATE" << endl;
             j++;
         }
         param.setAppliedCurrent( -param.getAppliedCurrent() );
@@ -73,7 +73,7 @@ int main(void){
         while( state.getCellVoltage() >= 3.0 ){
             if( kmc.getTime() <= sp.getTime() ) kmc.step();
             else sp.step();
-            if(i==1 || i==799) cout << j << " " << kmc.getStepNum() << " " << sp.getTime() << " " << kmc.getTime() << " " << state.getCellVoltage() << " " << state.getSEIThickness() << endl;
+            if(i==1 || i==799) cout << j << " " << kmc.getStepNum() << " " << sp.getTime() << " " << kmc.getTime() << " " << state.getCellVoltage() << " " << state.getSEIThickness() << " "<< state.getAnodeSideReactionCurrent() << " #STATE" << endl;
             j--;
         }
         param.setAppliedCurrent( -param.getAppliedCurrent() );
