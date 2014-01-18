@@ -14,9 +14,12 @@ public:
     SPModel(double dt);
     void setState(State *s);
     void setParam(Param *p);
+    void startCycle(void);
     void step(void);
     int getStepNum(void);
     double getTime(void);
+    void setStepNum(int stepNum);
+    void setTime(double time);
 private:
     double dt;
     double time;
@@ -39,6 +42,7 @@ private:
     void calcCellVoltage(void);
     void calcAnodeSideReactionCurrent(void);
     void calcSEIThickness(void);
+    void calcCapacity(void);
     void updateTime(void);
 };
 

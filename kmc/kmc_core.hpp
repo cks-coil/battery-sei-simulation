@@ -20,9 +20,9 @@ public:
     void setParam(Param *param);
     void setTransition(KMCTransition *tr);
     void step(void);
+    void startCycle(void);
     int getStepNum(void);
     double getTime(void);
-    void setTime(double time);
 private:
     int stepNum;
     double time;

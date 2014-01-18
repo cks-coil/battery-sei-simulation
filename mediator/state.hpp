@@ -13,7 +13,8 @@ class State{
 public:
     State(void);
     void operator=(State &source);
-    void output(std::ostream &out);
+    void outputMultiLine(std::ostream &out);
+    void outputSingleLine(std::ostream &out);
     void setAppliedCurrent(double appliedCurrent);
     void setAnodeSideReactionCurrent(double anodeSideReactionCurrent);
     void setAnodeLocalPotential(double anodeLocalPotential);
@@ -29,6 +30,7 @@ public:
     void setCathodeSurfaceLithiumConcentration(double cathodeSurfaceLithiumConcentration);
     void setCathodeDimensionlessLithiumConcentration(double cathodeDimensionlessLithiumConcentration);
     void setCellVoltage(double cellVoltage);
+    void setCapacity(double capacity);
     void setSEIThickness(double SEIThickness);
     double getAppliedCurrent(void);
     double getAnodeSideReactionCurrent(void);
@@ -45,6 +47,7 @@ public:
     double getCathodeSurfaceLithiumConcentration(void);
     double getCathodeDimensionlessLithiumConcentration(void);
     double getCellVoltage(void);
+    double getCapacity(void);
     double getSEIThickness(void);
 private:
     double appliedCurrent;
@@ -62,6 +65,7 @@ private:
     double cathodeSurfaceLithiumConcentration;
     double cathodeDimensionlessLithiumConcentration;
     double cellVoltage;
+    double capacity;
     double SEIThickness;
 };
 

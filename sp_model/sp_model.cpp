@@ -27,7 +27,26 @@ void SPModel::setParam(Param *p){
     init();
 }
 
+void SPModel::startCycle(void){
+    stepNum = 0;
+    time = 0;
+    s->setAnodeSideReactionCurrent( 0 );
+    s->setCapacity( 0 );
+    calcAnodeSurfaceLithiumConcentration();
+    calcCathodeSurfaceLithiumConcentration();
+    calcAnodeDimensionlessLithiumConcentration();
+    calcCathodeDimensionlessLithiumConcentration();
+    calcCathodeLocalEquilibriumPotential();
+    calcAnodeLocalEquilibriumPotential();
+    calcAnodeOverPotential();
+    calcCathodeOverPotential();
+    calcAnodeLocalPotential();
+    calcCathodeLocalPotential();
+    calcCellVoltage();
+}
+
 void SPModel::step(void){
+    stepNum++;
     calcAnodeAverageLithiumConcentration();
     calcCathodeAverageLithiumConcentration();
     calcAnodeSurfaceLithiumConcentration();
@@ -41,28 +60,19 @@ void SPModel::step(void){
     calcAnodeLocalPotential();
     calcCathodeLocalPotential();
     calcCellVoltage();
+    calcCapacity();
     updateTime();
 }
 
 int SPModel::getStepNum(void){ return stepNum; }
 double SPModel::getTime(void){ return time; }
-
+void SPModel::setStepNum(int stepNum){ this->stepNum = stepNum; }
+void SPModel::setTime(double time){ this->time = time; }
 
 void SPModel::init(void){
     if( p==NULL || s==NULL ) return;
     s->setAnodeAverageLithiumConcentration( p->getAnodeInitialLithiumConcentration() );
     s->setCathodeAverageLithiumConcentration( p->getCathodeInitialLithiumConcentration() );
-    calcAnodeSurfaceLithiumConcentration();
-    calcCathodeSurfaceLithiumConcentration();
-    calcAnodeDimensionlessLithiumConcentration();
-    calcCathodeDimensionlessLithiumConcentration();
-    calcCathodeLocalEquilibriumPotential();
-    calcAnodeLocalEquilibriumPotential();
-    calcAnodeOverPotential();
-    calcCathodeOverPotential();
-    calcAnodeLocalPotential();
-    calcCathodeLocalPotential();
-    calcCellVoltage();
 }
 
 void SPModel::calcAnodeAverageLithiumConcentration(void){
@@ -173,6 +183,12 @@ void SPModel::calcSEIThickness(void){
     double delta;
     delta = s->getAnodeSideReactionCurrent() * p->getSEIUnitArea() * p->getSEIUnitThickness() * constant::NA / ( p->getAnodeSurfaceArea() * constant::F );
     s->setSEIThickness( s->getSEIThickness() + ( delta * dt ) );
+}
+
+void SPModel::calcCapacity(void){
+    double delta;
+    delta = fabs( s->getAppliedCurrent() );
+    s->setCapacity( s->getCapacity() + ( delta * dt ) );
 }
 
 void SPModel::updateTime(void){

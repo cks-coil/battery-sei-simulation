@@ -56,9 +56,13 @@ void KMCCore::step(void){
     updateTime();
 }
 
+void KMCCore::startCycle(void){
+    stepNum = 0;
+    time = 0;
+}
+
 int KMCCore::getStepNum(void){ return stepNum; }
 double KMCCore::getTime(void){ return time; }
-void KMCCore::setTime(double time){ this->time = time; }
 
 void KMCCore::initTransition(int n){
     if(surface == NULL || param == NULL || state == NULL) return;
