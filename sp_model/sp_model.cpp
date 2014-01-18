@@ -10,8 +10,7 @@
 #include "sp_model.hpp"
 
 
-SPModel::SPModel(double dt){
-    this->dt = dt;
+SPModel::SPModel(void){
     this->time = 0;
     this->stepNum = 0;
     this->p = NULL;
@@ -79,13 +78,13 @@ void SPModel::calcAnodeAverageLithiumConcentration(void){
     double delta;
     delta = - ( 15 * p->getAnodeDiffusionCoefficient() / pow( p->getAnodeParticleRadius(), 2 )
                 * ( s->getAnodeAverageLithiumConcentration() - s->getAnodeSurfaceLithiumConcentration() ) );
-    s->setAnodeAverageLithiumConcentration( s->getAnodeAverageLithiumConcentration() + (delta * dt) );
+    s->setAnodeAverageLithiumConcentration( s->getAnodeAverageLithiumConcentration() + (delta * p->getSPModelDeltaTime()) );
 }
 void SPModel::calcCathodeAverageLithiumConcentration(void){
     double delta;
     delta = - ( 15 * p->getCathodeDiffusionCoefficient() / pow( p->getCathodeParticleRadius(), 2 )
                 * ( s->getCathodeAverageLithiumConcentration() - s->getCathodeSurfaceLithiumConcentration() ) );
-    s->setCathodeAverageLithiumConcentration( s->getCathodeAverageLithiumConcentration() + (delta * dt) );
+    s->setCathodeAverageLithiumConcentration( s->getCathodeAverageLithiumConcentration() + (delta * p->getSPModelDeltaTime()) );
 }
 
 void SPModel::calcAnodeSurfaceLithiumConcentration(void){
@@ -182,15 +181,15 @@ void SPModel::calcAnodeSideReactionCurrent(void){
 void SPModel::calcSEIThickness(void){
     double delta;
     delta = s->getAnodeSideReactionCurrent() * p->getSEIUnitArea() * p->getSEIUnitThickness() * constant::NA / ( p->getAnodeSurfaceArea() * constant::F );
-    s->setSEIThickness( s->getSEIThickness() + ( delta * dt ) );
+    s->setSEIThickness( s->getSEIThickness() + ( delta * p->getSPModelDeltaTime() ) );
 }
 
 void SPModel::calcCapacity(void){
     double delta;
     delta = fabs( s->getAppliedCurrent() );
-    s->setCapacity( s->getCapacity() + ( delta * dt ) );
+    s->setCapacity( s->getCapacity() + ( delta * p->getSPModelDeltaTime() ) );
 }
 
 void SPModel::updateTime(void){
-    time += dt;
+    time += p->getSPModelDeltaTime();
 }

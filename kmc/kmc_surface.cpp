@@ -5,9 +5,9 @@
   面心立方格子を表面に成長させる
 
   横から見たイメージとしては下のような感じになる(数字がsite:nに対応する,実際には周期境界あり)
-  1 2 3 4 5 ... N
-  1 2 3 4 5 ... N
-  1 2 3 4 5 ... N
+  1_2_3_4_5_..._N_
+  _1_2_3_4_5_..._N
+  1_2_3_4_5_..._N_
   上のようになっている場合、site:1~Nは全て、三層になっていると言える
   例えば二層目の"2"の下には一層目の"2"と"3"が、上には三層目の"2"と"3"が存在している
 
@@ -17,18 +17,16 @@
 #include "kmc_surface.hpp"
 using namespace std;
 
-KMCSurface::KMCSurface(int x, int y){
+KMCSurface::KMCSurface(void){
     p = NULL;
     s = NULL;
-    xNum = x;
-    yNum = y;
     SEIThicknessAve = 0;
-    surface.reserve(xNum*yNum);
-    for(int i=0; i<xNum*yNum; i++) surface[i] = 1;
 }
 
 void KMCSurface::setParam(Param *param){
     p = param;
+    surface.reserve(p->getKMCSurfaceSizeX()*p->getKMCSurfaceSizeY());
+    for(int i=0; i<p->getKMCSurfaceSizeX()*p->getKMCSurfaceSizeY(); i++) surface[i] = 1;
 }
 void KMCSurface::setState(State *state){
     s = state;
@@ -65,7 +63,7 @@ bool KMCSurface::isFlat(int n){
 }
 
 int KMCSurface::getNumSite(void){
-    return xNum * yNum;
+    return p->getKMCSurfaceSizeX() * p->getKMCSurfaceSizeY();
 }
 
 int KMCSurface::getNumSide(int n){
@@ -81,7 +79,7 @@ int KMCSurface::getNumSide(int n){
 }
 
 double KMCSurface::getSurfaceArea(void){
-    return xNum * yNum * p->getSEIUnitArea();
+    return p->getKMCSurfaceSizeX() * p->getKMCSurfaceSizeY() * p->getSEIUnitArea();
 }
 
 double KMCSurface::getSEIThicknessPoint(int n){
@@ -114,7 +112,7 @@ void KMCSurface::calcSEIThicknessAve(void){
 
 void KMCSurface::changeXYtoN(int x, int y, int *n){
     boundaryXY(&x, &y);
-    *n = y*xNum + x;
+    *n = y*p->getKMCSurfaceSizeX() + x;
 }
 
 void KMCSurface::changeNtoXY(int n, int *x, int *y){
@@ -123,16 +121,16 @@ void KMCSurface::changeNtoXY(int n, int *x, int *y){
         *x = *y = 0;
         return;
     }
-    *x = n%xNum;
-    *y = n/xNum;
+    *x = n%p->getKMCSurfaceSizeX();
+    *y = n/p->getKMCSurfaceSizeX();
 }
 
 void KMCSurface::boundaryXY(int *x, int *y){
     // Periodic boundary condition
-    while(*x<0) *x += xNum;
-    while(*y<0) *y += yNum;
-    *x %= xNum;
-    *y %= yNum;
+    while(*x<0) *x += p->getKMCSurfaceSizeX();
+    while(*y<0) *y += p->getKMCSurfaceSizeY();
+    *x %= p->getKMCSurfaceSizeX();
+    *y %= p->getKMCSurfaceSizeY();
 }
 
 int KMCSurface::getSideN(int n, orthDir dir){

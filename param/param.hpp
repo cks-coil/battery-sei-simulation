@@ -36,6 +36,10 @@ public:
     void setSEIUnitThickness(double SEIUnitThickness);
     void setUpperCutoffVoltage(double upperCutoffVoltage);
     void setLowerCutoffVoltage(double lowerCutoffVoltage);
+    void setSPModelDeltaTime(double SPModelDeltaTime);
+    void setKMCSurfaceSizeX(int KMCSurfaceSizeX);
+    void setKMCSurfaceSizeY(int KMCSurfaceSizeY);
+    void setMediatorEndCycles(int MediatorEndCycles);
     double getAnodeSurfaceArea(void);
     double getAnodeReactionRateConstant(void);
     double getAnodeMaxLithiumConcentration(void);
@@ -60,6 +64,10 @@ public:
     double getSEIUnitThickness(void);
     double getUpperCutoffVoltage(void);
     double getLowerCutoffVoltage(void);
+    double getSPModelDeltaTime(void);
+    int getKMCSurfaceSizeX(void);
+    int getKMCSurfaceSizeY(void);
+    int getMediatorEndCycles(void);
 private:
     double anodeSurfaceArea;
     double anodeReactionRateConstant;
@@ -85,11 +93,12 @@ private:
     double SEIUnitThickness;
     double upperCutoffVoltage;
     double lowerCutoffVoltage;
+    double SPModelDeltaTime;
+    int KMCSurfaceSizeX;
+    int KMCSurfaceSizeY;
+    int MediatorEndCycles;
 };
 
 std::ostream &operator<<(std::ostream &out, Param &tgt);
 
 #endif
-
-
-

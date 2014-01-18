@@ -47,14 +47,18 @@ int main(void){
     param.setSEIUnitThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
     param.setUpperCutoffVoltage( 4.2 );
     param.setLowerCutoffVoltage( 3.0 );
+    param.setKMCSurfaceSizeX(20);
+    param.setKMCSurfaceSizeY(20);
+    param.setSPModelDeltaTime(1);
+    param.setMediatorEndCycles(800);
     cout << param << endl;
 
-    SPModel sp(1);
+    SPModel sp;
     sp.setState(&state);
     sp.setParam(&param);
 
     KMCCore kmc;
-    KMCSurface surface(20,20);
+    KMCSurface surface;
     KMCAdsorption adsorption;
     kmc.setParam(&param);
     kmc.setState(&state);
@@ -66,7 +70,6 @@ int main(void){
     mediator.setState(&state);
     mediator.setKMC(&kmc);
     mediator.setSPModel(&sp);
-    mediator.setEndCycles(800);
     mediator.run();
 
     return 0;

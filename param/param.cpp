@@ -31,6 +31,10 @@ Param::Param(void){
     SEIUnitThickness = 0;
     upperCutoffVoltage = 0;
     lowerCutoffVoltage = 0;
+    SPModelDeltaTime = 0;
+    KMCSurfaceSizeX = 0;
+    KMCSurfaceSizeY = 0;
+    MediatorEndCycles = 0;
 }
 
 void Param::output(std::ostream &out){
@@ -57,7 +61,12 @@ void Param::output(std::ostream &out){
         << "# SEIUnitArea: " << SEIUnitArea << std::endl
         << "# SEIUnitThickness: " << SEIUnitThickness << std::endl
         << "# upperCutoffVoltage: " << upperCutoffVoltage << std::endl
-        << "# lowerCutoffVoltage: " << lowerCutoffVoltage << std::endl;
+        << "# lowerCutoffVoltage: " << lowerCutoffVoltage << std::endl
+        << "# SPModelDeltaTime: " << SPModelDeltaTime << std::endl
+        << "# KMCSurfaceSizeX: " << KMCSurfaceSizeX << std::endl
+        << "# KMCSurfaceSizeY: " << KMCSurfaceSizeY << std::endl
+        << "# MediatorEndCycles: " << MediatorEndCycles << std::endl;
+
 }
 
 void Param::setAnodeSurfaceArea(double anodeSurfaceArea){ this->anodeSurfaceArea = anodeSurfaceArea; }
@@ -84,6 +93,10 @@ void Param::setSEIUnitArea(double SEIUnitArea){ this->SEIUnitArea = SEIUnitArea;
 void Param::setSEIUnitThickness(double SEIUnitThickness){ this->SEIUnitThickness = SEIUnitThickness; }
 void Param::setUpperCutoffVoltage(double upperCutoffVoltage){ this->upperCutoffVoltage = upperCutoffVoltage;}
 void Param::setLowerCutoffVoltage(double lowerCutoffVoltage){ this->lowerCutoffVoltage = lowerCutoffVoltage;}
+void Param::setSPModelDeltaTime(double SPModelDeltaTime){ this->SPModelDeltaTime = SPModelDeltaTime; }
+void Param::setKMCSurfaceSizeX(int KMCSurfaceSizeX){ this->KMCSurfaceSizeX = KMCSurfaceSizeX; }
+void Param::setKMCSurfaceSizeY(int KMCSurfaceSizeY){ this->KMCSurfaceSizeY = KMCSurfaceSizeY; }
+void Param::setMediatorEndCycles(int MediatorEndCycles){ this->MediatorEndCycles = MediatorEndCycles; }
 
 double Param::getAnodeSurfaceArea(void){ return this->anodeSurfaceArea; }
 double Param::getAnodeReactionRateConstant(void){ return this->anodeReactionRateConstant; }
@@ -109,6 +122,10 @@ double Param::getSEIUnitArea(void){ return this->SEIUnitArea; }
 double Param::getSEIUnitThickness(void){ return this->SEIUnitThickness; }
 double Param::getUpperCutoffVoltage(void){ return this->upperCutoffVoltage; }
 double Param::getLowerCutoffVoltage(void){ return this->lowerCutoffVoltage; }
+double Param::getSPModelDeltaTime(void){ return this->SPModelDeltaTime; }
+int Param::getKMCSurfaceSizeX(void){ return this->KMCSurfaceSizeX; }
+int Param::getKMCSurfaceSizeY(void){ return this->KMCSurfaceSizeY; }
+int Param::getMediatorEndCycles(void){ return this->MediatorEndCycles; }
 
 
 std::ostream &operator<<(std::ostream &out, Param &tgt){

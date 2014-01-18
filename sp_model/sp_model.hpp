@@ -11,7 +11,7 @@
 
 class SPModel{
 public:
-    SPModel(double dt);
+    SPModel(void);
     void setState(State *s);
     void setParam(Param *p);
     void startCycle(void);
@@ -21,7 +21,6 @@ public:
     void setStepNum(int stepNum);
     void setTime(double time);
 private:
-    double dt;
     double time;
     int stepNum;
     State *s;

@@ -5,9 +5,9 @@
   面心立方格子を表面に成長させる
 
   横から見たイメージとしては下のような感じになる(数字がsite:nに対応する,実際には周期境界あり)
-  1 2 3 4 5 ... N
-   1 2 3 4 5 ... N
-  1 2 3 4 5 ... N
+  1_2_3_4_5_..._N
+  _1_2_3_4_5_..._N
+  1_2_3_4_5_..._N
   上のようになっている場合、site:1~Nは全て、三層になっていると言える
   例えば二層目の"2"の下には一層目の"2"と"3"が、上には三層目の"2"と"3"が存在している
 
@@ -38,7 +38,7 @@ typedef enum{
 
 class KMCSurface{
 public:
-    KMCSurface(int x, int y);
+    KMCSurface(void);
     void setParam(Param *param);
     void setState(State *state);
     void updateState(void);
@@ -54,7 +54,6 @@ public:
     void desorb(int n);
     void output(std::ostream &out);
 private:
-    int xNum, yNum;
     double SEIThicknessAve;
     Param *p;
     State *s;

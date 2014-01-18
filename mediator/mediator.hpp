@@ -20,7 +20,6 @@ public:
     void setSPModel(SPModel *sp);
     void setKMC(KMCCore *kmc);
     void setStream(std::ostream &stream);
-    void setEndCycles(int endCycles);
     void run(void);
 private:
     Param *param;
@@ -28,7 +27,6 @@ private:
     KMCCore *kmc;
     SPModel *sp;
     std::ostream *stream;
-    int endCycles;
     int currentCycles;
     void init(void);
     void preCharge(void);

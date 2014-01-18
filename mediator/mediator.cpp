@@ -15,8 +15,6 @@ Mediator::Mediator(void){
     kmc = NULL;
     sp = NULL;
     stream = &(std::cout);
-    endCycles = 0;
-    currentCycles = 0;
 }
 
 void Mediator::setParam(Param *param){ this->param = param; }
@@ -24,13 +22,12 @@ void Mediator::setState(State *state){ this->state = state; }
 void Mediator::setSPModel(SPModel *sp){ this->sp = sp; }
 void Mediator::setKMC(KMCCore *kmc){ this->kmc = kmc; }
 void Mediator::setStream(ostream &stream){ this->stream = &(stream); }
-void Mediator::setEndCycles(int endCycles){ this->endCycles = endCycles; }
 
 void Mediator::run(void){
     preCharge();
     preDisCharge();
     currentCycles = 1;
-    for(; currentCycles<=endCycles; currentCycles++){
+    for(; currentCycles<=param->getMediatorEndCycles(); currentCycles++){
         charge();
         outputLog("#CycleLog #Charge");
         discharge();
@@ -56,10 +53,10 @@ void Mediator::charge(void){
     while( state->getCellVoltage() <= param->getUpperCutoffVoltage() ){
         if( kmc->getTime() <= sp->getTime() ){
             kmc->step();
-            if( currentCycles==1 || currentCycles==endCycles ) outputLog("#StepLog #Charge #KMC");
+            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Charge #KMC");
         }else{
             sp->step();
-            if( currentCycles==1 || currentCycles==endCycles ) outputLog("#StepLog #Charge #SPModel");
+            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Charge #SPModel");
         }
     }
 }
@@ -70,10 +67,10 @@ void Mediator::discharge(void){
     while( state->getCellVoltage() >= param->getLowerCutoffVoltage() ){
         if( kmc->getTime() <= sp->getTime() ){
             kmc->step();
-            if( currentCycles==1 || currentCycles==endCycles ) outputLog("#StepLog #Discharge #KMC");
+            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Discharge #KMC");
         }else{
             sp->step();
-            if( currentCycles==1 || currentCycles==endCycles ) outputLog("#StepLog #Discharge #SPModel");
+            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Discharge #SPModel");
         }
     }
 }
