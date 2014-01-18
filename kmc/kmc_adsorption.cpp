@@ -18,7 +18,6 @@ void KMCAdsorption::updateState(void){
 void KMCAdsorption::calcTransitionRate(void){
     double eta;
     double rate;
-    double sideCoeff;
     State *s = getState();
     Param *p = getParam();
 
@@ -28,9 +27,7 @@ void KMCAdsorption::calcTransitionRate(void){
                 - ( s->getAppliedCurrent() + s->getAnodeSideReactionCurrent() ) * getSurface()->getSEIThicknessPoint(i) / ( p->getAnodeSurfaceArea() * p->getSEIElectronicConductivity() );
             rate = p->getAnodeSideReactionExchangeCurrentDensity() * p->getSEIUnitArea() * constant::NA / constant::F
                 * exp( - p->getTransferCoefficients() * constant::F / ( constant::R * p->getTemperature() ) * eta );
-            if( getSurface()->getNumSide(i) ) sideCoeff = 2;
-            else sideCoeff = 1;
-            setTransitionRate(i,rate*sideCoeff);
+            setTransitionRate(i, rate*getSideCoeff( getSurface()->getNumSide(i)) );
         }else{
             setTransitionRate(i,0);
         }
@@ -39,4 +36,15 @@ void KMCAdsorption::calcTransitionRate(void){
 
 void KMCAdsorption::transit(int n){
     getSurface()->adsorb(n);
+}
+
+double KMCAdsorption::getSideCoeff(int sideNum){
+    switch(sideNum){
+    case 0: return 1.0;
+    case 1: return getParam()->getAdsorptionOneSideCoeff();
+    case 2: return getParam()->getAdsorptionTwoSideCoeff();
+    case 3: return getParam()->getAdsorptionThreeSideCoeff();
+    case 4: return getParam()->getAdsorptionFourSideCoeff();
+    default: return 1.0;
+    }
 }

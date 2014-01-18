@@ -1,6 +1,6 @@
 /*
   \file   kmc_adsorption.hpp
-  \author Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.ac.jp>
+  \author Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.acjp>
 */
 
 #ifndef __INCLUDED_KMC_ADSORPTION_HPP__
@@ -15,6 +15,14 @@ public:
     void calcTransitionRate(void);
     void transit(int n);
 private:
+    double getSideCoeff(int sideNum);
 };
 
 #endif
+
+
+
+
+
+
+

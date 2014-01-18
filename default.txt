@@ -12,7 +12,7 @@ cathodeInitialLithiumConcentration       48977.2
 cathodeParticleRadius                    2e-06
 cathodeDiffusionCoefficient              1e-14
 liquidPhaseLithiumConcentration          1000
-liquidPhaseLocalPotential                0
+liquidPhaseLocalPotential                0.0
 transferCoefficients                     0.5
 temperature                              298.15
 appliedCurrent                           2.9007e-04    # 1C
@@ -21,8 +21,12 @@ SEIElectronicConductivity                1.2e-06
 SEIUnitArea                              1.53512e-19
 SEIUnitThickness                         3.79879e-10
 upperCutoffVoltage                       4.2
-lowerCutoffVoltage                       3
-SPModelDeltaTime                         1
+lowerCutoffVoltage                       3.0
+adsorptionOneSideCoeff                   2.0
+adsorptionTwoSideCoeff                   2.0
+adsorptionThreeSideCoeff                 2.0
+adsorptionFourSideCoeff                  2.0
+SPModelDeltaTime                         1.0
 KMCSurfaceSizeX                          20
 KMCSurfaceSizeY                          20
 MediatorEndCycles                        800

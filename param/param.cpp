@@ -1,7 +1,7 @@
 /*
   \file    param.cpp
   \author  Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.ac.jp>
-*/
+*/ 
 #include <math.h>
 #include "constant.hpp"
 #include "param.hpp"
@@ -31,6 +31,10 @@ Param::Param(void){
     SEIUnitThickness = 0;
     upperCutoffVoltage = 0;
     lowerCutoffVoltage = 0;
+    adsorptionOneSideCoeff = 0;
+    adsorptionTwoSideCoeff = 0;
+    adsorptionThreeSideCoeff = 0;
+    adsorptionFourSideCoeff = 0;
     SPModelDeltaTime = 0;
     KMCSurfaceSizeX = 0;
     KMCSurfaceSizeY = 0;
@@ -62,11 +66,14 @@ void Param::output(std::ostream &out){
         << "# SEIUnitThickness: " << SEIUnitThickness << std::endl
         << "# upperCutoffVoltage: " << upperCutoffVoltage << std::endl
         << "# lowerCutoffVoltage: " << lowerCutoffVoltage << std::endl
+        << "# adsorptionOneSideCoeff" << adsorptionOneSideCoeff << std::endl
+        << "# adsorptionTwoSideCoeff" << adsorptionTwoSideCoeff << std::endl
+        << "# adsorptionThreeSideCoeff" << adsorptionThreeSideCoeff << std::endl
+        << "# adsorptionFourSideCoeff" << adsorptionFourSideCoeff << std::endl
         << "# SPModelDeltaTime: " << SPModelDeltaTime << std::endl
         << "# KMCSurfaceSizeX: " << KMCSurfaceSizeX << std::endl
         << "# KMCSurfaceSizeY: " << KMCSurfaceSizeY << std::endl
         << "# MediatorEndCycles: " << MediatorEndCycles << std::endl;
-
 }
 
 void Param::setAnodeSurfaceArea(double anodeSurfaceArea){ this->anodeSurfaceArea = anodeSurfaceArea; }
@@ -93,6 +100,10 @@ void Param::setSEIUnitArea(double SEIUnitArea){ this->SEIUnitArea = SEIUnitArea;
 void Param::setSEIUnitThickness(double SEIUnitThickness){ this->SEIUnitThickness = SEIUnitThickness; }
 void Param::setUpperCutoffVoltage(double upperCutoffVoltage){ this->upperCutoffVoltage = upperCutoffVoltage;}
 void Param::setLowerCutoffVoltage(double lowerCutoffVoltage){ this->lowerCutoffVoltage = lowerCutoffVoltage;}
+void Param::setAdsorptionOneSideCoeff(double adsorptionOneSideCoeff){ this->adsorptionOneSideCoeff = adsorptionOneSideCoeff; }
+void Param::setAdsorptionTwoSideCoeff(double adsorptionTwoSideCoeff){ this->adsorptionTwoSideCoeff = adsorptionTwoSideCoeff; }
+void Param::setAdsorptionThreeSideCoeff(double adsorptionThreeSideCoeff){ this->adsorptionThreeSideCoeff = adsorptionThreeSideCoeff; }
+void Param::setAdsorptionFourSideCoeff(double adsorptionFourSideCoeff){ this->adsorptionFourSideCoeff = adsorptionFourSideCoeff; }
 void Param::setSPModelDeltaTime(double SPModelDeltaTime){ this->SPModelDeltaTime = SPModelDeltaTime; }
 void Param::setKMCSurfaceSizeX(int KMCSurfaceSizeX){ this->KMCSurfaceSizeX = KMCSurfaceSizeX; }
 void Param::setKMCSurfaceSizeY(int KMCSurfaceSizeY){ this->KMCSurfaceSizeY = KMCSurfaceSizeY; }
@@ -122,6 +133,10 @@ double Param::getSEIUnitArea(void){ return this->SEIUnitArea; }
 double Param::getSEIUnitThickness(void){ return this->SEIUnitThickness; }
 double Param::getUpperCutoffVoltage(void){ return this->upperCutoffVoltage; }
 double Param::getLowerCutoffVoltage(void){ return this->lowerCutoffVoltage; }
+double Param::getAdsorptionOneSideCoeff(void){ return this->adsorptionOneSideCoeff; }
+double Param::getAdsorptionTwoSideCoeff(void){ return this->adsorptionTwoSideCoeff; }
+double Param::getAdsorptionThreeSideCoeff(void){ return this->adsorptionThreeSideCoeff; }
+double Param::getAdsorptionFourSideCoeff(void){ return this->adsorptionFourSideCoeff; }
 double Param::getSPModelDeltaTime(void){ return this->SPModelDeltaTime; }
 int Param::getKMCSurfaceSizeX(void){ return this->KMCSurfaceSizeX; }
 int Param::getKMCSurfaceSizeY(void){ return this->KMCSurfaceSizeY; }

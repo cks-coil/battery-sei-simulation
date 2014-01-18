@@ -36,6 +36,10 @@ public:
     void setSEIUnitThickness(double SEIUnitThickness);
     void setUpperCutoffVoltage(double upperCutoffVoltage);
     void setLowerCutoffVoltage(double lowerCutoffVoltage);
+    void setAdsorptionOneSideCoeff(double adsorptionOneSideCoeff);
+    void setAdsorptionTwoSideCoeff(double adsorptionTwoSideCoeff);
+    void setAdsorptionThreeSideCoeff(double adsorptionThreeSideCoeff);
+    void setAdsorptionFourSideCoeff(double adsorptionFourSideCoeff);
     void setSPModelDeltaTime(double SPModelDeltaTime);
     void setKMCSurfaceSizeX(int KMCSurfaceSizeX);
     void setKMCSurfaceSizeY(int KMCSurfaceSizeY);
@@ -62,6 +66,10 @@ public:
     double getSEIElectronicConductivity(void);
     double getSEIUnitArea(void);
     double getSEIUnitThickness(void);
+    double getAdsorptionOneSideCoeff(void);
+    double getAdsorptionTwoSideCoeff(void);
+    double getAdsorptionThreeSideCoeff(void);
+    double getAdsorptionFourSideCoeff(void);
     double getUpperCutoffVoltage(void);
     double getLowerCutoffVoltage(void);
     double getSPModelDeltaTime(void);
@@ -93,6 +101,10 @@ private:
     double SEIUnitThickness;
     double upperCutoffVoltage;
     double lowerCutoffVoltage;
+    double adsorptionOneSideCoeff;
+    double adsorptionTwoSideCoeff;
+    double adsorptionThreeSideCoeff;
+    double adsorptionFourSideCoeff;
     double SPModelDeltaTime;
     int KMCSurfaceSizeX;
     int KMCSurfaceSizeY;

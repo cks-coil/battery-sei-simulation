@@ -120,6 +120,10 @@ void Parser::initDoubleFuncMap(void){
     doubleFuncMap.insert(make_pair("SEIUnitThickness", &Param::setSEIUnitThickness));
     doubleFuncMap.insert(make_pair("upperCutoffVoltage", &Param::setUpperCutoffVoltage));
     doubleFuncMap.insert(make_pair("lowerCutoffVoltage", &Param::setLowerCutoffVoltage));
+    doubleFuncMap.insert(make_pair("adsorptionOneSideCoeff", &Param::setAdsorptionOneSideCoeff));
+    doubleFuncMap.insert(make_pair("adsorptionTwoSideCoeff", &Param::setAdsorptionTwoSideCoeff));
+    doubleFuncMap.insert(make_pair("adsorptionThreeSideCoeff", &Param::setAdsorptionThreeSideCoeff));
+    doubleFuncMap.insert(make_pair("adsorptionFourSideCoeff", &Param::setAdsorptionFourSideCoeff));
     doubleFuncMap.insert(make_pair("SPModelDeltaTime", &Param::setSPModelDeltaTime));
 }
 
