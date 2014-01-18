@@ -29,6 +29,8 @@ Param::Param(void){
     SEIElectronicConductivity = 0;
     SEIUnitArea = 0;
     SEIUnitThickness = 0;
+    upperCutoffVoltage = 0;
+    lowerCutoffVoltage = 0;
 }
 
 void Param::output(std::ostream &out){
@@ -53,7 +55,9 @@ void Param::output(std::ostream &out){
         << "# SEILocalEquilibriumPotential: " << SEILocalEquilibriumPotential << std::endl
         << "# SEIElectronicConductivity: " << SEIElectronicConductivity << std::endl
         << "# SEIUnitArea: " << SEIUnitArea << std::endl
-        << "# SEIUnitThickness: " << SEIUnitThickness << std::endl;
+        << "# SEIUnitThickness: " << SEIUnitThickness << std::endl
+        << "# upperCutoffVoltage: " << upperCutoffVoltage << std::endl
+        << "# lowerCutoffVoltage: " << lowerCutoffVoltage << std::endl;
 }
 
 void Param::setAnodeSurfaceArea(double anodeSurfaceArea){ this->anodeSurfaceArea = anodeSurfaceArea; }
@@ -78,6 +82,8 @@ void Param::setSEILocalEquilibriumPotential(double SEILocalEquilibriumPotential)
 void Param::setSEIElectronicConductivity(double SEIElectronicConductivity){ this->SEIElectronicConductivity = SEIElectronicConductivity; }
 void Param::setSEIUnitArea(double SEIUnitArea){ this->SEIUnitArea = SEIUnitArea; }
 void Param::setSEIUnitThickness(double SEIUnitThickness){ this->SEIUnitThickness = SEIUnitThickness; }
+void Param::setUpperCutoffVoltage(double upperCutoffVoltage){ this->upperCutoffVoltage = upperCutoffVoltage;}
+void Param::setLowerCutoffVoltage(double lowerCutoffVoltage){ this->lowerCutoffVoltage = lowerCutoffVoltage;}
 
 double Param::getAnodeSurfaceArea(void){ return this->anodeSurfaceArea; }
 double Param::getAnodeReactionRateConstant(void){ return this->anodeReactionRateConstant; }
@@ -101,4 +107,11 @@ double Param::getSEILocalEquilibriumPotential(void){return this->SEILocalEquilib
 double Param::getSEIElectronicConductivity(void){return this->SEIElectronicConductivity; }
 double Param::getSEIUnitArea(void){ return this->SEIUnitArea; }
 double Param::getSEIUnitThickness(void){ return this->SEIUnitThickness; }
+double Param::getUpperCutoffVoltage(void){ return this->upperCutoffVoltage; }
+double Param::getLowerCutoffVoltage(void){ return this->lowerCutoffVoltage; }
 
+
+std::ostream &operator<<(std::ostream &out, Param &tgt){
+    tgt.output(out);
+    return out;
+}

@@ -91,3 +91,8 @@ void State::operator=(State &source){
     this->cellVoltage = source.getCellVoltage();
     this->SEIThickness = source.getSEIThickness();
 }
+
+std::ostream &operator<<(std::ostream &out, State &tgt){
+    tgt.output(out);
+    return out;
+}

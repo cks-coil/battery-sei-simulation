@@ -34,6 +34,8 @@ public:
     void setSEIElectronicConductivity(double SEIElectronicConductivity);
     void setSEIUnitArea(double SEIUnitArea);
     void setSEIUnitThickness(double SEIUnitThickness);
+    void setUpperCutoffVoltage(double upperCutoffVoltage);
+    void setLowerCutoffVoltage(double lowerCutoffVoltage);
     double getAnodeSurfaceArea(void);
     double getAnodeReactionRateConstant(void);
     double getAnodeMaxLithiumConcentration(void);
@@ -56,6 +58,8 @@ public:
     double getSEIElectronicConductivity(void);
     double getSEIUnitArea(void);
     double getSEIUnitThickness(void);
+    double getUpperCutoffVoltage(void);
+    double getLowerCutoffVoltage(void);
 private:
     double anodeSurfaceArea;
     double anodeReactionRateConstant;
@@ -79,7 +83,11 @@ private:
     double SEIElectronicConductivity;
     double SEIUnitArea;
     double SEIUnitThickness;
+    double upperCutoffVoltage;
+    double lowerCutoffVoltage;
 };
+
+std::ostream &operator<<(std::ostream &out, Param &tgt);
 
 #endif
 
