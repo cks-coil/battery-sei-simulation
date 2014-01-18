@@ -69,7 +69,7 @@ private:
     double SEIThickness;
 };
 
-std::ostream &operator<<(std::ostream &out, Param &tgt);
+std::ostream &operator<<(std::ostream &out, State &tgt);
 
 #endif
 

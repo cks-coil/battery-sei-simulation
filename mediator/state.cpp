@@ -21,11 +21,14 @@ State::State(void){
     cathodeSurfaceLithiumConcentration = 0;
     cathodeDimensionlessLithiumConcentration = 0;
     cellVoltage = 0;
+    capacity = 0;
     SEIThickness = 0;
 }
 
 void State::outputMultiLine(std::ostream &out){
-    out << "# appliedCurrent: " << appliedCurrent << std::endl
+    out << "# capacity" << capacity << std::endl
+        << "# cellVoltage" << cellVoltage << std::endl
+        << "# appliedCurrent: " << appliedCurrent << std::endl
         << "# anodeSideReactionCurrent: " << anodeSideReactionCurrent << std::endl
         << "# anodeLocalPotential: " << anodeLocalPotential << std::endl
         << "# anodeLocalEquilibriumPotential: " << anodeLocalEquilibriumPotential << std::endl
@@ -39,12 +42,12 @@ void State::outputMultiLine(std::ostream &out){
         << "# cathodeAverageLithiumConcentration: " << cathodeAverageLithiumConcentration << std::endl
         << "# cathodeSurfaceLithiumConcentration: " << cathodeSurfaceLithiumConcentration << std::endl
         << "# cathodeDimensionlessLithiumConcentration: " << cathodeDimensionlessLithiumConcentration << std::endl
-        << "# cellVoltage" << cellVoltage << std::endl
-        << "# capacity" << capacity << std::endl
         << "# Seithickness: " << SEIThickness << std::endl;
 }
 void State::outputSingleLine(std::ostream &out){
-    out  << appliedCurrent << " "
+    out  << capacity << " "
+         << cellVoltage << " "
+         << appliedCurrent << " "
          << anodeSideReactionCurrent << " "
          << anodeLocalPotential << " "
          << anodeLocalEquilibriumPotential << " "
@@ -58,8 +61,6 @@ void State::outputSingleLine(std::ostream &out){
          << cathodeAverageLithiumConcentration << " "
          << cathodeSurfaceLithiumConcentration << " "
          << cathodeDimensionlessLithiumConcentration << " "
-         << cellVoltage << " "
-         << capacity << " "
          << SEIThickness;
 }
 
