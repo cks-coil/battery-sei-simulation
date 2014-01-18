@@ -11,7 +11,7 @@ PRODUCT = product
 
 MYINCLUDE_OPTS =  -I. $(patsubst %,-I%,$(SUBDIRS))
 CXXFLAGS += -Wall -O2 $(MYINCLUDE_OPTS)
-LDFLAGS = -lm
+LDFLAGS = -lm -lboost_program_options
 
 .SUFFIXES: .cpp .o .d
 .PHONY: all depend clean objectclean dependclean execute

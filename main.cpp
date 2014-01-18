@@ -3,12 +3,15 @@
   \author Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.ac.jp>
  */
 
-#include <math.h>
 #include <iostream>
+#include <fstream>
 #include <time.h>
-#include <stdlib.h>
+#include <boost/program_options.hpp>
+#include <string>
+#include <vector>
+#include "state.hpp"
 #include "param.hpp"
-#include "constant.hpp"
+#include "parser.hpp"
 #include "kmc_core.hpp"
 #include "kmc_surface.hpp"
 #include "kmc_transition.hpp"
@@ -17,41 +20,48 @@
 #include "mediator.hpp"
 
 using namespace std;
+using namespace boost::program_options;
 
-int main(void){
+
+int main(int argc, char* argv[]){
     srand((unsigned)time(NULL));
+
+    options_description opt("Option");
+    opt.add_options()
+        ("help,h", "show help")
+        ("param,p", value<string>(),"param file")
+        ("output,o", value<string>(), "output file");
+
+    variables_map argmap;
+    store(parse_command_line(argc, argv, opt), argmap);
+    notify(argmap);
+
+    if( argmap.count("help") ){
+        cerr << opt << endl;
+        exit(1);
+    } 
+
+    string outputFileName;
+    if( !argmap.count("output") ) outputFileName = "tmp.log";
+    else outputFileName = argmap["output"].as<string>();
+
+    ofstream ofs(outputFileName.c_str());
+    if( !ofs ){
+        cerr << "# ERROR: can't open file for output: " << outputFileName << endl;
+        exit(1);
+    }
 
     State state;
     Param param;
-    param.setAnodeSurfaceArea( 603.06 * pow(10,-6) );
-    param.setAnodeReactionRateConstant( 4.854 * pow(10,-6) );
-    param.setAnodeMaxLithiumConcentration( 30555 );
-    param.setAnodeInitialLithiumConcentration( 0.03 * 30555 );
-    param.setAnodeParticleRadius( 2 * pow(10,-6) );
-    param.setAnodeDiffusionCoefficient( 3.9 * pow(10,-14) );
-    param.setAnodeSideReactionExchangeCurrentDensity( 1.0 * pow(10,-7) );
-    param.setCathodeSurfaceArea( 531.3 * pow(10,-6) );
-    param.setCathodeReactionRateConstant( 2.252 * pow(10,-6) );
-    param.setCathodeMaxLithiumConcentration( 51555 );
-    param.setCathodeInitialLithiumConcentration( 0.95 * 51555 );
-    param.setCathodeParticleRadius( 2 * pow(10,-6) );
-    param.setCathodeDiffusionCoefficient( 1.0 * pow(10,-14) );
-    param.setLiquidPhaseLithiumConcentration( 1000 );
-    param.setLiquidPhaseLocalPotential( 0 );
-    param.setTransferCoefficients( 0.5 );
-    param.setTemperature( 298.15 );
-    param.setAppliedCurrent( 2.9007*pow(10,-4)*0.2 ); // \cks 1C
-    param.setSEILocalEquilibriumPotential( 0.4 );
-    param.setSEIElectronicConductivity( 1.2*pow(10,-6) );
-    param.setSEIUnitArea( 4.964 * pow(10,-10) * 6.185 * pow(10,-10) / 2.0 );
-    param.setSEIUnitThickness( 0.5 * 8.356 * pow(10,-10) * sin( 114.6 / 180.0 * M_PI ) );
-    param.setUpperCutoffVoltage( 4.2 );
-    param.setLowerCutoffVoltage( 3.0 );
-    param.setKMCSurfaceSizeX(20);
-    param.setKMCSurfaceSizeY(20);
-    param.setSPModelDeltaTime(1);
-    param.setMediatorEndCycles(800);
-    cout << param << endl;
+    Parser parser;
+    parser.setParam(&param);
+    parser.setFileName("default.txt");
+    parser.parse();
+    if( argmap.count("param") ){
+        parser.setFileName(argmap["param"].as<string>());
+        parser.parse();
+    }
+    ofs << param << endl;
 
     SPModel sp;
     sp.setState(&state);
@@ -70,7 +80,10 @@ int main(void){
     mediator.setState(&state);
     mediator.setKMC(&kmc);
     mediator.setSPModel(&sp);
+    mediator.setStream(ofs);
     mediator.run();
+
+    ofs.close();
 
     return 0;
 }
