@@ -6,6 +6,7 @@
 #include "state.hpp"
 
 State::State(void){
+    appliedCurrent = 0;
     anodeSideReactionCurrent = 0;
     anodeLocalPotential = 0;
     anodeLocalEquilibriumPotential = 0;
@@ -24,7 +25,8 @@ State::State(void){
 }
 
 void State::output(std::ostream &out){
-    out << "# anodeSideReactionCurrent: " << anodeSideReactionCurrent << std::endl
+    out << "# appliedCurrent: " << appliedCurrent << std::endl
+        << "# anodeSideReactionCurrent: " << anodeSideReactionCurrent << std::endl
         << "# anodeLocalPotential: " << anodeLocalPotential << std::endl
         << "# anodeLocalEquilibriumPotential: " << anodeLocalEquilibriumPotential << std::endl
         << "# anodeOverPotential: " << anodeOverPotential << std::endl
@@ -41,6 +43,7 @@ void State::output(std::ostream &out){
         << "# SEIThickness: " << SEIThickness << std::endl;
 }
 
+void State::setAppliedCurrent(double appliedCurrent){ this->appliedCurrent = appliedCurrent; }
 void State::setAnodeSideReactionCurrent(double anodeSideReactionCurrent){ this->anodeSideReactionCurrent = anodeSideReactionCurrent; }
 void State::setAnodeLocalPotential(double anodeLocalPotential){ this->anodeLocalPotential = anodeLocalPotential; }
 void State::setAnodeLocalEquilibriumPotential(double anodeLocalEquilibriumPotential){ this->anodeLocalEquilibriumPotential = anodeLocalEquilibriumPotential; }
@@ -57,6 +60,7 @@ void State::setCathodeDimensionlessLithiumConcentration(double cathodeDimensionl
 void State::setCellVoltage(double cellVoltage){ this->cellVoltage = cellVoltage; }
 void State::setSEIThickness(double SEIThickness){ this->SEIThickness = SEIThickness; }
 
+double State::getAppliedCurrent(void){ return this->appliedCurrent; }
 double State::getAnodeSideReactionCurrent(void){ return this->anodeSideReactionCurrent; }
 double State::getAnodeLocalPotential(void){ return this->anodeLocalPotential; }
 double State::getAnodeLocalEquilibriumPotential(void){ return this->anodeLocalEquilibriumPotential; }

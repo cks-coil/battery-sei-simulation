@@ -14,6 +14,7 @@ public:
     State(void);
     void operator=(State &source);
     void output(std::ostream &out);
+    void setAppliedCurrent(double appliedCurrent);
     void setAnodeSideReactionCurrent(double anodeSideReactionCurrent);
     void setAnodeLocalPotential(double anodeLocalPotential);
     void setAnodeLocalEquilibriumPotential(double anodeLocalEquilibriumPotential);
@@ -29,6 +30,7 @@ public:
     void setCathodeDimensionlessLithiumConcentration(double cathodeDimensionlessLithiumConcentration);
     void setCellVoltage(double cellVoltage);
     void setSEIThickness(double SEIThickness);
+    double getAppliedCurrent(void);
     double getAnodeSideReactionCurrent(void);
     double getAnodeLocalPotential(void);
     double getAnodeLocalEquilibriumPotential(void);
@@ -45,6 +47,7 @@ public:
     double getCellVoltage(void);
     double getSEIThickness(void);
 private:
+    double appliedCurrent;
     double anodeSideReactionCurrent;
     double anodeLocalPotential;
     double anodeLocalEquilibriumPotential;
