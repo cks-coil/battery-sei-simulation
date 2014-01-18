@@ -44,20 +44,20 @@ void Parser::parse(void){
         if( v[0].find("#") != string::npos ) continue; // #から始まる行は無視
 
         if( (int)v.size() == 1 ){
-            cerr << "# ERROR: invalid line \"" << buf << "\"" << endl;
+            cerr << "# ParseERROR: value is empty :" << buf << endl;
             exit(1);
         }
         if( (int)v.size() !=2 ){
             if( v[2].find("#") == string::npos ){
-                cerr << "# ERROR: invalid line \"" << buf << "\"" << endl;
+                cerr << "# ParseERROR: too many string :" << buf << endl;
                 exit(1);
             }
         }
 
         flag = doubleParser(v[0], v[1]);
-        if(!flag) intParser(v[0], v[1]);
+        if(!flag) flag = intParser(v[0], v[1]);
         if(!flag){
-            cerr << "# ERROR: invalid line \"" << buf << "\"" << endl;
+            cerr << "# ParseERROR: no such label: " << buf << endl;
             exit(1);
         } 
     }
@@ -71,7 +71,7 @@ bool Parser::doubleParser(string label, string val){
     errno = 0;
     value = strtod(val.c_str(), &endptr);
     if( (errno !=0) || (*endptr != '\0') ){ // 変換失敗
-        cerr << "# ERROR: can't change \"" << val << "\" to \"double\", label: \"" << label << "\"" << endl;
+        cerr << "# ParseERROR: can't change \"" << val << "\" to \"double\", label: \"" << label << "\"" << endl;
         exit(1);
     }
     (param->*(doubleFuncMap.find(label)->second))(value);
@@ -86,7 +86,7 @@ bool Parser::intParser(string label, string val){
     errno = 0;
     value = strtol(val.c_str(), &endptr, 0);
     if( (errno != 0) || (*endptr != '\0') || (value > INT_MAX) || (value < INT_MIN) ){ // 変換失敗
-        cerr << "# ERROR: can't change \"" << val << "\" to \"int\", label: \"" << label << "\"" << endl;
+        cerr << "# ParseERROR: can't change \"" << val << "\" to \"int\", label: \"" << label << "\"" << endl;
         exit(1);
     }
 
