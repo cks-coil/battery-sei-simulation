@@ -30,7 +30,7 @@ void Mediator::run(void){
     preCharge();
     preDisCharge();
     currentCycles = 1;
-    for(; currentCycles<= endCycles; currentCycles++){
+    for(; currentCycles<=endCycles; currentCycles++){
         charge();
         outputLog("#CycleLog #Charge");
         discharge();
@@ -41,13 +41,11 @@ void Mediator::run(void){
 void Mediator::preCharge(void){
     state->setAppliedCurrent( - param->getAppliedCurrent() );
     sp->startCycle();
-    kmc->startCycle();
     while( state->getCellVoltage() <= param->getUpperCutoffVoltage() ) sp->step();
 }
 void Mediator::preDisCharge(void){
     state->setAppliedCurrent( param->getAppliedCurrent() );
     sp->startCycle();
-    kmc->startCycle();
     while( state->getCellVoltage() >= param->getLowerCutoffVoltage() ) sp->step();
 }
 
@@ -69,7 +67,7 @@ void Mediator::discharge(void){
     state->setAppliedCurrent( param->getAppliedCurrent() );
     sp->startCycle();
     kmc->startCycle();
-    while( state->getCellVoltage() <= param->getLowerCutoffVoltage() ){
+    while( state->getCellVoltage() >= param->getLowerCutoffVoltage() ){
         if( kmc->getTime() <= sp->getTime() ){
             kmc->step();
             if( currentCycles==1 || currentCycles==endCycles ) outputLog("#StepLog #Discharge #KMC");
@@ -86,6 +84,6 @@ void Mediator::outputLog(string label){
             << sp->getStepNum() << " "
             << kmc->getTime() << " "
             << kmc->getStepNum() << " "
-            << &state << " "
+            << *state << " "
             << label << endl;
 }
