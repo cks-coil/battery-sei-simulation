@@ -4,7 +4,7 @@ anodeMaxLithiumConcentration             30555
 anodeInitialLithiumConcentration         916.65
 anodeParticleRadius                      2e-06
 anodeDiffusionCoefficient                3.9e-14
-anodeSideReactionExchangeCurrentDensity  1e-07
+anodeSideReactionExchangeCurrentDensity  1.5e-06
 cathodeSurfaceArea                       0.0005313
 cathodeReactionRateConstant              2.252e-06
 cathodeMaxLithiumConcentration           51555
