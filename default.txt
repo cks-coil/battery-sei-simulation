@@ -15,7 +15,7 @@ liquidPhaseLithiumConcentration          1000
 liquidPhaseLocalPotential                0.0
 transferCoefficients                     0.5
 temperature                              298.15
-appliedCurrent                           2.9007e-04    # 1C
+appliedCurrent                           2.3584e-04    # 1C
 SEILocalEquilibriumPotential             0.4
 SEIElectronicConductivity                1.2e-06
 SEIUnitArea                              1.53512e-19
