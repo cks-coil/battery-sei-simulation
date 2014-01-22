@@ -99,7 +99,7 @@ void KMCSurface::desorb(int n){
     surface[n]--;
 }
 void KMCSurface::output(std::ostream &out){
-    // \cks
+    for(int i=0;i<getNumSite();i++) out << surface[i] << " ";
     return;
 }
 
@@ -175,4 +175,9 @@ int KMCSurface::getUpDownSideN(int n, int z, diaDir dir){
     changeXYtoN(x, y, &nSide);
 
     return nSide;
+}
+
+ostream &operator<<(ostream &out, KMCSurface &tgt){
+    tgt.output(out);
+    return out;
 }

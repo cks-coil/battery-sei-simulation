@@ -10,6 +10,7 @@
 #include <ostream>
 #include "sp_model.hpp"
 #include "kmc_core.hpp"
+#include "kmc_surface.hpp"
 #include "param.hpp"
 
 class Mediator{
@@ -19,6 +20,7 @@ public:
     void setState(State *state);
     void setSPModel(SPModel *sp);
     void setKMC(KMCCore *kmc);
+    void setSurface(KMCSurface *surface);
     void setStream(std::ostream &stream);
     void run(void);
 private:
@@ -26,6 +28,7 @@ private:
     State *state;
     KMCCore *kmc;
     SPModel *sp;
+    KMCSurface *surface;
     std::ostream *stream;
     int currentCycles;
     void init(void);
@@ -34,6 +37,7 @@ private:
     void charge(void);
     void discharge(void);
     void outputLog(std::string label);
+    void outputSurface(std::string label);
 };
 
 #endif

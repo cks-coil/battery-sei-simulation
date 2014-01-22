@@ -79,6 +79,7 @@ int main(int argc, char* argv[]){
     mediator.setParam(&param);
     mediator.setState(&state);
     mediator.setKMC(&kmc);
+    mediator.setSurface(&surface);
     mediator.setSPModel(&sp);
     mediator.setStream(ofs);
     mediator.run();

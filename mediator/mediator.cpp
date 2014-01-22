@@ -21,6 +21,7 @@ void Mediator::setParam(Param *param){ this->param = param; }
 void Mediator::setState(State *state){ this->state = state; }
 void Mediator::setSPModel(SPModel *sp){ this->sp = sp; }
 void Mediator::setKMC(KMCCore *kmc){ this->kmc = kmc; }
+void Mediator::setSurface(KMCSurface *surface){ this->surface = surface; }
 void Mediator::setStream(ostream &stream){ this->stream = &(stream); }
 
 void Mediator::run(void){
@@ -32,6 +33,8 @@ void Mediator::run(void){
         outputLog("#CycleLog #Charge");
         discharge();
         outputLog("#CycleLog #Discharge");
+        if( currentCycles==1 ) outputSurface("#Surface #Discharge #First");
+        else if( currentCycles==param->getMediatorEndCycles() ) outputSurface("#Surface #Discharge #Last");
     }
 }
 
@@ -83,4 +86,8 @@ void Mediator::outputLog(string label){
             << kmc->getStepNum() << " "
             << *state << " "
             << label << endl;
+}
+
+void Mediator::outputSurface(string label){
+    *stream << *surface << label << endl;
 }
