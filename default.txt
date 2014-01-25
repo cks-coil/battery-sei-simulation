@@ -27,6 +27,7 @@ adsorptionTwoSideCoeff                   2.0
 adsorptionThreeSideCoeff                 2.0
 adsorptionFourSideCoeff                  2.0
 SPModelDeltaTime                         1.0
+KMCCutoffDeltaTimeCoeff                  0.05
 KMCSurfaceSizeX                          20
 KMCSurfaceSizeY                          20
 MediatorEndCycles                        800

@@ -19,6 +19,7 @@ public:
     void setState(State *state);
     void setParam(Param *param);
     void setTransition(KMCTransition *tr);
+    void setCutoffTime(double cutoffTime);
     void step(void);
     void endCycle(double time);
     void startCycle(void);
@@ -32,9 +33,11 @@ private:
     Param *param;
     std::vector<KMCTransition *> trs;
     double rateSum;
+    double cutoffTime;
     KMCTransition *lastTrs;
     double lastDeltaT;
     int lastN;
+    bool skipFlag;
     void initTransition(int n);
     void initAllTransition(void);
     void initLastTransition(void);
