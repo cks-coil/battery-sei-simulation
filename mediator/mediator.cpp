@@ -62,6 +62,7 @@ void Mediator::charge(void){
             if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Charge #SPModel");
         }
     }
+    kmc->endCycle(sp->getTime());
 }
 void Mediator::discharge(void){
     state->setAppliedCurrent( param->getAppliedCurrent() );
@@ -76,6 +77,7 @@ void Mediator::discharge(void){
             if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Discharge #SPModel");
         }
     }
+    kmc->endCycle(sp->getTime());
 }
 
 void Mediator::outputLog(string label){

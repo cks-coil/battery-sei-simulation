@@ -14,6 +14,7 @@ public:
     void updateState(void);
     void calcTransitionRate(void);
     void transit(int n);
+    void restore(int n);
 private:
     double getSideCoeff(int sideNum);
 };

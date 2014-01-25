@@ -49,6 +49,7 @@ int KMCTransition::getNumTransition(void){
 }
 
 void KMCTransition::transit(int n){}
+void KMCTransition::restore(int n){}
 
 void KMCTransition::updateState(void){}
 

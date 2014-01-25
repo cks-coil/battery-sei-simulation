@@ -25,6 +25,7 @@ public:
     double getSumTransitionRate(void);
     int getNumTransition(void);
     virtual void transit(int n);
+    virtual void restore(int n);
     virtual void updateState(void);
     virtual void calcTransitionRate(void);
     void calcTransitionRateSum(void);

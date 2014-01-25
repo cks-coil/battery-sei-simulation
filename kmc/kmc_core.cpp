@@ -17,6 +17,9 @@ KMCCore::KMCCore(void){
     param = NULL;
     trs.clear();
     rateSum = 0;
+    lastTrs = NULL;
+    lastDeltaT = 0;
+    lastN = 0;
 }
 
 void KMCCore::setSurface(KMCSurface *surface){
@@ -45,20 +48,31 @@ void KMCCore::step(void){
     int i;
     stepNum++;
     rateSum = 0;
+    surface->updateState();
     for(i=0; i<(int)trs.size(); i++){
         trs[i]->calcTransitionRate();
         trs[i]->calcTransitionRateSum();
         rateSum += trs[i]->getSumTransitionRate();
     }
+    updateTime();
     transit();
     for(i=0; i<(int)trs.size(); i++) trs[i]->updateState();
-    surface->updateState();
-    updateTime();
+}
+
+void KMCCore::endCycle(double time){
+    if( this->time-time <= lastDeltaT/2.0 ) return;
+
+    lastTrs->restore(lastN);
+    time -= lastDeltaT;
 }
 
 void KMCCore::startCycle(void){
+    surface->updateState();
     stepNum = 0;
     time = 0;
+    lastTrs = NULL;
+    lastDeltaT = 0;
+    lastN = 0;
 }
 
 int KMCCore::getStepNum(void){ return stepNum; }
@@ -123,6 +137,8 @@ void KMCCore::transit(void){
     }
 
     trs[i]->transit(j);
+    lastTrs = trs[i];
+    lastN = j;
 }
 
 
@@ -135,4 +151,5 @@ void KMCCore::updateTime(void){
     
     deltaT = - log(xi) / rateSum; // Equ.14
     time += deltaT;
+    lastDeltaT = deltaT;
 }

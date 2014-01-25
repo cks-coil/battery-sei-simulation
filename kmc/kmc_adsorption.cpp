@@ -37,6 +37,9 @@ void KMCAdsorption::calcTransitionRate(void){
 void KMCAdsorption::transit(int n){
     getSurface()->adsorb(n);
 }
+void KMCAdsorption::restore(int n){
+    getSurface()->desorb(n);
+}
 
 double KMCAdsorption::getSideCoeff(int sideNum){
     switch(sideNum){
