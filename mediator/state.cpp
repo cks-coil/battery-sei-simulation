@@ -42,7 +42,7 @@ void State::outputMultiLine(std::ostream &out){
         << "# cathodeAverageLithiumConcentration: " << cathodeAverageLithiumConcentration << std::endl
         << "# cathodeSurfaceLithiumConcentration: " << cathodeSurfaceLithiumConcentration << std::endl
         << "# cathodeDimensionlessLithiumConcentration: " << cathodeDimensionlessLithiumConcentration << std::endl
-        << "# Seithickness: " << SEIThickness << std::endl;
+        << "# SEIthickness: " << SEIThickness << std::endl;
 }
 void State::outputSingleLine(std::ostream &out){
     out  << capacity << " "

@@ -17,7 +17,7 @@ transferCoefficients                     0.5
 temperature                              298.15
 appliedCurrent                           2.3584e-04    # 1C
 SEILocalEquilibriumPotential             0.4
-SEIElectronicConductivity                1.2e-06
+SEIElectronicConductivity                3.0e-07
 SEIUnitArea                              1.53512e-19
 SEIUnitThickness                         3.79879e-10
 upperCutoffVoltage                       4.2

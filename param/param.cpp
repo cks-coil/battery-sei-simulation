@@ -67,10 +67,10 @@ void Param::output(std::ostream &out){
         << "# SEIUnitThickness: " << SEIUnitThickness << std::endl
         << "# upperCutoffVoltage: " << upperCutoffVoltage << std::endl
         << "# lowerCutoffVoltage: " << lowerCutoffVoltage << std::endl
-        << "# adsorptionOneSideCoeff" << adsorptionOneSideCoeff << std::endl
-        << "# adsorptionTwoSideCoeff" << adsorptionTwoSideCoeff << std::endl
-        << "# adsorptionThreeSideCoeff" << adsorptionThreeSideCoeff << std::endl
-        << "# adsorptionFourSideCoeff" << adsorptionFourSideCoeff << std::endl
+        << "# adsorptionOneSideCoeff: " << adsorptionOneSideCoeff << std::endl
+        << "# adsorptionTwoSideCoeff: " << adsorptionTwoSideCoeff << std::endl
+        << "# adsorptionThreeSideCoeff: " << adsorptionThreeSideCoeff << std::endl
+        << "# adsorptionFourSideCoeff: " << adsorptionFourSideCoeff << std::endl
         << "# SPModelDeltaTime: " << SPModelDeltaTime << std::endl
         << "# KMCNullTransitionRate: " << KMCNullTransitionRate << std::endl
         << "# KMCSurfaceSizeX: " << KMCSurfaceSizeX << std::endl
