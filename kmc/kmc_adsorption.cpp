@@ -3,6 +3,7 @@
   \author Chikashi Shinagawa <shinagawa@tcl.t.u-tokyo.ac.jp>
 */
 
+
 #include <math.h>
 #include "constant.hpp"
 #include "kmc_adsorption.hpp"
@@ -11,7 +12,7 @@ KMCAdsorption::KMCAdsorption(void){}
 
 void KMCAdsorption::updateState(void){
     double current;
-    current = getSumTransitionRate() * getParam()->getAnodeSurfaceArea() * constant::F / ( constant::NA * getSurface()->getSurfaceArea() );
+    current = 2 * getSumTransitionRate() * getParam()->getAnodeSurfaceArea() * constant::F / ( constant::NA * getSurface()->getSurfaceArea() );
     getState()->setAnodeSideReactionCurrent( current );
 }
 
@@ -25,7 +26,7 @@ void KMCAdsorption::calcTransitionRate(void){
         if( getSurface()->isFlat(i) ){
             eta = s->getAnodeLocalPotential() - p->getLiquidPhaseLocalPotential() - p->getSEILocalEquilibriumPotential()
                 - ( s->getAppliedCurrent() + s->getAnodeSideReactionCurrent() ) * getSurface()->getSEIThicknessPoint(i) / ( p->getAnodeSurfaceArea() * p->getSEIElectronicConductivity() );
-            rate = p->getAnodeSideReactionExchangeCurrentDensity() * p->getSEIUnitArea() * constant::NA / constant::F
+            rate = p->getAnodeSideReactionExchangeCurrentDensity() * p->getSEIUnitArea() * constant::NA / ( 2 * constant::F )
                 * exp( - p->getTransferCoefficients() * constant::F / ( constant::R * p->getTemperature() ) * eta );
             setTransitionRate(i, rate*getSideCoeff( getSurface()->getNumSide(i)) );
         }else{
