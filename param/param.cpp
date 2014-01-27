@@ -36,7 +36,7 @@ Param::Param(void){
     adsorptionThreeSideCoeff = 0;
     adsorptionFourSideCoeff = 0;
     SPModelDeltaTime = 0;
-    KMCCutoffDeltaTimeCoeff = 0;
+    KMCNullTransitionRate = 0;
     KMCSurfaceSizeX = 0;
     KMCSurfaceSizeY = 0;
     MediatorEndCycles = 0;
@@ -72,7 +72,7 @@ void Param::output(std::ostream &out){
         << "# adsorptionThreeSideCoeff" << adsorptionThreeSideCoeff << std::endl
         << "# adsorptionFourSideCoeff" << adsorptionFourSideCoeff << std::endl
         << "# SPModelDeltaTime: " << SPModelDeltaTime << std::endl
-        << "# KMCCutoffDeltaTimeCoeff: " << KMCCutoffDeltaTimeCoeff << std::endl
+        << "# KMCNullTransitionRate: " << KMCNullTransitionRate << std::endl
         << "# KMCSurfaceSizeX: " << KMCSurfaceSizeX << std::endl
         << "# KMCSurfaceSizeY: " << KMCSurfaceSizeY << std::endl
         << "# MediatorEndCycles: " << MediatorEndCycles << std::endl;
@@ -107,7 +107,7 @@ void Param::setAdsorptionTwoSideCoeff(double adsorptionTwoSideCoeff){ this->adso
 void Param::setAdsorptionThreeSideCoeff(double adsorptionThreeSideCoeff){ this->adsorptionThreeSideCoeff = adsorptionThreeSideCoeff; }
 void Param::setAdsorptionFourSideCoeff(double adsorptionFourSideCoeff){ this->adsorptionFourSideCoeff = adsorptionFourSideCoeff; }
 void Param::setSPModelDeltaTime(double SPModelDeltaTime){ this->SPModelDeltaTime = SPModelDeltaTime; }
-void Param::setKMCCutoffDeltaTimeCoeff(double KMCCutoffDeltaTimeCoeff){ this->KMCCutoffDeltaTimeCoeff = KMCCutoffDeltaTimeCoeff; }
+void Param::setKMCNullTransitionRate(double KMCNullTransitionRate){ this->KMCNullTransitionRate = KMCNullTransitionRate; }
 void Param::setKMCSurfaceSizeX(int KMCSurfaceSizeX){ this->KMCSurfaceSizeX = KMCSurfaceSizeX; }
 void Param::setKMCSurfaceSizeY(int KMCSurfaceSizeY){ this->KMCSurfaceSizeY = KMCSurfaceSizeY; }
 void Param::setMediatorEndCycles(int MediatorEndCycles){ this->MediatorEndCycles = MediatorEndCycles; }
@@ -141,7 +141,7 @@ double Param::getAdsorptionTwoSideCoeff(void){ return this->adsorptionTwoSideCoe
 double Param::getAdsorptionThreeSideCoeff(void){ return this->adsorptionThreeSideCoeff; }
 double Param::getAdsorptionFourSideCoeff(void){ return this->adsorptionFourSideCoeff; }
 double Param::getSPModelDeltaTime(void){ return this->SPModelDeltaTime; }
-double Param::getKMCCutoffDeltaTimeCoeff(void){ return this->KMCCutoffDeltaTimeCoeff; }
+double Param::getKMCNullTransitionRate(void){ return this->KMCNullTransitionRate; }
 int Param::getKMCSurfaceSizeX(void){ return this->KMCSurfaceSizeX; }
 int Param::getKMCSurfaceSizeY(void){ return this->KMCSurfaceSizeY; }
 int Param::getMediatorEndCycles(void){ return this->MediatorEndCycles; }

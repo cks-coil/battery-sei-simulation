@@ -15,7 +15,6 @@ Mediator::Mediator(void){
     kmc = NULL;
     sp = NULL;
     stream = &(std::cout);
-    lastDischargeTime = 0;
 }
 
 void Mediator::setParam(Param *param){ this->param = param; }
@@ -43,7 +42,6 @@ void Mediator::preCharge(void){
     state->setAppliedCurrent( - param->getAppliedCurrent() );
     sp->startCycle();
     while( state->getCellVoltage() <= param->getUpperCutoffVoltage() ) sp->step();
-    lastDischargeTime = sp->getTime();
 }
 void Mediator::preDisCharge(void){
     state->setAppliedCurrent( param->getAppliedCurrent() );
@@ -54,7 +52,6 @@ void Mediator::preDisCharge(void){
 void Mediator::charge(void){
     state->setAppliedCurrent( - param->getAppliedCurrent() );
     sp->startCycle();
-    kmc->setCutoffTime(lastDischargeTime);
     kmc->startCycle();
     while( state->getCellVoltage() <= param->getUpperCutoffVoltage() ){
         if( kmc->getTime() <= sp->getTime() ){
@@ -81,7 +78,6 @@ void Mediator::discharge(void){
         }
     }
     kmc->endCycle(sp->getTime());
-    lastDischargeTime = sp->getTime();
 }
 
 void Mediator::outputLog(string label){

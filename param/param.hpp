@@ -41,7 +41,7 @@ public:
     void setAdsorptionThreeSideCoeff(double adsorptionThreeSideCoeff);
     void setAdsorptionFourSideCoeff(double adsorptionFourSideCoeff);
     void setSPModelDeltaTime(double SPModelDeltaTime);
-    void setKMCCutoffDeltaTimeCoeff(double KMCCutoffDeltaTimeCoeff);
+    void setKMCNullTransitionRate(double KMCNullTransitionRate);
     void setKMCSurfaceSizeX(int KMCSurfaceSizeX);
     void setKMCSurfaceSizeY(int KMCSurfaceSizeY);
     void setMediatorEndCycles(int MediatorEndCycles);
@@ -74,7 +74,7 @@ public:
     double getUpperCutoffVoltage(void);
     double getLowerCutoffVoltage(void);
     double getSPModelDeltaTime(void);
-    double getKMCCutoffDeltaTimeCoeff(void);
+    double getKMCNullTransitionRate(void);
     int getKMCSurfaceSizeX(void);
     int getKMCSurfaceSizeY(void);
     int getMediatorEndCycles(void);
@@ -108,7 +108,7 @@ private:
     double adsorptionThreeSideCoeff;
     double adsorptionFourSideCoeff;
     double SPModelDeltaTime;
-    double KMCCutoffDeltaTimeCoeff;
+    double KMCNullTransitionRate;
     int KMCSurfaceSizeX;
     int KMCSurfaceSizeY;
     int MediatorEndCycles;

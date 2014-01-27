@@ -31,7 +31,6 @@ private:
     KMCSurface *surface;
     std::ostream *stream;
     int currentCycles;
-    int lastDischargeTime;
     void init(void);
     void preCharge(void);
     void preDisCharge(void);

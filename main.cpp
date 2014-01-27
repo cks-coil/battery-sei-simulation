@@ -16,6 +16,7 @@
 #include "kmc_surface.hpp"
 #include "kmc_transition.hpp"
 #include "kmc_adsorption.hpp"
+#include "kmc_null_transition.hpp"
 #include "sp_model.hpp"
 #include "mediator.hpp"
 
@@ -70,10 +71,12 @@ int main(int argc, char* argv[]){
     KMCCore kmc;
     KMCSurface surface;
     KMCAdsorption adsorption;
+    KMCNullTransition nullTransition;
     kmc.setParam(&param);
     kmc.setState(&state);
     kmc.setSurface(&surface);
     kmc.setTransition(&adsorption);
+    kmc.setTransition(&nullTransition);
 
     Mediator mediator;
     mediator.setParam(&param);

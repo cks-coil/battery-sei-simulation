@@ -21,7 +21,6 @@ KMCCore::KMCCore(void){
     lastDeltaT = 0;
     lastN = 0;
     skipFlag = false;
-    cutoffTime = 0;
 }
 
 void KMCCore::setSurface(KMCSurface *surface){
@@ -46,10 +45,6 @@ void KMCCore::setTransition(KMCTransition *tr){
     initSurface();
 }
 
-void KMCCore::setCutoffTime(double cutoffTime){
-    this->cutoffTime = cutoffTime;
-}
-
 void KMCCore::step(void){
     int i;
     stepNum++;
@@ -60,13 +55,9 @@ void KMCCore::step(void){
         trs[i]->calcTransitionRateSum();
         rateSum += trs[i]->getSumTransitionRate();
     }
-    if(1.0/rateSum > cutoffTime ){
-        skipFlag = true;
-        stepNum--;
-    }else{
-        skipFlag = false;
-        transit();
-    }
+    skipFlag = false;
+    transit();
+
     for(i=0; i<(int)trs.size(); i++) trs[i]->updateState();
     updateTime();
 }
@@ -159,13 +150,10 @@ void KMCCore::updateTime(void){
     double xi=0.0;
     double deltaT;
     
-    if(!skipFlag){
-        // xi->0 log(xi) -> -inf 
-        while(xi == 0.0) xi = (double)rand() / (double)RAND_MAX;
-        deltaT = - log(xi) / rateSum; // Equ.14
-    }else{
-        deltaT = cutoffTime * param->getKMCCutoffDeltaTimeCoeff();
-    }
+    // xi->0 log(xi) -> -inf 
+    while(xi == 0.0) xi = (double)rand() / (double)RAND_MAX;
+    deltaT = - log(xi) / rateSum; // Equ.14
+
     time += deltaT;
     lastDeltaT = deltaT;
 }

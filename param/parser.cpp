@@ -125,7 +125,7 @@ void Parser::initDoubleFuncMap(void){
     doubleFuncMap.insert(make_pair("adsorptionThreeSideCoeff", &Param::setAdsorptionThreeSideCoeff));
     doubleFuncMap.insert(make_pair("adsorptionFourSideCoeff", &Param::setAdsorptionFourSideCoeff));
     doubleFuncMap.insert(make_pair("SPModelDeltaTime", &Param::setSPModelDeltaTime));
-    doubleFuncMap.insert(make_pair("KMCCutoffDeltaTimeCoeff", &Param::setKMCCutoffDeltaTimeCoeff));
+    doubleFuncMap.insert(make_pair("KMCNullTransitionRate", &Param::setKMCNullTransitionRate));
 }
 
 void Parser::initIntFuncMap(void){
