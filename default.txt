@@ -26,7 +26,7 @@ adsorptionOneSideCoeff                   2.0
 adsorptionTwoSideCoeff                   2.0
 adsorptionThreeSideCoeff                 2.0
 adsorptionFourSideCoeff                  2.0
-SPModelDeltaTime                         1.0
+SPModelDeltaTime                         0.1
 KMCNullTransitionRate                    1.0e-05
 KMCSurfaceSizeX                          75
 KMCSurfaceSizeY                          75
