@@ -32,6 +32,8 @@ public:
     void setCellVoltage(double cellVoltage);
     void setCapacity(double capacity);
     void setSEIThickness(double SEIThickness);
+    void setLithiumLoss(double lithiumLoss);
+    void setDimensionlessLithiumLoss(double dimensionlessLithiumLoss);
     double getAppliedCurrent(void);
     double getAnodeSideReactionCurrent(void);
     double getAnodeLocalPotential(void);
@@ -49,6 +51,8 @@ public:
     double getCellVoltage(void);
     double getCapacity(void);
     double getSEIThickness(void);
+    double getLithiumLoss(void);
+    double getDimensionlessLithiumLoss(void);
 private:
     double appliedCurrent;
     double anodeSideReactionCurrent;
@@ -67,6 +71,8 @@ private:
     double cellVoltage;
     double capacity;
     double SEIThickness;
+    double lithiumLoss;
+    double dimensionlessLithiumLoss;
 };
 
 std::ostream &operator<<(std::ostream &out, State &tgt);

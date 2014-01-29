@@ -23,6 +23,8 @@ State::State(void){
     cellVoltage = 0;
     capacity = 0;
     SEIThickness = 0;
+    lithiumLoss = 0;
+    dimensionlessLithiumLoss = 0;
 }
 
 void State::outputMultiLine(std::ostream &out){
@@ -42,7 +44,9 @@ void State::outputMultiLine(std::ostream &out){
         << "# cathodeAverageLithiumConcentration: " << cathodeAverageLithiumConcentration << std::endl
         << "# cathodeSurfaceLithiumConcentration: " << cathodeSurfaceLithiumConcentration << std::endl
         << "# cathodeDimensionlessLithiumConcentration: " << cathodeDimensionlessLithiumConcentration << std::endl
-        << "# SEIthickness: " << SEIThickness << std::endl;
+        << "# SEIthickness: " << SEIThickness << std::endl
+        << "# lithiumLoss: " << lithiumLoss << std::endl
+        << "# dimensionlessLithiumLoss: " << dimensionlessLithiumLoss << std::endl;
 }
 void State::outputSingleLine(std::ostream &out){
     out  << capacity << " "
@@ -61,7 +65,9 @@ void State::outputSingleLine(std::ostream &out){
          << cathodeAverageLithiumConcentration << " "
          << cathodeSurfaceLithiumConcentration << " "
          << cathodeDimensionlessLithiumConcentration << " "
-         << SEIThickness;
+         << SEIThickness << " "
+         << lithiumLoss << " "
+         << dimensionlessLithiumLoss;
 }
 
 void State::setAppliedCurrent(double appliedCurrent){ this->appliedCurrent = appliedCurrent; }
@@ -81,6 +87,8 @@ void State::setCathodeDimensionlessLithiumConcentration(double cathodeDimensionl
 void State::setCellVoltage(double cellVoltage){ this->cellVoltage = cellVoltage; }
 void State::setCapacity(double capacity){ this->capacity = capacity; }
 void State::setSEIThickness(double SEIThickness){ this->SEIThickness = SEIThickness; }
+void State::setLithiumLoss(double lithiumLoss){ this->lithiumLoss = lithiumLoss; }
+void State::setDimensionlessLithiumLoss(double dimensionlessLithiumLoss){ this->dimensionlessLithiumLoss = dimensionlessLithiumLoss; }
 
 double State::getAppliedCurrent(void){ return this->appliedCurrent; }
 double State::getAnodeSideReactionCurrent(void){ return this->anodeSideReactionCurrent; }
@@ -99,6 +107,8 @@ double State::getCathodeDimensionlessLithiumConcentration(void){ return this->ca
 double State::getCellVoltage(void){ return this->cellVoltage; }
 double State::getCapacity(void){ return this->capacity; }
 double State::getSEIThickness(void){ return this->SEIThickness; }
+double State::getLithiumLoss(void){ return this->lithiumLoss; }
+double State::getDimensionlessLithiumLoss(void){ return this->dimensionlessLithiumLoss; }
 
 void State::operator=(State &source){
     if(this == &source) return;
@@ -119,6 +129,8 @@ void State::operator=(State &source){
     this->cellVoltage = source.getCellVoltage();
     this->capacity = source.getCapacity();
     this->SEIThickness = source.getSEIThickness();
+    this->lithiumLoss = source.getLithiumLoss();
+    this->dimensionlessLithiumLoss = source.getDimensionlessLithiumLoss();
 }
 
 std::ostream &operator<<(std::ostream &out, State &tgt){

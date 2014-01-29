@@ -60,6 +60,8 @@ void SPModel::step(void){
     calcCathodeLocalPotential();
     calcCellVoltage();
     calcCapacity();
+    calcLithiumLoss();
+    calcDimensionlessLithiumLoss();
     updateTime();
 }
 
@@ -188,6 +190,19 @@ void SPModel::calcCapacity(void){
     double delta;
     delta = fabs( s->getAppliedCurrent() );
     s->setCapacity( s->getCapacity() + ( delta * p->getSPModelDeltaTime() ) );
+}
+
+void SPModel::calcLithiumLoss(void){
+    double delta;
+    delta = s->getAnodeSideReactionCurrent() / constant::F;
+    s->setLithiumLoss( s->getLithiumLoss() + ( delta * p->getSPModelDeltaTime() ) );
+}
+
+
+void SPModel::calcDimensionlessLithiumLoss(void){
+    double val;
+    val = s->getLithiumLoss() / ( p->getAnodeMaxLithiumConcentration() * p->getAnodeParticleRadius() * p->getAnodeSurfaceArea() / 3 );
+    s->setDimensionlessLithiumLoss( val );
 }
 
 void SPModel::updateTime(void){

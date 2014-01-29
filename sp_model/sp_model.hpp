@@ -42,6 +42,8 @@ private:
     void calcAnodeSideReactionCurrent(void);
     void calcSEIThickness(void);
     void calcCapacity(void);
+    void calcLithiumLoss(void);
+    void calcDimensionlessLithiumLoss(void);
     void updateTime(void);
 };
 
