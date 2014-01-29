@@ -56,10 +56,10 @@ void Mediator::charge(void){
     while( state->getCellVoltage() <= param->getUpperCutoffVoltage() ){
         if( kmc->getTime() <= sp->getTime() ){
             kmc->step();
-            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Charge #KMC");
+            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() || currentCycles==param->getMediatorEndCycles()/2 ) outputLog("#StepLog #Charge #KMC");
         }else{
             sp->step();
-            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Charge #SPModel");
+            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() || currentCycles==param->getMediatorEndCycles()/2 ) outputLog("#StepLog #Charge #SPModel");
         }
     }
     kmc->endCycle(sp->getTime());
@@ -71,10 +71,10 @@ void Mediator::discharge(void){
     while( state->getCellVoltage() >= param->getLowerCutoffVoltage() ){
         if( kmc->getTime() <= sp->getTime() ){
             kmc->step();
-            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Discharge #KMC");
+            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() || currentCycles==param->getMediatorEndCycles()/2 ) outputLog("#StepLog #Discharge #KMC");
         }else{
             sp->step();
-            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() ) outputLog("#StepLog #Discharge #SPModel");
+            if( currentCycles==1 || currentCycles==param->getMediatorEndCycles() || currentCycles==param->getMediatorEndCycles()/2 ) outputLog("#StepLog #Discharge #SPModel");
         }
     }
     kmc->endCycle(sp->getTime());
