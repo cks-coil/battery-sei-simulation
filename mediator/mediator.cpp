@@ -34,6 +34,7 @@ void Mediator::run(void){
         discharge();
         outputLog("#CycleLog #Discharge");
         if( currentCycles==1 ) outputSurface("#Surface #Discharge #First");
+        else if( currentCycles==param->getMediatorEndCycles()/2 ) outputSurface("#Surface #Discharge #Half");
         else if( currentCycles==param->getMediatorEndCycles() ) outputSurface("#Surface #Discharge #Last");
     }
 }
