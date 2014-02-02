@@ -32,6 +32,7 @@ public:
     void setAppliedCurrent(double appliedCurrent);
     void setSEILocalEquilibriumPotential(double SEILocalEquilibriumPotential);
     void setSEIElectronicConductivity(double SEIElectronicConductivity);
+    void setSEIIonicConductivity(double SEIIonicConductivity);
     void setSEIUnitArea(double SEIUnitArea);
     void setSEIUnitThickness(double SEIUnitThickness);
     void setUpperCutoffVoltage(double upperCutoffVoltage);
@@ -65,6 +66,7 @@ public:
     double getAppliedCurrent(void);
     double getSEILocalEquilibriumPotential(void);
     double getSEIElectronicConductivity(void);
+    double getSEIIonicConductivity(void);
     double getSEIUnitArea(void);
     double getSEIUnitThickness(void);
     double getAdsorptionOneSideCoeff(void);
@@ -99,6 +101,7 @@ private:
     double appliedCurrent;
     double SEILocalEquilibriumPotential;
     double SEIElectronicConductivity;
+    double SEIIonicConductivity;
     double SEIUnitArea;
     double SEIUnitThickness;
     double upperCutoffVoltage;

@@ -116,6 +116,7 @@ void Parser::initDoubleFuncMap(void){
     doubleFuncMap.insert(make_pair("appliedCurrent", &Param::setAppliedCurrent));
     doubleFuncMap.insert(make_pair("SEILocalEquilibriumPotential", &Param::setSEILocalEquilibriumPotential));
     doubleFuncMap.insert(make_pair("SEIElectronicConductivity", &Param::setSEIElectronicConductivity));
+    doubleFuncMap.insert(make_pair("SEIIonicConductivity", &Param::setSEIIonicConductivity));
     doubleFuncMap.insert(make_pair("SEIUnitArea", &Param::setSEIUnitArea));
     doubleFuncMap.insert(make_pair("SEIUnitThickness", &Param::setSEIUnitThickness));
     doubleFuncMap.insert(make_pair("upperCutoffVoltage", &Param::setUpperCutoffVoltage));

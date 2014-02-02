@@ -156,8 +156,8 @@ void SPModel::calcCathodeOverPotential(void){
 void SPModel::calcAnodeLocalPotential(void){
     double val;
     val = p->getLiquidPhaseLocalPotential() + s->getAnodeOverPotential() + s->getAnodeLocalEquilibriumPotential()
-        + ( s->getAppliedCurrent() + s->getAnodeSideReactionCurrent() ) * s->getSEIThickness()
-        / ( p->getAnodeSurfaceArea() * p->getSEIElectronicConductivity() ) ;
+        + ( s->getAppliedCurrent() / p->getSEIIonicConductivity() + s->getAnodeSideReactionCurrent() / p->getSEIElectronicConductivity() )
+        * s->getSEIThickness() / p->getAnodeSurfaceArea();
     s->setAnodeLocalPotential( val );
 }
 void SPModel::calcCathodeLocalPotential(void){
