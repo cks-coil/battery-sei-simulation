@@ -92,7 +92,7 @@ void SPModel::calcCathodeAverageLithiumConcentration(void){
 void SPModel::calcAnodeSurfaceLithiumConcentration(void){
     double val;
     val = s->getAnodeAverageLithiumConcentration()
-        - ( ( s->getAppliedCurrent() + s->getAnodeSideReactionCurrent() ) / ( p->getAnodeSurfaceArea() * constant::F )
+        - ( ( s->getAppliedCurrent() - s->getAnodeSideReactionCurrent() ) / ( p->getAnodeSurfaceArea() * constant::F )
             * p->getAnodeParticleRadius() / (5 * p->getAnodeDiffusionCoefficient() ) );
     s->setAnodeSurfaceLithiumConcentration( val );
 }
@@ -106,12 +106,12 @@ void SPModel::calcCathodeSurfaceLithiumConcentration(void){
 
 void SPModel::calcAnodeDimensionlessLithiumConcentration(void){
     double val;
-    val = s->getAnodeAverageLithiumConcentration() / p->getAnodeMaxLithiumConcentration();
+    val = s->getAnodeSurfaceLithiumConcentration() / p->getAnodeMaxLithiumConcentration();
     s->setAnodeDimensionlessLithiumConcentration( val );
 }
 void SPModel::calcCathodeDimensionlessLithiumConcentration(void){
     double val;
-    val = s->getCathodeAverageLithiumConcentration() / p->getCathodeMaxLithiumConcentration();
+    val = s->getCathodeSurfaceLithiumConcentration() / p->getCathodeMaxLithiumConcentration();
     s->setCathodeDimensionlessLithiumConcentration( val );
 }
 
@@ -136,7 +136,7 @@ void SPModel::calcCathodeLocalEquilibriumPotential(void){
 
 void SPModel::calcAnodeOverPotential(void){
     double val;
-    val = ( asinh( (- s->getAppliedCurrent() + s->getAnodeSideReactionCurrent() )
+    val = ( asinh( ( s->getAppliedCurrent() - s->getAnodeSideReactionCurrent() )
                    / ( 2 * p->getAnodeSurfaceArea() * p->getAnodeReactionRateConstant()
                        * sqrt( (p->getAnodeMaxLithiumConcentration() - s->getAnodeSurfaceLithiumConcentration() )
                                * s->getAnodeSurfaceLithiumConcentration() * p->getLiquidPhaseLithiumConcentration() ) ) )
@@ -156,7 +156,7 @@ void SPModel::calcCathodeOverPotential(void){
 void SPModel::calcAnodeLocalPotential(void){
     double val;
     val = p->getLiquidPhaseLocalPotential() + s->getAnodeOverPotential() + s->getAnodeLocalEquilibriumPotential()
-        + ( s->getAppliedCurrent() / p->getSEIIonicConductivity() + s->getAnodeSideReactionCurrent() / p->getSEIElectronicConductivity() )
+        + ( ( s->getAppliedCurrent() - s->getAnodeSideReactionCurrent() ) / p->getSEIIonicConductivity() + s->getAnodeSideReactionCurrent() / p->getSEIElectronicConductivity() )
         * s->getSEIThickness() / p->getAnodeSurfaceArea();
     s->setAnodeLocalPotential( val );
 }
@@ -174,7 +174,7 @@ void SPModel::calcCellVoltage(void){
 
 void SPModel::calcAnodeSideReactionCurrent(void){
     double val;
-    val = p->getAnodeSurfaceArea() * p->getAnodeSideReactionExchangeCurrentDensity()
+    val = - p->getAnodeSurfaceArea() * p->getAnodeSideReactionExchangeCurrentDensity()
         * exp( - p->getTransferCoefficients() * constant::F / ( constant::R * p->getTemperature() )
                *  ( s->getAnodeOverPotential() + s->getAnodeLocalEquilibriumPotential() - p->getSEILocalEquilibriumPotential() ) );
     s->setAnodeSideReactionCurrent( val );
@@ -182,7 +182,7 @@ void SPModel::calcAnodeSideReactionCurrent(void){
 
 void SPModel::calcSEIThickness(void){
     double delta;
-    delta = s->getAnodeSideReactionCurrent() * p->getSEIUnitArea() * p->getSEIUnitThickness() * constant::NA / ( p->getAnodeSurfaceArea() * constant::F );
+    delta = - s->getAnodeSideReactionCurrent() * p->getSEIUnitArea() * p->getSEIUnitThickness() * constant::NA / ( p->getAnodeSurfaceArea() * constant::F );
     s->setSEIThickness( s->getSEIThickness() + ( delta * p->getSPModelDeltaTime() ) );
 }
 
