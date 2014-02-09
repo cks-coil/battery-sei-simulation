@@ -7,14 +7,17 @@
 #define __INCLUDED_KMC_CORE_HPP__
 
 #include <vector>
+#include <random>
 #include "param.hpp"
 #include "state.hpp"
 #include "kmc_surface.hpp"
 #include "kmc_transition.hpp"
 
+
 class KMCCore{
 public:
     KMCCore(void);
+    ~KMCCore(void);
     void setSurface(KMCSurface *surface);
     void setState(State *state);
     void setParam(Param *param);
@@ -25,6 +28,8 @@ public:
     int getStepNum(void);
     double getTime(void);
 private:
+    std::mt19937 *engine;
+    std::uniform_real_distribution<double> *rnd;
     int stepNum;
     double time;
     KMCSurface *surface;

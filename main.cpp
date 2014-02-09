@@ -5,7 +5,6 @@
 
 #include <iostream>
 #include <fstream>
-#include <time.h>
 #include <boost/program_options.hpp>
 #include <string>
 #include <vector>
@@ -25,8 +24,6 @@ using namespace boost::program_options;
 
 
 int main(int argc, char* argv[]){
-    srand((unsigned)time(NULL));
-
     options_description opt("Option");
     opt.add_options()
         ("help,h", "show help")

@@ -10,6 +10,9 @@
 using namespace std;
 
 KMCCore::KMCCore(void){
+    std::random_device randdev;
+    engine = new std::mt19937(randdev());
+    rnd = new uniform_real_distribution<double>(0.0,1.0);
     stepNum = 0;
     time = 0;
     surface = NULL;
@@ -21,6 +24,11 @@ KMCCore::KMCCore(void){
     lastDeltaT = 0;
     lastN = 0;
     skipFlag = false;
+}
+
+KMCCore::~KMCCore(void){
+    delete engine;
+    delete rnd;
 }
 
 void KMCCore::setSurface(KMCSurface *surface){
@@ -102,9 +110,8 @@ void KMCCore::initSurface(void){
     surface->updateState();
 }
 
-// Equ.13
 void KMCCore::transit(void){
-    double xi = (double)rand() / (double)RAND_MAX;
+    double xi = (*rnd)(*engine);
     int i=0, j=0;
     double tmp;
     double sum;
@@ -151,7 +158,7 @@ void KMCCore::updateTime(void){
     double deltaT;
     
     // xi->0 log(xi) -> -inf 
-    while(xi == 0.0) xi = (double)rand() / (double)RAND_MAX;
+    while(xi == 0.0) xi = (*rnd)(*engine);
     deltaT = - log(xi) / rateSum; // Equ.14
 
     time += deltaT;
