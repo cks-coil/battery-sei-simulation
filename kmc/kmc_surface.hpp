@@ -53,6 +53,7 @@ public:
     void adsorb(int n);
     void desorb(int n);
     void output(std::ostream &out);
+    void analyze(std::ostream &out);
 private:
     double SEIThicknessAve;
     Param *p;

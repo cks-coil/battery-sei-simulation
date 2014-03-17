@@ -15,6 +15,7 @@
 */
 
 #include "kmc_surface.hpp"
+#include <algorithm>
 using namespace std;
 
 KMCSurface::KMCSurface(void){
@@ -101,6 +102,16 @@ void KMCSurface::desorb(int n){
 void KMCSurface::output(std::ostream &out){
     for(int i=0;i<getNumSite();i++) out << surface[i] << " ";
     return;
+}
+
+void KMCSurface::analyze(std::ostream &out){
+    unsigned int numFlat = 0;
+    for(int i=0;i<getNumSite();i++) if(isFlat(i)) numFlat++;
+    out << numFlat <<  " #NumFlat " << getNumSite() - numFlat << " #NumNotFlat ";
+
+    unsigned int numWithSide = 0;
+    for(int i=0;i<getNumSite();i++) if(isFlat(i)) if(getNumSide(i)) numWithSide++;
+    out << numWithSide << " #NumWithSide " << numFlat - numWithSide << "#NumWithoutSide ";
 }
 
 void KMCSurface::calcSEIThicknessAve(void){
