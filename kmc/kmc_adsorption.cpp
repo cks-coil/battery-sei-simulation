@@ -29,7 +29,7 @@ void KMCAdsorption::calcTransitionRate(void){
                 * getSurface()->getSEIThicknessPoint(i) / p->getAnodeSurfaceArea();
             rate = p->getAnodeSideReactionExchangeCurrentDensity() * p->getSEIUnitArea() * constant::NA / ( 2 * constant::F )
                 * exp( - p->getTransferCoefficients() * constant::F / ( constant::R * p->getTemperature() ) * eta );
-            setTransitionRate(i, rate*getSideCoeff( getSurface()->getNumSide(i)) );
+            setTransitionRate(i, rate*getSideCoeff( getSurface()->getNumSideUp(i)) );
         }else{
             setTransitionRate(i,0);
         }

@@ -79,6 +79,18 @@ int KMCSurface::getNumSide(int n){
     return num;
 }
 
+int KMCSurface::getNumSideUp(int n){
+    orthDir listOrthDir[4] = {RIGHT, LEFT, FRONT, BACK};
+    int nSide;
+    int num=0;
+    if( !isValid(n) ) return 0; // \cks err msg
+    for(int i=0; i<( (int)sizeof(listOrthDir)/(int)sizeof(listOrthDir[0]) ); i++){
+        nSide  = getSideN(n, listOrthDir[i]);
+        if( surface[nSide] > surface[n]) num++;
+    }
+    return num;
+}
+
 double KMCSurface::getSurfaceArea(void){
     return p->getKMCSurfaceSizeX() * p->getKMCSurfaceSizeY() * p->getSEIUnitArea();
 }
@@ -109,9 +121,9 @@ void KMCSurface::analyze(std::ostream &out){
     for(int i=0;i<getNumSite();i++) if(isFlat(i)) numFlat++;
     out << numFlat <<  " #NumFlat " << getNumSite() - numFlat << " #NumNotFlat ";
 
-    unsigned int numWithSide = 0;
-    for(int i=0;i<getNumSite();i++) if(isFlat(i)) if(getNumSide(i)) numWithSide++;
-    out << numWithSide << " #NumWithSide " << numFlat - numWithSide << "#NumWithoutSide ";
+    unsigned int numWithSideUp = 0;
+    for(int i=0;i<getNumSite();i++) if(isFlat(i)) if(getNumSideUp(i)) numWithSideUp++;
+    out << numWithSideUp << " #NumWithSideUp " << numFlat - numWithSideUp << " #NumWithoutSideUp ";
 }
 
 void KMCSurface::calcSEIThicknessAve(void){

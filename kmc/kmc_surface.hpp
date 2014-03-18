@@ -47,6 +47,7 @@ public:
     bool isFlat(int n); // nに対応するsiteの下にに位置する4つが全て専有されているか?(adsorptionできるか?)
     int getNumSite(void);
     int getNumSide(int n);
+    int getNumSideUp(int n);
     double getSurfaceArea(void);
     double getSEIThicknessPoint(int n);
     double getSEIThicknessAve(void);
