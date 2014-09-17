@@ -102,7 +102,6 @@ void Parser::initDoubleFuncMap(void){
     doubleFuncMap.insert(make_pair("anodeInitialLithiumConcentration", &Param::setAnodeInitialLithiumConcentration));
     doubleFuncMap.insert(make_pair("anodeParticleRadius", &Param::setAnodeParticleRadius));
     doubleFuncMap.insert(make_pair("anodeDiffusionCoefficient", &Param::setAnodeDiffusionCoefficient));
-    doubleFuncMap.insert(make_pair("anodeSideReactionExchangeCurrentDensity", &Param::setAnodeSideReactionExchangeCurrentDensity));
     doubleFuncMap.insert(make_pair("cathodeSurfaceArea", &Param::setCathodeSurfaceArea));
     doubleFuncMap.insert(make_pair("cathodeReactionRateConstant", &Param::setCathodeReactionRateConstant));
     doubleFuncMap.insert(make_pair("cathodeMaxLithiumConcentration", &Param::setCathodeMaxLithiumConcentration));
@@ -114,7 +113,9 @@ void Parser::initDoubleFuncMap(void){
     doubleFuncMap.insert(make_pair("transferCoefficients", &Param::setTransferCoefficients));
     doubleFuncMap.insert(make_pair("temperature", &Param::setTemperature));
     doubleFuncMap.insert(make_pair("appliedCurrent", &Param::setAppliedCurrent));
-    doubleFuncMap.insert(make_pair("SEILocalEquilibriumPotential", &Param::setSEILocalEquilibriumPotential));
+    doubleFuncMap.insert(make_pair("ECReductionPreFactor", &Param::setECReductionPreFactor));
+    doubleFuncMap.insert(make_pair("ECReorganizationEnergy", &Param::setECReorganizationEnergy));
+    doubleFuncMap.insert(make_pair("ECReductionPotential", &Param::setECReductionPotential));
     doubleFuncMap.insert(make_pair("SEIElectronicConductivity", &Param::setSEIElectronicConductivity));
     doubleFuncMap.insert(make_pair("SEIIonicConductivity", &Param::setSEIIonicConductivity));
     doubleFuncMap.insert(make_pair("SEIUnitArea", &Param::setSEIUnitArea));

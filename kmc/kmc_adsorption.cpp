@@ -17,19 +17,20 @@ void KMCAdsorption::updateState(void){
 }
 
 void KMCAdsorption::calcTransitionRate(void){
-    double eta;
+    double deltaGo;
     double rate;
     State *s = getState();
     Param *p = getParam();
 
     for(int i=0; i<getNumTransition(); i++){
         if( getSurface()->isFlat(i) ){
-            eta = s->getAnodeLocalPotential() - p->getLiquidPhaseLocalPotential() - p->getSEILocalEquilibriumPotential()
+            deltaGo = s->getAnodeLocalPotential() - p-> getLiquidPhaseLocalPotential() - p->getECReductionPotential()
                 - ( ( s->getAppliedCurrent() - s->getAnodeSideReactionCurrent() ) / p->getSEIIonicConductivity() + s->getAnodeSideReactionCurrent() / p->getSEIElectronicConductivity() )
                 * getSurface()->getSEIThicknessPoint(i) / p->getAnodeSurfaceArea();
-            rate = p->getAnodeSideReactionExchangeCurrentDensity() * p->getSEIUnitArea() * constant::NA / ( 2 * constant::F )
-                * exp( - p->getTransferCoefficients() * constant::F / ( constant::R * p->getTemperature() ) * eta );
+            rate = p->getECReductionPreFactor() * p->getSEIUnitArea() * constant::NA / ( 2 * constant::F )
+                * exp( - pow( (p->getECReorganizationEnergy() + deltaGo), 2 ) / (4 * p->getECReorganizationEnergy() * constant::kB * p->getTemperature()) );
             setTransitionRate(i, rate*getSideCoeff( getSurface()->getNumSideUp(i)) );
+
         }else{
             setTransitionRate(i,0);
         }

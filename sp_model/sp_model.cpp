@@ -172,14 +172,6 @@ void SPModel::calcCellVoltage(void){
     s->setCellVoltage( val );
 }
 
-void SPModel::calcAnodeSideReactionCurrent(void){
-    double val;
-    val = - p->getAnodeSurfaceArea() * p->getAnodeSideReactionExchangeCurrentDensity()
-        * exp( - p->getTransferCoefficients() * constant::F / ( constant::R * p->getTemperature() )
-               *  ( s->getAnodeOverPotential() + s->getAnodeLocalEquilibriumPotential() - p->getSEILocalEquilibriumPotential() ) );
-    s->setAnodeSideReactionCurrent( val );
-}
-
 void SPModel::calcSEIThickness(void){
     double delta;
     delta = - s->getAnodeSideReactionCurrent() * p->getSEIUnitArea() * p->getSEIUnitThickness() * constant::NA / ( p->getAnodeSurfaceArea() * constant::F );

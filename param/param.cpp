@@ -13,7 +13,6 @@ Param::Param(void){
     anodeInitialLithiumConcentration = 0;
     anodeParticleRadius = 0;
     anodeDiffusionCoefficient = 0;
-    anodeSideReactionExchangeCurrentDensity = 0;
     cathodeSurfaceArea = 0;
     cathodeReactionRateConstant = 0;
     cathodeMaxLithiumConcentration = 0;
@@ -25,7 +24,9 @@ Param::Param(void){
     transferCoefficients = 0;
     temperature = 0;
     appliedCurrent = 0;
-    SEILocalEquilibriumPotential = 0;
+    ECReductionPreFactor = 0;
+    ECReorganizationEnergy = 0;
+    ECReductionPotential = 0;
     SEIElectronicConductivity = 0;
     SEIIonicConductivity = 0;
     SEIUnitArea = 0;
@@ -50,7 +51,6 @@ void Param::output(std::ostream &out){
         << "# anodeInitialLithiumConcentration: " << anodeInitialLithiumConcentration << std::endl
         << "# anodeParticleRadius: " << anodeParticleRadius << std::endl
         << "# anodeDiffusionCoefficient: " << anodeDiffusionCoefficient << std::endl
-        << "# anodeSideReactionExchangeCurrentDensity: " << anodeSideReactionExchangeCurrentDensity << std::endl
         << "# cathodeSurfaceArea: " << cathodeSurfaceArea << std::endl
         << "# cathodeReactionRateConstant: " << cathodeReactionRateConstant << std::endl
         << "# cathodeMaxLithiumConcentration: " << cathodeMaxLithiumConcentration << std::endl
@@ -62,7 +62,9 @@ void Param::output(std::ostream &out){
         << "# transferCoefficients: " << transferCoefficients << std::endl
         << "# temperature: " << temperature << std::endl
         << "# appliedCurrent: " << appliedCurrent << std::endl
-        << "# SEILocalEquilibriumPotential: " << SEILocalEquilibriumPotential << std::endl
+        << "# ECReductionPreFactor: " << ECReductionPreFactor << std::endl
+        << "# ECReorganizationEnergy: " << ECReorganizationEnergy << std::endl
+        << "# ECReductionPotential: " << ECReductionPotential << std::endl
         << "# SEIElectronicConductivity: " << SEIElectronicConductivity << std::endl
         << "# SEIIonicConductivity: " << SEIIonicConductivity << std::endl
         << "# SEIUnitArea: " << SEIUnitArea << std::endl
@@ -86,7 +88,6 @@ void Param::setAnodeMaxLithiumConcentration(double anodeMaxLithiumConcentration)
 void Param::setAnodeInitialLithiumConcentration(double anodeInitialLithiumConcentration){ this->anodeInitialLithiumConcentration = anodeInitialLithiumConcentration; }
 void Param::setAnodeParticleRadius(double anodeParticleRadius){ this->anodeParticleRadius = anodeParticleRadius; }
 void Param::setAnodeDiffusionCoefficient(double anodeDiffusionCoefficient){ this->anodeDiffusionCoefficient = anodeDiffusionCoefficient; }
-void Param::setAnodeSideReactionExchangeCurrentDensity(double anodeSideReactionExchangeCurrentDensity){ this->anodeSideReactionExchangeCurrentDensity = anodeSideReactionExchangeCurrentDensity; }
 void Param::setCathodeSurfaceArea(double cathodeSurfaceArea){ this->cathodeSurfaceArea = cathodeSurfaceArea; }
 void Param::setCathodeReactionRateConstant(double cathodeReactionRateConstant){ this->cathodeReactionRateConstant = cathodeReactionRateConstant; }
 void Param::setCathodeMaxLithiumConcentration(double cathodeMaxLithiumConcentration){ this->cathodeMaxLithiumConcentration = cathodeMaxLithiumConcentration; }
@@ -98,7 +99,9 @@ void Param::setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential){ this
 void Param::setTransferCoefficients(double transferCoefficients){ this->transferCoefficients = transferCoefficients; }
 void Param::setTemperature(double temperature){ this->temperature = temperature; }
 void Param::setAppliedCurrent(double appliedCurrent){ this->appliedCurrent = appliedCurrent; }
-void Param::setSEILocalEquilibriumPotential(double SEILocalEquilibriumPotential){ this->SEILocalEquilibriumPotential = SEILocalEquilibriumPotential; }
+void Param::setECReductionPreFactor(double ECReductionPreFactor){ this->ECReductionPreFactor = ECReductionPreFactor; }
+void Param::setECReorganizationEnergy(double ECReorganizationEnergy){ this->ECReorganizationEnergy = ECReorganizationEnergy; }
+void Param::setECReductionPotential(double ECReductionPotential){ this->ECReductionPotential = ECReductionPotential; }
 void Param::setSEIElectronicConductivity(double SEIElectronicConductivity){ this->SEIElectronicConductivity = SEIElectronicConductivity; }
 void Param::setSEIIonicConductivity(double SEIIonicConductivity){ this->SEIIonicConductivity = SEIIonicConductivity; }
 void Param::setSEIUnitArea(double SEIUnitArea){ this->SEIUnitArea = SEIUnitArea; }
@@ -121,7 +124,6 @@ double Param::getAnodeMaxLithiumConcentration(void){ return this->anodeMaxLithiu
 double Param::getAnodeInitialLithiumConcentration(void){ return this->anodeInitialLithiumConcentration; }
 double Param::getAnodeParticleRadius(void){ return this->anodeParticleRadius; }
 double Param::getAnodeDiffusionCoefficient(void){ return this->anodeDiffusionCoefficient; }
-double Param::getAnodeSideReactionExchangeCurrentDensity(void){ return this->anodeSideReactionExchangeCurrentDensity; }
 double Param::getCathodeSurfaceArea(void){ return this->cathodeSurfaceArea; }
 double Param::getCathodeReactionRateConstant(void){ return this->cathodeReactionRateConstant; }
 double Param::getCathodeMaxLithiumConcentration(void){ return this->cathodeMaxLithiumConcentration; }
@@ -133,7 +135,9 @@ double Param::getLiquidPhaseLocalPotential(void){ return this->liquidPhaseLocalP
 double Param::getTransferCoefficients(void){ return this->transferCoefficients; }
 double Param::getTemperature(void){ return this->temperature; }
 double Param::getAppliedCurrent(void){ return this->appliedCurrent; }
-double Param::getSEILocalEquilibriumPotential(void){return this->SEILocalEquilibriumPotential; }
+double Param::getECReductionPreFactor(void){ return this->ECReductionPreFactor; }
+double Param::getECReorganizationEnergy(void){ return this->ECReorganizationEnergy; }
+double Param::getECReductionPotential(void){ return this->ECReductionPotential; }
 double Param::getSEIElectronicConductivity(void){return this->SEIElectronicConductivity; }
 double Param::getSEIIonicConductivity(void){return this->SEIIonicConductivity; }
 double Param::getSEIUnitArea(void){ return this->SEIUnitArea; }

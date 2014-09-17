@@ -18,7 +18,6 @@ public:
     void setAnodeInitialLithiumConcentration(double anodeInitialLithiumConcentration);
     void setAnodeParticleRadius(double anodeParticleRadius);
     void setAnodeDiffusionCoefficient(double anodeDiffusionCoefficient);
-    void setAnodeSideReactionExchangeCurrentDensity(double anodeSideReactionExchangeCurrentDensity);
     void setCathodeSurfaceArea(double cathodeSurfaceArea);
     void setCathodeReactionRateConstant(double cathodeReactionRateConstant);
     void setCathodeMaxLithiumConcentration(double cathodeMaxLithiumConcentration);
@@ -30,7 +29,9 @@ public:
     void setTransferCoefficients(double transferCoefficients);
     void setTemperature(double temperature);
     void setAppliedCurrent(double appliedCurrent);
-    void setSEILocalEquilibriumPotential(double SEILocalEquilibriumPotential);
+    void setECReductionPreFactor(double ECReductionPotential);
+    void setECReorganizationEnergy(double ECReorganizationPotential);
+    void setECReductionPotential(double ECReductionPotential);
     void setSEIElectronicConductivity(double SEIElectronicConductivity);
     void setSEIIonicConductivity(double SEIIonicConductivity);
     void setSEIUnitArea(double SEIUnitArea);
@@ -52,7 +53,6 @@ public:
     double getAnodeInitialLithiumConcentration(void);
     double getAnodeParticleRadius(void);
     double getAnodeDiffusionCoefficient(void);
-    double getAnodeSideReactionExchangeCurrentDensity(void);
     double getCathodeSurfaceArea(void);
     double getCathodeReactionRateConstant(void);
     double getCathodeMaxLithiumConcentration(void);
@@ -64,7 +64,9 @@ public:
     double getTransferCoefficients(void);
     double getTemperature(void);
     double getAppliedCurrent(void);
-    double getSEILocalEquilibriumPotential(void);
+    double getECReductionPreFactor(void);
+    double getECReorganizationEnergy(void);
+    double getECReductionPotential(void);
     double getSEIElectronicConductivity(void);
     double getSEIIonicConductivity(void);
     double getSEIUnitArea(void);
@@ -87,7 +89,6 @@ private:
     double anodeInitialLithiumConcentration;
     double anodeParticleRadius;
     double anodeDiffusionCoefficient;
-    double anodeSideReactionExchangeCurrentDensity;
     double cathodeSurfaceArea;
     double cathodeReactionRateConstant;
     double cathodeMaxLithiumConcentration;
@@ -99,7 +100,9 @@ private:
     double transferCoefficients;
     double temperature;
     double appliedCurrent;
-    double SEILocalEquilibriumPotential;
+    double ECReductionPreFactor;
+    double ECReorganizationEnergy;
+    double ECReductionPotential;
     double SEIElectronicConductivity;
     double SEIIonicConductivity;
     double SEIUnitArea;
