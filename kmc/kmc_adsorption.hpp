@@ -16,7 +16,9 @@ public:
     void transit(int n);
     void restore(int n);
 private:
-    double getSideCoeff(int sideNum);
+    double getECReductionPreFactor(int sideNum);
+    double getECReorganizationEnergy(int sideNum);
+    double getECReductionPotential(int sideNum);
 };
 
 #endif

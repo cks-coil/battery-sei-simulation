@@ -21,15 +21,17 @@ void KMCAdsorption::calcTransitionRate(void){
     double rate;
     State *s = getState();
     Param *p = getParam();
+    int sideNum;
 
     for(int i=0; i<getNumTransition(); i++){
         if( getSurface()->isFlat(i) ){
-            deltaGo = s->getAnodeLocalPotential() - p-> getLiquidPhaseLocalPotential() - p->getECReductionPotential()
+            sideNum = getSurface()->getNumSideUp(i);
+            deltaGo = s->getAnodeLocalPotential() - p->getLiquidPhaseLocalPotential() - getECReductionPotential(sideNum)
                 - ( ( s->getAppliedCurrent() - s->getAnodeSideReactionCurrent() ) / p->getSEIIonicConductivity() + s->getAnodeSideReactionCurrent() / p->getSEIElectronicConductivity() )
                 * getSurface()->getSEIThicknessPoint(i) / p->getAnodeSurfaceArea();
-            rate = p->getECReductionPreFactor() * p->getSEIUnitArea() * constant::NA / ( 2 * constant::F )
-                * exp( - pow( (p->getECReorganizationEnergy() + deltaGo), 2 ) / (4 * p->getECReorganizationEnergy() * constant::kB * p->getTemperature()) );
-            setTransitionRate(i, rate*getSideCoeff( getSurface()->getNumSideUp(i)) );
+            rate = getECReductionPreFactor(sideNum) * p->getSEIUnitArea() * constant::NA / ( 2 * constant::F )
+                * exp( - pow( (getECReorganizationEnergy(sideNum) + deltaGo), 2 ) / (4 * getECReorganizationEnergy(sideNum) * constant::kB * p->getTemperature()) );
+            setTransitionRate(i, rate);
 
         }else{
             setTransitionRate(i,0);
@@ -44,13 +46,33 @@ void KMCAdsorption::restore(int n){
     getSurface()->desorb(n);
 }
 
-double KMCAdsorption::getSideCoeff(int sideNum){
+double KMCAdsorption::getECReductionPreFactor(int sideNum){
     switch(sideNum){
-    case 0: return 1.0;
-    case 1: return getParam()->getAdsorptionOneSideCoeff();
-    case 2: return getParam()->getAdsorptionTwoSideCoeff();
-    case 3: return getParam()->getAdsorptionThreeSideCoeff();
-    case 4: return getParam()->getAdsorptionFourSideCoeff();
-    default: return 1.0;
+    case 0: return getParam()->getECReductionPreFactorNoSide();
+    case 1: return getParam()->getECReductionPreFactorOneSide();
+    case 2: return getParam()->getECReductionPreFactorTwoSide();
+    case 3: return getParam()->getECReductionPreFactorThreeSide();
+    case 4: return getParam()->getECReductionPreFactorFourSide();
+    default: return 0.0;
+    }
+}
+double KMCAdsorption::getECReorganizationEnergy(int sideNum){
+    switch(sideNum){
+    case 0: return getParam()->getECReorganizationEnergyNoSide();
+    case 1: return getParam()->getECReorganizationEnergyOneSide();
+    case 2: return getParam()->getECReorganizationEnergyTwoSide();
+    case 3: return getParam()->getECReorganizationEnergyThreeSide();
+    case 4: return getParam()->getECReorganizationEnergyFourSide();
+    default: return 0.0;
+    }
+}
+double KMCAdsorption::getECReductionPotential(int sideNum){
+    switch(sideNum){
+    case 0: return getParam()->getECReductionPotentialNoSide();
+    case 1: return getParam()->getECReductionPotentialOneSide();
+    case 2: return getParam()->getECReductionPotentialTwoSide();
+    case 3: return getParam()->getECReductionPotentialThreeSide();
+    case 4: return getParam()->getECReductionPotentialFourSide();
+    default: return 0.0;
     }
 }

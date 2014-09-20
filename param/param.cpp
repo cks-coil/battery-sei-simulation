@@ -24,19 +24,27 @@ Param::Param(void){
     transferCoefficients = 0;
     temperature = 0;
     appliedCurrent = 0;
-    ECReductionPreFactor = 0;
-    ECReorganizationEnergy = 0;
-    ECReductionPotential = 0;
+    ECReductionPreFactorNoSide = 0;
+    ECReductionPreFactorOneSide = 0;
+    ECReductionPreFactorTwoSide = 0;
+    ECReductionPreFactorThreeSide = 0;
+    ECReductionPreFactorFourSide = 0;
+    ECReorganizationEnergyNoSide = 0;
+    ECReorganizationEnergyOneSide = 0;
+    ECReorganizationEnergyTwoSide = 0;
+    ECReorganizationEnergyThreeSide = 0;
+    ECReorganizationEnergyFourSide = 0;
+    ECReductionPotentialNoSide = 0;
+    ECReductionPotentialOneSide = 0;
+    ECReductionPotentialTwoSide = 0;
+    ECReductionPotentialThreeSide = 0;
+    ECReductionPotentialFourSide = 0;
     SEIElectronicConductivity = 0;
     SEIIonicConductivity = 0;
     SEIUnitArea = 0;
     SEIUnitThickness = 0;
     upperCutoffVoltage = 0;
     lowerCutoffVoltage = 0;
-    adsorptionOneSideCoeff = 0;
-    adsorptionTwoSideCoeff = 0;
-    adsorptionThreeSideCoeff = 0;
-    adsorptionFourSideCoeff = 0;
     SPModelDeltaTime = 0;
     KMCNullTransitionRate = 0;
     KMCSurfaceSizeX = 0;
@@ -62,19 +70,27 @@ void Param::output(std::ostream &out){
         << "# transferCoefficients: " << transferCoefficients << std::endl
         << "# temperature: " << temperature << std::endl
         << "# appliedCurrent: " << appliedCurrent << std::endl
-        << "# ECReductionPreFactor: " << ECReductionPreFactor << std::endl
-        << "# ECReorganizationEnergy: " << ECReorganizationEnergy << std::endl
-        << "# ECReductionPotential: " << ECReductionPotential << std::endl
+        << "# ECReductionPreFactorNoSide: " << ECReductionPreFactorNoSide << std::endl
+        << "# ECReductionPreFactorOneSide: " << ECReductionPreFactorOneSide << std::endl
+        << "# ECReductionPreFactorTwoSide: " << ECReductionPreFactorTwoSide << std::endl
+        << "# ECReductionPreFactorThreeSide: " << ECReductionPreFactorThreeSide << std::endl
+        << "# ECReductionPreFactorFourSide: " << ECReductionPreFactorFourSide << std::endl
+        << "# ECReorganizationEnergyNoSide: " << ECReorganizationEnergyNoSide << std::endl
+        << "# ECReorganizationEnergyOneSide: " << ECReorganizationEnergyOneSide << std::endl
+        << "# ECReorganizationEnergyTwoSide: " << ECReorganizationEnergyTwoSide << std::endl
+        << "# ECReorganizationEnergyThreeSide: " << ECReorganizationEnergyThreeSide << std::endl
+        << "# ECReorganizationEnergyFourSide: " << ECReorganizationEnergyFourSide << std::endl
+        << "# ECReductionPotentialNoSide: " << ECReductionPotentialNoSide << std::endl
+        << "# ECReductionPotentialOneSide: " << ECReductionPotentialOneSide << std::endl
+        << "# ECReductionPotentialTwoSide: " << ECReductionPotentialTwoSide << std::endl
+        << "# ECReductionPotentialThreeSide: " << ECReductionPotentialThreeSide << std::endl
+        << "# ECReductionPotentialFourSide: " << ECReductionPotentialFourSide << std::endl
         << "# SEIElectronicConductivity: " << SEIElectronicConductivity << std::endl
         << "# SEIIonicConductivity: " << SEIIonicConductivity << std::endl
         << "# SEIUnitArea: " << SEIUnitArea << std::endl
         << "# SEIUnitThickness: " << SEIUnitThickness << std::endl
         << "# upperCutoffVoltage: " << upperCutoffVoltage << std::endl
         << "# lowerCutoffVoltage: " << lowerCutoffVoltage << std::endl
-        << "# adsorptionOneSideCoeff: " << adsorptionOneSideCoeff << std::endl
-        << "# adsorptionTwoSideCoeff: " << adsorptionTwoSideCoeff << std::endl
-        << "# adsorptionThreeSideCoeff: " << adsorptionThreeSideCoeff << std::endl
-        << "# adsorptionFourSideCoeff: " << adsorptionFourSideCoeff << std::endl
         << "# SPModelDeltaTime: " << SPModelDeltaTime << std::endl
         << "# KMCNullTransitionRate: " << KMCNullTransitionRate << std::endl
         << "# KMCSurfaceSizeX: " << KMCSurfaceSizeX << std::endl
@@ -99,19 +115,27 @@ void Param::setLiquidPhaseLocalPotential(double liquidPhaseLocalPotential){ this
 void Param::setTransferCoefficients(double transferCoefficients){ this->transferCoefficients = transferCoefficients; }
 void Param::setTemperature(double temperature){ this->temperature = temperature; }
 void Param::setAppliedCurrent(double appliedCurrent){ this->appliedCurrent = appliedCurrent; }
-void Param::setECReductionPreFactor(double ECReductionPreFactor){ this->ECReductionPreFactor = ECReductionPreFactor; }
-void Param::setECReorganizationEnergy(double ECReorganizationEnergy){ this->ECReorganizationEnergy = ECReorganizationEnergy; }
-void Param::setECReductionPotential(double ECReductionPotential){ this->ECReductionPotential = ECReductionPotential; }
+void Param::setECReductionPreFactorNoSide(double ECReductionPreFactorNoSide){ this->ECReductionPreFactorNoSide = ECReductionPreFactorNoSide; }
+void Param::setECReductionPreFactorOneSide(double ECReductionPreFactorOneSide){ this->ECReductionPreFactorOneSide = ECReductionPreFactorOneSide; }
+void Param::setECReductionPreFactorTwoSide(double ECReductionPreFactorTwoSide){ this->ECReductionPreFactorTwoSide = ECReductionPreFactorTwoSide; }
+void Param::setECReductionPreFactorThreeSide(double ECReductionPreFactorThreeSide){ this->ECReductionPreFactorThreeSide = ECReductionPreFactorThreeSide; }
+void Param::setECReductionPreFactorFourSide(double ECReductionPreFactorFourSide){ this->ECReductionPreFactorFourSide = ECReductionPreFactorFourSide; }
+void Param::setECReorganizationEnergyNoSide(double ECReorganizationEnergyNoSide){ this->ECReorganizationEnergyNoSide = ECReorganizationEnergyNoSide; }
+void Param::setECReorganizationEnergyOneSide(double ECReorganizationEnergyOneSide){ this->ECReorganizationEnergyOneSide = ECReorganizationEnergyOneSide; }
+void Param::setECReorganizationEnergyTwoSide(double ECReorganizationEnergyTwoSide){ this->ECReorganizationEnergyTwoSide = ECReorganizationEnergyTwoSide; }
+void Param::setECReorganizationEnergyThreeSide(double ECReorganizationEnergyThreeSide){ this->ECReorganizationEnergyThreeSide = ECReorganizationEnergyThreeSide; }
+void Param::setECReorganizationEnergyFourSide(double ECReorganizationEnergyFourSide){ this->ECReorganizationEnergyFourSide = ECReorganizationEnergyFourSide; }
+void Param::setECReductionPotentialNoSide(double ECReductionPotentialNoSide){ this->ECReductionPotentialNoSide = ECReductionPotentialNoSide; }
+void Param::setECReductionPotentialOneSide(double ECReductionPotentialOneSide){ this->ECReductionPotentialOneSide = ECReductionPotentialOneSide; }
+void Param::setECReductionPotentialTwoSide(double ECReductionPotentialTwoSide){ this->ECReductionPotentialTwoSide = ECReductionPotentialTwoSide; }
+void Param::setECReductionPotentialThreeSide(double ECReductionPotentialThreeSide){ this->ECReductionPotentialThreeSide = ECReductionPotentialThreeSide; }
+void Param::setECReductionPotentialFourSide(double ECReductionPotentialFourSide){ this->ECReductionPotentialFourSide = ECReductionPotentialFourSide; }
 void Param::setSEIElectronicConductivity(double SEIElectronicConductivity){ this->SEIElectronicConductivity = SEIElectronicConductivity; }
 void Param::setSEIIonicConductivity(double SEIIonicConductivity){ this->SEIIonicConductivity = SEIIonicConductivity; }
 void Param::setSEIUnitArea(double SEIUnitArea){ this->SEIUnitArea = SEIUnitArea; }
 void Param::setSEIUnitThickness(double SEIUnitThickness){ this->SEIUnitThickness = SEIUnitThickness; }
 void Param::setUpperCutoffVoltage(double upperCutoffVoltage){ this->upperCutoffVoltage = upperCutoffVoltage;}
 void Param::setLowerCutoffVoltage(double lowerCutoffVoltage){ this->lowerCutoffVoltage = lowerCutoffVoltage;}
-void Param::setAdsorptionOneSideCoeff(double adsorptionOneSideCoeff){ this->adsorptionOneSideCoeff = adsorptionOneSideCoeff; }
-void Param::setAdsorptionTwoSideCoeff(double adsorptionTwoSideCoeff){ this->adsorptionTwoSideCoeff = adsorptionTwoSideCoeff; }
-void Param::setAdsorptionThreeSideCoeff(double adsorptionThreeSideCoeff){ this->adsorptionThreeSideCoeff = adsorptionThreeSideCoeff; }
-void Param::setAdsorptionFourSideCoeff(double adsorptionFourSideCoeff){ this->adsorptionFourSideCoeff = adsorptionFourSideCoeff; }
 void Param::setSPModelDeltaTime(double SPModelDeltaTime){ this->SPModelDeltaTime = SPModelDeltaTime; }
 void Param::setKMCNullTransitionRate(double KMCNullTransitionRate){ this->KMCNullTransitionRate = KMCNullTransitionRate; }
 void Param::setKMCSurfaceSizeX(int KMCSurfaceSizeX){ this->KMCSurfaceSizeX = KMCSurfaceSizeX; }
@@ -135,19 +159,27 @@ double Param::getLiquidPhaseLocalPotential(void){ return this->liquidPhaseLocalP
 double Param::getTransferCoefficients(void){ return this->transferCoefficients; }
 double Param::getTemperature(void){ return this->temperature; }
 double Param::getAppliedCurrent(void){ return this->appliedCurrent; }
-double Param::getECReductionPreFactor(void){ return this->ECReductionPreFactor; }
-double Param::getECReorganizationEnergy(void){ return this->ECReorganizationEnergy; }
-double Param::getECReductionPotential(void){ return this->ECReductionPotential; }
+double Param::getECReductionPreFactorNoSide(void){ return this->ECReductionPreFactorNoSide; }
+double Param::getECReductionPreFactorOneSide(void){ return this->ECReductionPreFactorOneSide; }
+double Param::getECReductionPreFactorTwoSide(void){ return this->ECReductionPreFactorTwoSide; }
+double Param::getECReductionPreFactorThreeSide(void){ return this->ECReductionPreFactorThreeSide; }
+double Param::getECReductionPreFactorFourSide(void){ return this->ECReductionPreFactorFourSide; }
+double Param::getECReorganizationEnergyNoSide(void){ return this->ECReorganizationEnergyNoSide; }
+double Param::getECReorganizationEnergyOneSide(void){ return this->ECReorganizationEnergyOneSide; }
+double Param::getECReorganizationEnergyTwoSide(void){ return this->ECReorganizationEnergyTwoSide; }
+double Param::getECReorganizationEnergyThreeSide(void){ return this->ECReorganizationEnergyThreeSide; }
+double Param::getECReorganizationEnergyFourSide(void){ return this->ECReorganizationEnergyFourSide; }
+double Param::getECReductionPotentialNoSide(void){ return this->ECReductionPotentialNoSide; }
+double Param::getECReductionPotentialOneSide(void){ return this->ECReductionPotentialOneSide; }
+double Param::getECReductionPotentialTwoSide(void){ return this->ECReductionPotentialTwoSide; }
+double Param::getECReductionPotentialThreeSide(void){ return this->ECReductionPotentialThreeSide; }
+double Param::getECReductionPotentialFourSide(void){ return this->ECReductionPotentialFourSide; }
 double Param::getSEIElectronicConductivity(void){return this->SEIElectronicConductivity; }
 double Param::getSEIIonicConductivity(void){return this->SEIIonicConductivity; }
 double Param::getSEIUnitArea(void){ return this->SEIUnitArea; }
 double Param::getSEIUnitThickness(void){ return this->SEIUnitThickness; }
 double Param::getUpperCutoffVoltage(void){ return this->upperCutoffVoltage; }
 double Param::getLowerCutoffVoltage(void){ return this->lowerCutoffVoltage; }
-double Param::getAdsorptionOneSideCoeff(void){ return this->adsorptionOneSideCoeff; }
-double Param::getAdsorptionTwoSideCoeff(void){ return this->adsorptionTwoSideCoeff; }
-double Param::getAdsorptionThreeSideCoeff(void){ return this->adsorptionThreeSideCoeff; }
-double Param::getAdsorptionFourSideCoeff(void){ return this->adsorptionFourSideCoeff; }
 double Param::getSPModelDeltaTime(void){ return this->SPModelDeltaTime; }
 double Param::getKMCNullTransitionRate(void){ return this->KMCNullTransitionRate; }
 int Param::getKMCSurfaceSizeX(void){ return this->KMCSurfaceSizeX; }
