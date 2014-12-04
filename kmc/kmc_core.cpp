@@ -72,6 +72,7 @@ void KMCCore::step(void){
 
 void KMCCore::endCycle(double time){
     if( lastTrs == NULL ) return;
+    while( this->time < time ) step();
     if( this->time-time <= lastDeltaT/2.0 ) return;
 
     lastTrs->restore(lastN);
@@ -144,7 +145,6 @@ void KMCCore::transit(void){
     if(trs[i]->getTransitionRate(j) == 0 ){
         while( j>0 && trs[i]->getTransitionRate(j)==0.0 ) j--;
         while( j<trs[i]->getNumTransition()-1 && trs[i]->getTransitionRate(j)==0.0) j++;
-        // \cks error output
     }
 
     trs[i]->transit(j);
