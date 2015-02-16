@@ -10,7 +10,7 @@ RM = rm -f
 PRODUCT = product
 
 MYINCLUDE_OPTS =  -I. $(patsubst %,-I%,$(SUBDIRS))
-CXXFLAGS += -Wall -O2 $(MYINCLUDE_OPTS) -std=c++11
+CXXFLAGS += -Wall -O3 $(MYINCLUDE_OPTS) -std=c++11
 LDFLAGS = -lm -lboost_program_options
 
 .SUFFIXES: .cpp .o .d
