@@ -60,12 +60,18 @@ private:
     Param *p;
     State *s;
     std::vector<int> surface;
+    std::vector<bool> isFlatTable;
+    std::vector<int> numSideUpTable;
     void calcSEIThicknessAve(void);
     void changeXYtoN(int x, int y, int *n);
     void changeNtoXY(int n, int *x, int *y);
     void boundaryXY(int *x, int *y);
     int getSideN(int n, orthDir dir);
     int getUpDownSideN(int n, int z, diaDir dir);
+    void updateIsFlatTable(int n);
+    bool judgeIsFlat(int n);
+    void updateNumSideUpTable(int n);
+    int calcNumSideUp(int n);
 };
 
 std::ostream &operator<<(std::ostream &out, KMCSurface &tgt);

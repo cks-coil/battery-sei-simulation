@@ -16,6 +16,7 @@
 
 #include "kmc_surface.hpp"
 #include <algorithm>
+#include <iostream>
 using namespace std;
 
 KMCSurface::KMCSurface(void){
@@ -27,7 +28,13 @@ KMCSurface::KMCSurface(void){
 void KMCSurface::setParam(Param *param){
     p = param;
     surface.reserve(p->getKMCSurfaceSizeX()*p->getKMCSurfaceSizeY());
-    for(int i=0; i<p->getKMCSurfaceSizeX()*p->getKMCSurfaceSizeY(); i++) surface[i] = 1;
+    isFlatTable.reserve(p->getKMCSurfaceSizeX()*p->getKMCSurfaceSizeY());
+    numSideUpTable.reserve(p->getKMCSurfaceSizeX()*p->getKMCSurfaceSizeY());
+    for(int i=0; i<p->getKMCSurfaceSizeX()*p->getKMCSurfaceSizeY(); i++){
+        surface[i] = 1;
+        isFlatTable[i] = true;
+        numSideUpTable[i] = 0;
+    }
 }
 void KMCSurface::setState(State *state){
     s = state;
@@ -53,14 +60,8 @@ bool KMCSurface::isTop(int n){
     return true;
 }
 bool KMCSurface::isFlat(int n){
-    diaDir listDiaDir[4] = {RIGHT_FRONT, RIGHT_BACK, LEFT_FRONT, LEFT_BACK};
-    int nSide;
-    if( !isValid(n) ) return false; // \cks err msg
-    for(int i=0; i<( (int)sizeof(listDiaDir)/(int)sizeof(listDiaDir[0]) ); i++){
-        nSide = getUpDownSideN(n, surface[n]+1, listDiaDir[i]);
-        if( surface[nSide] < surface[n] ) return false;
-    }
-    return true;
+    if( !isValid(n) ) return false;
+    return isFlatTable[n];
 }
 
 int KMCSurface::getNumSite(void){
@@ -71,7 +72,7 @@ int KMCSurface::getNumSide(int n){
     orthDir listOrthDir[4] = {RIGHT, LEFT, FRONT, BACK};
     int nSide;
     int num=0;
-    if( !isValid(n) ) return 0; // \cks err msg
+    if( !isValid(n) ) return 0;
     for(int i=0; i<( (int)sizeof(listOrthDir)/(int)sizeof(listOrthDir[0]) ); i++){
         nSide  = getSideN(n, listOrthDir[i]);
         if( surface[nSide] >= surface[n]) num++;
@@ -80,15 +81,8 @@ int KMCSurface::getNumSide(int n){
 }
 
 int KMCSurface::getNumSideUp(int n){
-    orthDir listOrthDir[4] = {RIGHT, LEFT, FRONT, BACK};
-    int nSide;
-    int num=0;
-    if( !isValid(n) ) return 0; // \cks err msg
-    for(int i=0; i<( (int)sizeof(listOrthDir)/(int)sizeof(listOrthDir[0]) ); i++){
-        nSide  = getSideN(n, listOrthDir[i]);
-        if( surface[nSide] > surface[n]) num++;
-    }
-    return num;
+    if( !isValid(n) ) return 0;
+    return numSideUpTable[n];
 }
 
 double KMCSurface::getSurfaceArea(void){
@@ -96,7 +90,7 @@ double KMCSurface::getSurfaceArea(void){
 }
 
 double KMCSurface::getSEIThicknessPoint(int n){
-    if( !isValid(n) ) return 0; // \cks err msg
+    if( !isValid(n) ) return 0;
     return (double)surface[n] * p->getSEIUnitThickness();
 }
 double KMCSurface::getSEIThicknessAve(void){
@@ -104,13 +98,18 @@ double KMCSurface::getSEIThicknessAve(void){
 }
 
 void KMCSurface::adsorb(int n){
-    if( !isValid(n) || !isFlat(n) ) return; // \cks err msg
+    if( !isValid(n) || !isFlat(n) ) return;
     surface[n]++;
+    updateIsFlatTable(n);
+    updateNumSideUpTable(n);
 }
 void KMCSurface::desorb(int n){
-    if( !isValid(n) || !isTop(n) ) return; // \cks err msg
+    if( !isValid(n) || !isTop(n) ) return;
     surface[n]--;
+    updateIsFlatTable(n);
+    updateNumSideUpTable(n);
 }
+
 void KMCSurface::output(std::ostream &out){
     for(int i=0;i<getNumSite();i++) out << surface[i] << " ";
     return;
@@ -140,7 +139,6 @@ void KMCSurface::changeXYtoN(int x, int y, int *n){
 
 void KMCSurface::changeNtoXY(int n, int *x, int *y){
     if( !isValid(n) ){
-        // \cks err msg
         *x = *y = 0;
         return;
     }
@@ -159,7 +157,7 @@ void KMCSurface::boundaryXY(int *x, int *y){
 int KMCSurface::getSideN(int n, orthDir dir){
     int x,y;
     int nSide;
-    if( !isValid(n) ) return 0; // \cks err msg
+    if( !isValid(n) ) return 0;
 
     changeNtoXY(n, &x, &y);
     switch(dir){
@@ -177,7 +175,7 @@ int KMCSurface::getSideN(int n, orthDir dir){
 int KMCSurface::getUpDownSideN(int n, int z, diaDir dir){
     int x,y;
     int nSide;
-    if( !isValid(n) ) return 0; // \cks err msg
+    if( !isValid(n) ) return 0;
 
     changeNtoXY(n, &x, &y);
     // zが奇数としてまずは処理
@@ -199,6 +197,53 @@ int KMCSurface::getUpDownSideN(int n, int z, diaDir dir){
 
     return nSide;
 }
+
+void KMCSurface::updateIsFlatTable(int n){
+    int x,y;
+    int i,j;
+    int m;
+    changeNtoXY(n, &x, &y);
+    for(i=-1; i<=1; i++){
+        for(j=-1; j<=1; j++){
+            changeXYtoN(x+i, y+j, &m);
+            isFlatTable[m] = judgeIsFlat(m);
+        }
+    }
+}
+
+bool KMCSurface::judgeIsFlat(int n){
+    diaDir listDiaDir[4] = {RIGHT_FRONT, RIGHT_BACK, LEFT_FRONT, LEFT_BACK};
+    int nSide;
+    if( !isValid(n) ) return false;
+    for(int i=0; i<( (int)sizeof(listDiaDir)/(int)sizeof(listDiaDir[0]) ); i++){
+        nSide = getUpDownSideN(n, surface[n]+1, listDiaDir[i]);
+        if( surface[nSide] < surface[n] ) return false;
+    }
+    return true;
+}
+
+void KMCSurface::updateNumSideUpTable(int n){
+    orthDir listOrthDir[4] = {RIGHT, LEFT, FRONT, BACK};    
+    int nSide;
+    numSideUpTable[n] = calcNumSideUp(n);
+    for(int i=0; i<( (int)sizeof(listOrthDir)/(int)sizeof(listOrthDir[0]) ); i++){
+        nSide  = getSideN(n, listOrthDir[i]);
+        numSideUpTable[nSide] = calcNumSideUp(nSide);
+    }
+}
+
+int KMCSurface::calcNumSideUp(int n){
+    orthDir listOrthDir[4] = {RIGHT, LEFT, FRONT, BACK};
+    int nSide;
+    int num=0;
+    if( !isValid(n) ) return false;
+    for(int i=0; i<( (int)sizeof(listOrthDir)/(int)sizeof(listOrthDir[0]) ); i++){
+        nSide  = getSideN(n, listOrthDir[i]);
+        if( surface[nSide] > surface[n]) num++;
+    }
+    return num;
+}
+
 
 ostream &operator<<(ostream &out, KMCSurface &tgt){
     tgt.output(out);
